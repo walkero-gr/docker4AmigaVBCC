@@ -96,5 +96,7 @@ RUN curl -fSL "http://aminet.net/dev/mui/MCC_TextEditor-15.53.lha" -o /tmp/MCC_T
     lhasa -xf MCC_TextEditor.lha; \
     cp MCC_TextEditor/Developer/C/include/mui/* /opt/sdk/MUI_3.8/C/Include/mui/ -R;
 
+WORKDIR /opt/code
+
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
