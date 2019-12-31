@@ -83,5 +83,18 @@ RUN curl -fSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R3-
 
 ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
 
+# Install MCC_GuiGfx
+RUN curl -fSL "http://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha; \
+    cd /tmp; \
+    lhasa -xf MCC_Guigfx.lha; \
+    cp MCC_Guigfx/Developer/C/Include/MUI /opt/sdk/MUI_3.8/C/Include/mui -R; \
+    cp MCC_Guigfx/Developer/C/Include/MUI/Guigfx_mcc.h /opt/sdk/MUI_5.0/C/include/mui/;
+
+# Install MCC_TextEditor
+RUN curl -fSL "http://aminet.net/dev/mui/MCC_TextEditor-15.53.lha" -o /tmp/MCC_TextEditor.lha; \
+    cd /tmp; \
+    lhasa -xf MCC_TextEditor.lha; \
+    cp MCC_TextEditor/Developer/C/include/mui/* /opt/sdk/MUI_3.8/C/Include/mui/ -R;
+
 # Clean up APT when done.
-# RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
