@@ -9,9 +9,12 @@ RUN apt-get update && apt-get -y install gcc \
     wget \
     curl \
     make \
+    mc \
     lhasa;
 
-# RUN mkdir -p /opt/vbcc/bin;
+RUN mkdir -p /opt/vbcc/bin; \
+    mkdir -p /opt/code; \
+    mkdir -p /opt/sdk;
 
 # Install vasm
 RUN curl -fSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm.tar.gz; \
@@ -19,7 +22,6 @@ RUN curl -fSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm.
     tar xvfz vasm.tar.gz; \
     cd /tmp/vasm; \
     make CPU=m68k SYNTAX=mot; \
-    mkdir -p /opt/vbcc/bin; \
     cp vasmm68k_mot vobjdump /opt/vbcc/bin; 
 
 ENV VBCC="/opt/vbcc"
@@ -54,5 +56,32 @@ RUN curl -fSL "http://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_m68k-amig
 
 ENV PATH="$VBCC/bin:$PATH"
 
+# Install NDK39
+RUN curl -fSL "http://www.haage-partner.de/download/AmigaOS/NDK39.lha" -o /tmp/NDK39.lha; \
+    cd /tmp; \
+    lhasa -xf NDK39.lha; \
+    mv NDK_3.9 /opt/sdk/;
+
+ENV NDK_INC="/opt/sdk/NDK_3.9/Include/include_h"
+ENV NDK_LIB="/opt/sdk/NDK_3.9/Include/linker_libs"
+
+# Install MUI 3.8 dev
+RUN curl -fSL "http://muidev.de/download/MUI%203.8%20-%20AmigaOS3-m68k/mui38dev.lha" -o /tmp/mui38dev.lha; \
+    cd /tmp; \
+    lhasa -xf mui38dev.lha; \
+    mv MUI/Developer /opt/sdk/MUI_3.8;
+
+ENV MUI38_INC="/opt/sdk/MUI_3.8/C/Include"
+
+# Install MUI 5.0 dev
+RUN curl -fSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R3-os3.lha" -o /tmp/MUI-5.0-os3.lha; \
+    curl -fSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R3-os3-contrib.lha" -o /tmp/MUI-5.0-os3-contrib.lha; \
+    cd /tmp; \
+    lhasa -xf MUI-5.0-os3.lha; \
+    lhasa -xf MUI-5.0-os3-contrib.lha; \
+    mv SDK/MUI /opt/sdk/MUI_5.0;
+
+ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
+
 # Clean up APT when done.
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
