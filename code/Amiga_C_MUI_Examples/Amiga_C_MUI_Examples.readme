@@ -1,0 +1,34 @@
+Short:        Amiga C MUI Examples
+Author:       muratozdemir@dishekimi.com (emarti, Murat Özdemir)
+Uploader:     muratozdemir@dishekimi.com (emarti, Murat Özdemir)
+Type:         dev/mui
+Version:      1.0
+Architecture: m68k-amigaos
+Requires:     ADE (gcc), MUI 3.X
+
+SHORT
+=====
+MUI based C Project Examples for Amiga OS 3.X
+
+REQUIREMENTS
+============
+MagicUserInterface 3.8, user files
+http://aminet.net/util/libs/mui38usr.lha
+
+MagicUserInterface 3.8, developer files
+http://aminet.net/dev/mui/mui38dev.lha
+
+GCC based Amiga Development Environment
+http://aminet.net/dev/gcc/ADE.zip
+
+and
+
+Amiga OS 3.X :)
+
+ALTERNATIVE LINK
+================
+https://github.com/emartisoft/AmigaOS3.X-MUI-Examples
+
+
+Enjoy It!
+emarti

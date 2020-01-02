@@ -71,6 +71,12 @@ services:
       - './ext_includes:/opt/sdk/ext_includes'
 ```
 
+### Demo code
+Under the folder `code` you will find some demo scripts that can be compiled with this vbcc docker installation
+
+* hello.c - Just a simple Hello World script
+* openwin.c - This is a simple code that opens a window on Workbench, as found at https://github.com/Ozzyboshi/DockerAmigaVbcc
+* Amiga_C_MUI_Examples - A couple of MUI examples as found at http://aminet.net/package/dev/mui/Amiga_C_MUI_Examples with update Makefiles to use VBCC
 
 This docker image is based on the following sources:
 * https://blitterstudio.com/setting-up-an-amiga-cross-compiler/
