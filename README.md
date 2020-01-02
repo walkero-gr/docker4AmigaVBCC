@@ -65,11 +65,41 @@ services:
   vbcc:
     image: 'walkero/docker4amigavbcc:1.0-m68k'
     environment:
-      NDK_INC: "/opt/sdk/ext_includes/NDK_3.9/Include/include_h"
+      NDK_INC: "/opt/ext_sdk/NDK_3.9/Include/include_h"
     volumes:
       - './code:/opt/code'
-      - './ext_includes:/opt/sdk/ext_includes'
+      - './ext_sdk:/opt/ext_sdk'
 ```
+
+### Add Roadshow SDK
+
+Unfortunately, right now is not possible to include Roadshow SDK to this images. So, if you want to use it you have to do the following steps:
+1. Download Roadshow SDK from http://roadshow.apc-tcp.de/download-en.php
+2. Unarchive it in a folder named whatever you want. I prefer to use the name `ext_sdk` and put it under the same folder where the folder `code` or docker-compose.yml file exists, **NOT** inside the `code` folder, so to keep them separated.
+3. Start the container like:
+  * using docker
+    ```bash
+    docker run -it --rm --name amigavbcc -v "$PWD"/code:/opt/code -v "$PWD"/ext-sdk:/opt/ext-sdk -w /opt/code -e TCP_INC="/opt/ext_sdk/Roadshow-SDK/include" -e NET_INC="/opt/ext_sdk/Roadshow-SDK/netinclude" walkero/docker4amigavbcc:1.0-m68k bash
+    ```
+  * using docker-compose
+    ```yaml
+    version: '3'
+
+    services:
+      vbcc:
+        image: 'walkero/docker4amigavbcc:1.0-m68k'
+        environment:
+          TCP_INC: "/opt/ext_sdk/Roadshow-SDK/include"
+          NET_INC: "/opt/ext_sdk/Roadshow-SDK/netinclude"
+        volumes:
+          - './code:/opt/code'
+          - './ext_sdk:/opt/ext_sdk'
+    ```
+    Change the above paths with your own, if necessary.
+4. Compile your program using the new include flags
+  ```bash
+  vc +aos68k -c99 -I$NDK_INC -I$TCP_INC -I$NET_INC -lamiga -lauto Online.c -o Online
+  ```
 
 ### Demo code
 Under the folder `code` you will find some demo scripts that can be compiled with this vbcc docker installation
