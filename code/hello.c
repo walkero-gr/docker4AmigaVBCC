@@ -1,7 +1,7 @@
 /*
- * compile with: 
- * vc +aos68k -o hello hello.c
- */
+    compile with: 
+    vc +aos68k -o hello hello.c
+*/
 
 
 #include <stdio.h>

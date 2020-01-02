@@ -1,7 +1,7 @@
 /*
- * compile with makefile: 
- * make
- */
+    compile with makefile: 
+    make
+*/
 
 #include <exec/types.h>
 #include <intuition/intuition.h>
