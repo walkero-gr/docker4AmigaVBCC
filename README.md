@@ -10,7 +10,7 @@ This image contains the following:
 | vasm              | 1.8g (04-Oct-2019)    | http://sun.hasenbraten.de/vasm/
 | NDK               | 3.9                   | http://www.haage-partner.de/download/AmigaOS/
 | MUI 3.x dev       | 3.8                   | http://muidev.de/downloads
-| MUI 5.x dev       | 5.0-2019R3            | http://muidev.de/downloads
+| MUI 5.x dev       | 5.0-2019R4            | http://muidev.de/downloads
 | MCC_GuiGfx        | 19.2                  | http://aminet.net/package/dev/mui/MCC_Guigfx
 | MCC_TextEditor    | 15.53                 | http://aminet.net/package/dev/mui/MCC_TextEditor-15.53
 
