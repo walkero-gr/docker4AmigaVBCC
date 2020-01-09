@@ -1,5 +1,5 @@
 # docker4AmigaVBCC
-A docker image with VBCC compiler for Amiga Cross Compiling. It is based on Ubuntu and has everything needed for compiling your applications for AmigaOS m68k.
+Two docker images with VBCC compiler for cross compiling software for AmigaOS 3 and 4. It is based on Ubuntu and has everything needed (vbcc compiler, SDKs, libraries) for compiling your applications.
 
 ## AmigaOS 68k development image
 The **docker4amigavbcc:latest-m68k** image contains the following:
@@ -122,6 +122,9 @@ Under the folder `code` you will find some demo scripts that can be compiled wit
 * m68k/openwin.c - This is a simple code that opens a window on Workbench, as found at https://github.com/Ozzyboshi/DockerAmigaVbcc
 * m68k/Amiga_C_MUI_Examples - A couple of MUI examples as found at http://aminet.net/package/dev/mui/Amiga_C_MUI_Examples with update Makefiles to use VBCC
 * aosppc/Window - A few example codes from AmigaOS 4 SDK
+
+## Bug reports or feature request
+If you have any issues with the images or you need help on using them or you would like to request any new feature, please contact me by opening an issue at https://github.com/walkero-gr/docker4AmigaVBCC/issues
 
 ## Credits
 The **docker4amigavbcc:latest-m68k** docker image is based on the following sources:
