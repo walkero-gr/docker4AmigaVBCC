@@ -1,7 +1,8 @@
 # docker4AmigaVBCC
 A docker image with VBCC compiler for Amiga Cross Compiling. It is based on Ubuntu and has everything needed for compiling your applications for AmigaOS m68k.
 
-This image contains the following:
+## AmigaOS 68k development image
+The **docker4amigavbcc:latest-m68k** image contains the following:
 
 | app               | version               | source
 |-------------------|-----------------------|-----------------------------------|
@@ -15,12 +16,12 @@ This image contains the following:
 | MCC_TextEditor    | 15.53                 | http://aminet.net/package/dev/mui/MCC_TextEditor-15.53
 | Roadshow SDK      | 1.4 (15.3.2019)       | https://www.amigafuture.de/app.php/dlext/?view=detail&df_id=3658
 
-## Create a docker container
+## How to create a docker container
 
 To create a container based on this image run in the terminal:
 
 ```bash
-docker run -it --rm --name amigavbcc -v "$PWD"/code:/opt/code -w /opt/code walkero/docker4amigavbcc:1.1-m68k bash
+docker run -it --rm --name amigavbcc -v "$PWD"/code:/opt/code -w /opt/code walkero/docker4amigavbcc:latest-m68k bash
 ```
 
 If you want to use it with **docker-compose**, you can create a *docker-compose.yml* file, with the following content:
@@ -30,7 +31,7 @@ version: '3'
 
 services:
   vbcc:
-    image: 'walkero/docker4amigavbcc:1.1-m68k'
+    image: 'walkero/docker4amigavbcc:latest-m68k'
     volumes:
       - './code:/opt/code'
 ```
@@ -43,7 +44,7 @@ docker-compose vbcc exec bash
 
 To compile your project you have to get into the container, inside the */opt/code/projectname* folder, which is shared with the host machine, and run the compilation.
 
-## Set you own include paths
+## How to set your own include paths
 
 The image has the following ENV variables set:
 
@@ -58,7 +59,7 @@ The image has the following ENV variables set:
 
 You can set your own paths, if you want, by using environment variables on docker execution or inside the docker-compose.yml file, like:
 ```bash
-docker run -it --rm --name amigavbcc -v "$PWD"/code:/opt/code -w /opt/code -e NDK_INC="/your/folder/path" walkero/docker4amigavbcc:1.1-m68k bash
+docker run -it --rm --name amigavbcc -v "$PWD"/code:/opt/code -w /opt/code -e NDK_INC="/your/folder/path" walkero/docker4amigavbcc:latest-m68k bash
 ```
 docker-compose.yml
 ```yaml
@@ -66,7 +67,7 @@ version: '3'
 
 services:
   vbcc:
-    image: 'walkero/docker4amigavbcc:1.1-m68k'
+    image: 'walkero/docker4amigavbcc:latest-m68k'
     environment:
       NDK_INC: "/opt/ext_sdk/NDK_3.9/Include/include_h"
     volumes:
