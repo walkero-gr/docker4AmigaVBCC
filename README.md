@@ -13,13 +13,14 @@ This image contains the following:
 | MUI 5.x dev       | 5.0-2019R4            | http://muidev.de/downloads
 | MCC_GuiGfx        | 19.2                  | http://aminet.net/package/dev/mui/MCC_Guigfx
 | MCC_TextEditor    | 15.53                 | http://aminet.net/package/dev/mui/MCC_TextEditor-15.53
+| Roadshow SDK      | 1.4 (15.3.2019)       | https://www.amigafuture.de/app.php/dlext/?view=detail&df_id=3658
 
 ## Create a docker container
 
 To create a container based on this image run in the terminal:
 
 ```bash
-docker run -it --rm --name amigavbcc -v "$PWD"/code:/opt/code -w /opt/code walkero/docker4amigavbcc:1.0-m68k bash
+docker run -it --rm --name amigavbcc -v "$PWD"/code:/opt/code -w /opt/code walkero/docker4amigavbcc:1.1-m68k bash
 ```
 
 If you want to use it with **docker-compose**, you can create a *docker-compose.yml* file, with the following content:
@@ -29,7 +30,7 @@ version: '3'
 
 services:
   vbcc:
-    image: 'walkero/docker4amigavbcc:1.0-m68k'
+    image: 'walkero/docker4amigavbcc:1.1-m68k'
     volumes:
       - './code:/opt/code'
 ```
@@ -52,10 +53,12 @@ The image has the following ENV variables set:
 * **NDK_LIB**: /opt/sdk/NDK_3.9/Include/linker_libs
 * **MUI38_INC**: /opt/sdk/MUI_3.8/C/Include
 * **MUI50_INC**: /opt/sdk/MUI_5.0/C/include
+* **TCP_INC**: /opt/sdk/Roadshow-SDK/include
+* **NET_INC**: /opt/sdk/Roadshow-SDK/netinclude
 
 You can set your own paths, if you want, by using environment variables on docker execution or inside the docker-compose.yml file, like:
 ```bash
-docker run -it --rm --name amigavbcc -v "$PWD"/code:/opt/code -w /opt/code -e NDK_INC="/your/folder/path" walkero/docker4amigavbcc:1.0-m68k bash
+docker run -it --rm --name amigavbcc -v "$PWD"/code:/opt/code -w /opt/code -e NDK_INC="/your/folder/path" walkero/docker4amigavbcc:1.1-m68k bash
 ```
 docker-compose.yml
 ```yaml
@@ -63,7 +66,7 @@ version: '3'
 
 services:
   vbcc:
-    image: 'walkero/docker4amigavbcc:1.0-m68k'
+    image: 'walkero/docker4amigavbcc:1.1-m68k'
     environment:
       NDK_INC: "/opt/ext_sdk/NDK_3.9/Include/include_h"
     volumes:
@@ -71,35 +74,9 @@ services:
       - './ext_sdk:/opt/ext_sdk'
 ```
 
-### Add Roadshow SDK
+### Roadshow SDK
 
-Unfortunately, right now is not possible to include Roadshow SDK to this images. So, if you want to use it you have to do the following steps:
-1. Download Roadshow SDK from http://roadshow.apc-tcp.de/download-en.php
-2. Unarchive it in a folder named whatever you want. I prefer to use the name `ext_sdk` and put it under the same folder where the folder `code` or docker-compose.yml file exists, **NOT** inside the `code` folder, so to keep them separated.
-3. Start the container like:
-  * using docker
-    ```bash
-    docker run -it --rm --name amigavbcc -v "$PWD"/code:/opt/code -v "$PWD"/ext-sdk:/opt/ext-sdk -w /opt/code -e TCP_INC="/opt/ext_sdk/Roadshow-SDK/include" -e NET_INC="/opt/ext_sdk/Roadshow-SDK/netinclude" walkero/docker4amigavbcc:1.0-m68k bash
-    ```
-  * using docker-compose
-    ```yaml
-    version: '3'
-
-    services:
-      vbcc:
-        image: 'walkero/docker4amigavbcc:1.0-m68k'
-        environment:
-          TCP_INC: "/opt/ext_sdk/Roadshow-SDK/include"
-          NET_INC: "/opt/ext_sdk/Roadshow-SDK/netinclude"
-        volumes:
-          - './code:/opt/code'
-          - './ext_sdk:/opt/ext_sdk'
-    ```
-    Change the above paths with your own, if necessary.
-4. Compile your program using the new include flags
-  ```bash
-  vc +aos68k -c99 -I$NDK_INC -I$TCP_INC -I$NET_INC -lamiga -lauto Online.c -o Online
-  ```
+Roadshow SDK is included since version tag 1.1-m68k, with the kind permission from Andreas Magerl. Thank you Andreas for your help.
 
 ### Demo code
 Under the folder `code` you will find some demo scripts that can be compiled with this vbcc docker installation

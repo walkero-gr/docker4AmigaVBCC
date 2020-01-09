@@ -1,9 +1,12 @@
 -include env_make
 
 REPO ?= walkero/docker4amigavbcc
-TAG ?= 1.0-m68k
+TAG ?= 1.1-m68k
+VOLUMES ?= -v "${PWD}/../code":/opt/code
+WORKSPACE ?= -w /opt/code
+NAME ?= amigavbcc
 
-.PHONY: build buildnc push release
+.PHONY: build buildnc shell push logs clean release
 
 default: build
 
@@ -13,7 +16,16 @@ build:
 buildnc:
 	docker build --no-cache -t $(REPO):$(TAG) .
 
+shell:
+	docker run -it --rm --name $(NAME) $(VOLUMES) $(WORKSPACE) $(REPO):$(TAG) /bin/bash
+
 push:
 	docker push $(REPO):$(TAG)
+
+logs:
+	docker logs $(NAME)
+
+clean:
+	-docker rm -f $(NAME)
 
 release: build push

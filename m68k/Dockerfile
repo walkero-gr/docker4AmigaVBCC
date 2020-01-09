@@ -10,6 +10,7 @@ RUN apt-get update && apt-get -y install gcc \
     curl \
     make \
     mc \
+    git \
     lhasa;
 
 RUN mkdir -p /opt/vbcc/bin; \
@@ -95,6 +96,15 @@ RUN curl -fSL "http://aminet.net/dev/mui/MCC_TextEditor-15.53.lha" -o /tmp/MCC_T
     cd /tmp; \
     lhasa -xf MCC_TextEditor.lha; \
     cp MCC_TextEditor/Developer/C/include/mui/* /opt/sdk/MUI_3.8/C/Include/mui/ -R;
+
+# Install Roadshow SDK
+RUN curl -fSL "http://amiga-projects.net/Roadshow-SDK.lha" -o /tmp/Roadshow-SDK.lha; \
+    cd /tmp; \
+    lhasa -xfw=Roadshow-SDK Roadshow-SDK.lha; \
+    mv Roadshow-SDK /opt/sdk/Roadshow-SDK;
+
+ENV TCP_INC="/opt/sdk/Roadshow-SDK/include"
+ENV NET_INC="/opt/sdk/Roadshow-SDK/netinclude"
 
 WORKDIR /opt/code
 
