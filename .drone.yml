@@ -12,6 +12,7 @@ steps:
       - ${DRONE_SOURCE_BRANCH/\//-}-${DRONE_COMMIT_SHA:0:8}
     cache_from:
       - ${DRONE_REPO,,}:${DRONE_SOURCE_BRANCH/\//-}
+    dockerfile: ppc/Dockerfile
     username:
       from_secret: DOCKERHUB_USERNAME
     password:
