@@ -1,0 +1,22 @@
+---
+kind: pipeline
+name: build-image
+
+steps:
+- name: build-image-branch
+  image: plugins/docker
+  settings:
+    repo: ${DRONE_REPO,,}
+    tags:
+      - ${DRONE_SOURCE_BRANCH/\//-}
+      - ${DRONE_SOURCE_BRANCH/\//-}-${DRONE_COMMIT_SHA:0:8}
+    cache_from:
+      - ${DRONE_REPO,,}:${DRONE_SOURCE_BRANCH/\//-}
+    username:
+      from_secret: DOCKERHUB_USERNAME
+    password:
+      from_secret: DOCKERHUB_PASSWORD
+  when:
+    event:
+      exclude:
+        - tag
