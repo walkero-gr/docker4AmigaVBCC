@@ -13,10 +13,10 @@ steps:
     cache_from:
       - ${DRONE_REPO,,}:${DRONE_SOURCE_BRANCH/\//-}
     dockerfile: ppc/Dockerfile
-    username:
-      from_secret: DOCKERHUB_USERNAME
-    password:
-      from_secret: DOCKERHUB_PASSWORD
+    # username:
+    #   from_secret: DOCKERHUB_USERNAME
+    # password:
+    #   from_secret: DOCKERHUB_PASSWORD
   when:
     event:
       exclude:
