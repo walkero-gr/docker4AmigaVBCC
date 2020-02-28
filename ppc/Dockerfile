@@ -59,7 +59,7 @@ RUN curl -fSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_ppc-amig
 ENV PATH="$VBCC/bin:$PATH"
 
 # Install AmigaOS 4 SDK
-RUN curl -fSL "http://www.hyperion-entertainment.biz/index.php?option=com_registration&amp;view=download&amp;format=raw&amp;file=82&amp;Itemid=82" -o /tmp/AmigaOS4-SDK.lha; \
+RUN curl -fkSL "http://www.hyperion-entertainment.biz/index.php?option=com_registration&amp;view=download&amp;format=raw&amp;file=82&amp;Itemid=82" -o /tmp/AmigaOS4-SDK.lha; \
     cd /tmp; \
     lhasa -xf AmigaOS4-SDK.lha; \
     cd SDK_Install; \
@@ -72,6 +72,7 @@ RUN curl -fSL "http://www.hyperion-entertainment.biz/index.php?option=com_regist
 
 ENV AOS4_SDK_INC="/opt/sdk/ppc-amigaos/Include/include_h"
 ENV AOS4_NET_INC="/opt/sdk/ppc-amigaos/Include/netinclude"
+ENV AOS4_NLIB_INC="/opt/sdk/ppc-amigaos/newlib/include"
 
 # Install MUI 5.0 dev
 RUN curl -fSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os3.lha" -o /tmp/MUI-5.0-os3.lha; \
@@ -84,12 +85,12 @@ RUN curl -fSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-
 ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
 
 # Install AMISSL SDK
-# RUN curl -fSL "https://github.com/jens-maus/amissl/releases/download/4.3/AmiSSL-4.3.lha" -o /tmp/AmiSSL-4.3.lha; \
-#     cd /tmp; \
-#     lhasa -xf AmiSSL-4.3.lha; \
-#     mv AmiSSL/Developer /opt/sdk/AmiSSL;
+RUN curl -fSL "https://github.com/jens-maus/amissl/releases/download/4.4/AmiSSL-4.4.lha" -o /tmp/AmiSSL.lha; \
+    cd /tmp; \
+    lhasa -xf AmiSSL.lha; \
+    mv AmiSSL/Developer /opt/sdk/AmiSSL;
 
-# ENV AMISSL_INC="/opt/sdk/AmiSSL/include"
+ENV AMISSL_INC="/opt/sdk/AmiSSL/include"
 
 # Install GL4ES SDK
 # RUN curl -fSL "https://github.com/kas1e/GL4ES-SDK/releases/download/1.1/gl4es_sdk-1.1.lha" -o /tmp/gl4es_sdk-1.1.lha; \

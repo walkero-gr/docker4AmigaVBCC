@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## docker4amigavbcc:1.1-ppc - 2020-02-28
+### Added
+- AmiSSL 4.4 SDK
+- Newlib Env variable for the newlib includes
 
 ## docker4amigavbcc:1.0-ppc - 2020-01-09
 ### Added
@@ -13,9 +17,6 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Introduced the docker4amigavbcc:latest-m68k
 - Changed the Makefile to build and push the latest-m68k tag
-
-## docker4amigavbcc:1.1-m68k - 2020-01-08
-### Added
 - Roadshow SDK
 - git
 - Added shell, logs and clean to the makefile

@@ -28,6 +28,7 @@ The **docker4amigavbcc:latest-ppc** image contains the following:
 | vasm              | 1.8g (04-Oct-2019)    | http://sun.hasenbraten.de/vasm/
 | AmigaOS 4 SDK     | 53.30                 | http://www.hyperion-entertainment.com/
 | MUI 5.x dev       | 5.0-2019R4            | http://muidev.de/downloads
+| AmiSSL SDK        | 4.4                   | https://github.com/jens-maus/amissl/releases/tag/4.4
 
 ## How to create a docker container
 
@@ -83,6 +84,7 @@ The **docker4amigavbcc:latest-ppc** image has the following ENV variables set:
 * **PATH**: /opt/vbcc/bin
 * **AOS4_SDK_INC**: /opt/sdk/ppc-amigaos/Include/include_h
 * **AOS4_NET_INC**: /opt/sdk/ppc-amigaos/Include/netinclude
+* **AOS4_NLIB_INC**: /opt/sdk/ppc-amigaos/newlib/include
 * **MUI50_INC**: /opt/sdk/MUI_5.0/C/include
 
 You can set your own paths, if you want, by using environment variables on docker execution or inside the docker-compose.yml file, like:
