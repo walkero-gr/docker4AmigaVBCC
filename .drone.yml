@@ -7,6 +7,9 @@ steps:
     image: plugins/docker
     settings:
       repo: walkero/docker4amigavbcc
+      tags:
+        - ${DRONE_SOURCE_BRANCH/\//-}
+        - ${DRONE_SOURCE_BRANCH/\//-}-${DRONE_COMMIT_SHA:0:8}
       # auto_tag: true
       # auto_tag_suffix: ppc
       dockerfile: ppc/Dockerfile
