@@ -37,26 +37,26 @@ steps:
     event:
       exclude:
         - tag
-- name: Fetch full git repo
-  image: alpine/git
-  commands:
-    - git fetch --all
-  when:
-    event:
-      - tag
-- name: build-image-from-tag
-  image: plugins/docker
-  settings:
-    repo: walkero/docker4amigavbcc
-    tags:
-      - testtag
-    cache_from:
-      - "walkero/docker4amigavbcc:latest-${DRONE_TAG:4:4}"
-    dockerfile: ppc/Dockerfile
-    username:
-      from_secret: DOCKERHUB_USERNAME
-    password:
-      from_secret: DOCKERHUB_PASSWORD
-  when:
-    event:
-      - tag
+# - name: Fetch full git repo
+#   image: alpine/git
+#   commands:
+#     - git fetch --all
+#   when:
+#     event:
+#       - tag
+# - name: build-image-from-tag
+#   image: plugins/docker
+#   settings:
+#     repo: walkero/docker4amigavbcc
+#     tags:
+#       - testtag
+#     cache_from:
+#       - "walkero/docker4amigavbcc:latest-${DRONE_TAG:4:4}"
+#     dockerfile: ppc/Dockerfile
+#     username:
+#       from_secret: DOCKERHUB_USERNAME
+#     password:
+#       from_secret: DOCKERHUB_PASSWORD
+#   when:
+#     event:
+#       - tag
