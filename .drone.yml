@@ -11,7 +11,7 @@ steps:
       - ${DRONE_TAG/\//-}
       - latest-${DRONE_TAG:4:4}
     cache_from:
-      - ${DRONE_REPO,,}:${DRONE_SOURCE_BRANCH/\//-}
+      - ${DRONE_REPO,,}:master-${DRONE_COMMIT_SHA:0:8}
     dockerfile: ${DRONE_TAG:4:4}/Dockerfile
     username:
       from_secret: DOCKERHUB_USERNAME
