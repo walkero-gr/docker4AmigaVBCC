@@ -3,7 +3,7 @@ kind: pipeline
 name: build-image
 
 steps:
-- name: build-ppc-image
+- name: build-${DRONE_TAG:4:4}-image
   image: plugins/docker
   settings:
     repo: walkero/docker4amigavbcc # ${DRONE_REPO,,}
