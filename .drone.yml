@@ -3,38 +3,6 @@ kind: pipeline
 name: build-image
 
 steps:
-# - name: build-ppc-image-branch
-#   image: plugins/docker
-#   settings:
-#     repo: walkero/docker4amigavbcc
-#     auto_tag: true
-#     auto_tag_suffix: ppc
-#     dockerfile: ppc/Dockerfile
-#     username:
-#       from_secret: DOCKERHUB_USERNAME
-#     password:
-#       from_secret: DOCKERHUB_PASSWORD
-#   when:
-#     event:
-#       exclude:
-#         - tag
-
-# - name: build-m68k-image-branch
-#   image: plugins/docker
-#   settings:
-#     repo: walkero/docker4amigavbcc
-#     auto_tag: true
-#     auto_tag_suffix: m68k
-#     dockerfile: m68k/Dockerfile
-#     username:
-#       from_secret: DOCKERHUB_USERNAME
-#     password:
-#       from_secret: DOCKERHUB_PASSWORD
-#   when:
-#     event:
-#       exclude:
-#         - tag
-
 - name: build-${DRONE_TAG:4:4}-image-tag
   image: plugins/docker
   settings:
