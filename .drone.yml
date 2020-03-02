@@ -4,7 +4,7 @@ name: build-images
 
 steps:
 - name: Fetch full git repo
-  image: docker:git
+  image: alpine/git
   commands:
     - git fetch --all
 - name: build-ppc-image-latest
