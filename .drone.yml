@@ -9,8 +9,6 @@ steps:
     repo: walkero/docker4amigavbcc
     auto_tag: true
     auto_tag_suffix: ppc
-    # cache_from:
-    #   - ${DRONE_REPO,,}:${DRONE_SOURCE_BRANCH/\//-}
     dockerfile: ppc/Dockerfile
     username:
       from_secret: DOCKERHUB_USERNAME
@@ -21,23 +19,21 @@ steps:
       exclude:
         - tag
 
-- name: build-m68k-image-branch
-  image: plugins/docker
-  settings:
-    repo: walkero/docker4amigavbcc
-    auto_tag: true
-    auto_tag_suffix: m68k
-    # cache_from:
-    #   - ${DRONE_REPO,,}:${DRONE_SOURCE_BRANCH/\//-}
-    dockerfile: m68k/Dockerfile
-    username:
-      from_secret: DOCKERHUB_USERNAME
-    password:
-      from_secret: DOCKERHUB_PASSWORD
-  when:
-    event:
-      exclude:
-        - tag
+# - name: build-m68k-image-branch
+#   image: plugins/docker
+#   settings:
+#     repo: walkero/docker4amigavbcc
+#     auto_tag: true
+#     auto_tag_suffix: m68k
+#     dockerfile: m68k/Dockerfile
+#     username:
+#       from_secret: DOCKERHUB_USERNAME
+#     password:
+#       from_secret: DOCKERHUB_PASSWORD
+#   when:
+#     event:
+#       exclude:
+#         - tag
 
 - name: build-${DRONE_TAG:4:4}-image-tag
   image: plugins/docker
