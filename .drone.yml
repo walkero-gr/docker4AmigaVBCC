@@ -9,7 +9,7 @@ steps:
     repo: walkero/docker4amigavbcc
     tags:
       - "latest-ppc"
-      - "latest-ppc-`${DRONE_COMMIT_SHA:0:8}`"
+      - "latest-ppc-${DRONE_COMMIT_SHA:0:8}"
     cache_from:
       - ${DRONE_REPO,,}:${DRONE_SOURCE_BRANCH/\//-}
     dockerfile: ppc/Dockerfile
