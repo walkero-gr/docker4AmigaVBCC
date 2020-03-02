@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## docker4amigavbcc:1.2-m68k - 2020-03-02
+### Added
+- AmiSSL 4.4 SDK
+- Posix Lib includes
+
 ## docker4amigavbcc:1.1-ppc - 2020-02-28
 ### Added
 - AmiSSL 4.4 SDK

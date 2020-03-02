@@ -6,7 +6,7 @@ VOLUMES ?= -v "${PWD}/../code":/opt/code
 WORKSPACE ?= -w /opt/code
 NAME ?= amigavbcc
 
-.PHONY: build buildnc shell push logs clean release
+.PHONY: build buildnc buildlatest shell push pushlatest logs clean release
 
 default: build
 

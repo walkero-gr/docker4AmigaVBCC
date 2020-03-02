@@ -17,6 +17,8 @@ The **docker4amigavbcc:latest-m68k** image contains the following:
 | MCC_GuiGfx        | 19.2                  | http://aminet.net/package/dev/mui/MCC_Guigfx
 | MCC_TextEditor    | 15.53                 | http://aminet.net/package/dev/mui/MCC_TextEditor-15.53
 | Roadshow SDK      | 1.4 (15.3.2019)       | https://www.amigafuture.de/app.php/dlext/?view=detail&df_id=3658
+| AmiSSL SDK        | 4.4                   | https://github.com/jens-maus/amissl/releases/tag/4.4
+| Posix Lib         | 2.6                   | http://aminet.net/package/dev/c/vbcc_PosixLib
 
 ## PPC development image
 The **docker4amigavbcc:latest-ppc** image contains the following:
@@ -77,6 +79,8 @@ The **docker4amigavbcc:latest-m68k** image has the following ENV variables set:
 * **MUI50_INC**: /opt/sdk/MUI_5.0/C/include
 * **TCP_INC**: /opt/sdk/Roadshow-SDK/include
 * **NET_INC**: /opt/sdk/Roadshow-SDK/netinclude
+* **AMISSL_INC**: /opt/sdk/AmiSSL/include
+* **POSIXLIB_INC**: /opt/sdk/PosixLib/include
 
 The **docker4amigavbcc:latest-ppc** image has the following ENV variables set:
 
@@ -86,6 +90,7 @@ The **docker4amigavbcc:latest-ppc** image has the following ENV variables set:
 * **AOS4_NET_INC**: /opt/sdk/ppc-amigaos/Include/netinclude
 * **AOS4_NLIB_INC**: /opt/sdk/ppc-amigaos/newlib/include
 * **MUI50_INC**: /opt/sdk/MUI_5.0/C/include
+* **AMISSL_INC**: /opt/sdk/AmiSSL/include
 
 You can set your own paths, if you want, by using environment variables on docker execution or inside the docker-compose.yml file, like:
 ```bash

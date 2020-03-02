@@ -106,6 +106,23 @@ RUN curl -fSL "http://amiga-projects.net/Roadshow-SDK.lha" -o /tmp/Roadshow-SDK.
 ENV TCP_INC="/opt/sdk/Roadshow-SDK/include"
 ENV NET_INC="/opt/sdk/Roadshow-SDK/netinclude"
 
+# Install AMISSL SDK
+RUN curl -fSL "https://github.com/jens-maus/amissl/releases/download/4.4/AmiSSL-4.4.lha" -o /tmp/AmiSSL.lha; \
+    cd /tmp; \
+    lhasa -xf AmiSSL.lha; \
+    mv AmiSSL/Developer /opt/sdk/AmiSSL;
+
+ENV AMISSL_INC="/opt/sdk/AmiSSL/include"
+
+# Install Posix Lib
+RUN curl -fSL "http://aminet.net/dev/c/vbcc_PosixLib.lha" -o /tmp/vbcc_PosixLib.lha; \
+    cd /tmp; \
+    lhasa -xf vbcc_PosixLib.lha; \
+    mkdir -p /opt/sdk/PosixLib/; \
+    mv PosixLib/include/ /opt/sdk/PosixLib/;
+
+ENV POSIXLIB_INC="/opt/sdk/PosixLib/include"
+
 WORKDIR /opt/code
 
 # Clean up APT when done.

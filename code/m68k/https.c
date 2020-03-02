@@ -3,7 +3,7 @@
  * https://github.com/jens-maus/amissl/blob/4.4/test/https.c
  * 
  * Compile with
- * vc +aosppc -I$AOS4_SDK_INC -I$AOS4_NET_INC -I$AOS4_NLIB_INC -I$AMISSL_INC -D__USE_INLINE__ -lauto https.c -o https
+ * vc +aos68k -c99 -lamiga -lauto -I$NDK_INC -I$NET_INC -I$AMISSL_INC -D__USE_INLINE__ -D__NEW_TIMEVAL_DEFINITION_USED__ https.c -o https -v
  */
 
 #if defined(__amigaos4__)
