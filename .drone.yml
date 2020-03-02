@@ -3,16 +3,34 @@ kind: pipeline
 name: build-images
 
 steps:
-- name: build-ppc-image-master
+- name: build-ppc-image-latest
   image: plugins/docker
   settings:
     repo: walkero/docker4amigavbcc
     tags:
       - "latest-ppc"
-      - "latest-ppc-${DRONE_COMMIT_SHA:0:8}"
+      # - "latest-ppc-${DRONE_COMMIT_SHA:0:8}"
     cache_from:
       - ${DRONE_REPO,,}:${DRONE_SOURCE_BRANCH/\//-}
     dockerfile: ppc/Dockerfile
+    username:
+      from_secret: DOCKERHUB_USERNAME
+    password:
+      from_secret: DOCKERHUB_PASSWORD
+  when:
+    event:
+      exclude:
+        - tag
+- name: build-m68k-image-latest
+  image: plugins/docker
+  settings:
+    repo: walkero/docker4amigavbcc
+    tags:
+      - "latest-m68k"
+      # - "latest-m68k-${DRONE_COMMIT_SHA:0:8}"
+    cache_from:
+      - ${DRONE_REPO,,}:${DRONE_SOURCE_BRANCH/\//-}
+    dockerfile: m68k/Dockerfile
     username:
       from_secret: DOCKERHUB_USERNAME
     password:
