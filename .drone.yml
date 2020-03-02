@@ -1,50 +1,23 @@
 ---
 kind: pipeline
-name: build-images
+name: build-image
 
 steps:
-- name: Fetch full git repo
-  image: docker:git
-  commands:
-    - git fetch --all
-  # when:
-    # event:
-    #   exclude:
-    #     - tag
-# - name: build-ppc-image-branch
-#   image: plugins/docker
-#   settings:
-#     repo: walkero/docker4amigavbcc
-#     tags:
-#       - ${DRONE_SOURCE_BRANCH/\//-}
-#       - ${DRONE_SOURCE_BRANCH/\//-}-${DRONE_COMMIT_SHA:0:8}
-#     cache_from:
-#       - ${DRONE_REPO,,}:${DRONE_SOURCE_BRANCH/\//-}
-#     # auto_tag: true
-#     # auto_tag_suffix: ppc
-#     dockerfile: ppc/Dockerfile
-#     username:
-#       from_secret: DOCKERHUB_USERNAME
-#     password:
-#       from_secret: DOCKERHUB_PASSWORD
-#   when:
-#     event:
-#       exclude:
-#         - tag
-# - name: build-${DRONE_TAG:4:4}-image-tag
-#   image: plugins/docker
-#   settings:
-#     repo: walkero/docker4amigavbcc
-#     tags:
-#       - ${DRONE_TAG/\//-}
-#       # - latest-${DRONE_TAG:4:4}
-#     cache_from:
-#       - ${DRONE_REPO,,}:master-${DRONE_COMMIT_SHA:0:8}
-#     dockerfile: ${DRONE_TAG:4:4}/Dockerfile
-#     username:
-#       from_secret: DOCKERHUB_USERNAME
-#     password:
-#       from_secret: DOCKERHUB_PASSWORD
-#   when:
-#     event:
-#       - tag
+- name: build-ppc-image
+  image: plugins/docker
+  settings:
+    repo: walkero/docker4amigavbcc # ${DRONE_REPO,,}
+    tags:
+      - ${DRONE_SOURCE_BRANCH/\//-}
+      - ${DRONE_SOURCE_BRANCH/\//-}-${DRONE_COMMIT_SHA:0:8}
+    cache_from:
+      - ${DRONE_REPO,,}:${DRONE_SOURCE_BRANCH/\//-}
+    dockerfile: ppc/Dockerfile
+    username:
+      from_secret: DOCKERHUB_USERNAME
+    password:
+      from_secret: DOCKERHUB_PASSWORD
+  when:
+    event:
+      exclude:
+        - tag
