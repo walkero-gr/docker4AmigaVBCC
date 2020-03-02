@@ -6,12 +6,10 @@ steps:
 - name: build-ppc-image-master
   image: plugins/docker
   settings:
-    repo: walkero/docker4amigavbcc # ${DRONE_REPO,,}
-    auto_tag: true
-    auto_tag_suffix: ppc
-    # tags:
-    #   - ${DRONE_SOURCE_BRANCH/\//-}
-    #   - ${DRONE_SOURCE_BRANCH/\//-}-${DRONE_COMMIT_SHA:0:8}
+    repo: walkero/docker4amigavbcc
+    tags:
+      - "latest-ppc"
+      - "latest-ppc-`${DRONE_COMMIT_SHA:0:8}`"
     cache_from:
       - ${DRONE_REPO,,}:${DRONE_SOURCE_BRANCH/\//-}
     dockerfile: ppc/Dockerfile
