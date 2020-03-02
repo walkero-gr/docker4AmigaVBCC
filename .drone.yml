@@ -9,8 +9,7 @@ steps:
     - git fetch --all
   when:
     event:
-      exclude:
-        - tag
+      - tag
 - name: build-ppc-image-latest
   image: plugins/docker
   settings:
