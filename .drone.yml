@@ -10,6 +10,8 @@ steps:
       tags:
         - ${DRONE_SOURCE_BRANCH/\//-}
         - ${DRONE_SOURCE_BRANCH/\//-}-${DRONE_COMMIT_SHA:0:8}
+      cache_from:
+        - ${DRONE_REPO,,}:${DRONE_SOURCE_BRANCH/\//-}
       # auto_tag: true
       # auto_tag_suffix: ppc
       dockerfile: ppc/Dockerfile
