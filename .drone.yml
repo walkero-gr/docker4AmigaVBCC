@@ -49,10 +49,10 @@ steps:
   settings:
     repo: walkero/docker4amigavbcc
     tags:
-      - ${DRONE_TAG/\//-}
-    # cache_from:
-    #   - ${DRONE_REPO,,}:master-${DRONE_COMMIT_SHA:0:8}
-    dockerfile: ${DRONE_TAG:4:4}/Dockerfile
+      - testtag
+    cache_from:
+      - ${DRONE_REPO,,}:master-${DRONE_COMMIT_SHA:0:8}
+    dockerfile: ppc/Dockerfile
     username:
       from_secret: DOCKERHUB_USERNAME
     password:
