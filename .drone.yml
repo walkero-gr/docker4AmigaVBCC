@@ -9,7 +9,6 @@ steps:
     repo: walkero/docker4amigavbcc
     tags:
       - "latest-ppc"
-      # - "latest-ppc-${DRONE_COMMIT_SHA:0:8}"
     cache_from:
       - ${DRONE_REPO,,}:${DRONE_SOURCE_BRANCH/\//-}
     dockerfile: ppc/Dockerfile
@@ -27,7 +26,6 @@ steps:
     repo: walkero/docker4amigavbcc
     tags:
       - "latest-m68k"
-      # - "latest-m68k-${DRONE_COMMIT_SHA:0:8}"
     cache_from:
       - ${DRONE_REPO,,}:${DRONE_SOURCE_BRANCH/\//-}
     dockerfile: m68k/Dockerfile
@@ -39,3 +37,19 @@ steps:
     event:
       exclude:
         - tag
+- name: build-${DRONE_TAG:4:4}-image-tag
+  image: plugins/docker
+  settings:
+    repo: walkero/docker4amigavbcc
+    tags:
+      - ${DRONE_TAG/\//-}
+    cache_from:
+      - ${DRONE_REPO,,}:master-${DRONE_COMMIT_SHA:0:8}
+    dockerfile: ${DRONE_TAG:4:4}/Dockerfile
+    username:
+      from_secret: DOCKERHUB_USERNAME
+    password:
+      from_secret: DOCKERHUB_PASSWORD
+  when:
+    event:
+      - tag
