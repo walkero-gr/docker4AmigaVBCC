@@ -37,6 +37,11 @@ steps:
     event:
       exclude:
         - tag
+---
+kind: pipeline
+name: build-image-tags
+
+steps:
 - name: build-${DRONE_TAG:4:4}-image-tag
   image: plugins/docker
   settings:
