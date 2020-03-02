@@ -3,13 +3,6 @@ kind: pipeline
 name: build-images
 
 steps:
-- name: Fetch full git repo
-  image: alpine/git
-  commands:
-    - git fetch --all
-  when:
-    event:
-      - tag
 - name: build-ppc-image-latest
   image: plugins/docker
   settings:
@@ -44,3 +37,10 @@ steps:
     event:
       exclude:
         - tag
+- name: Fetch full git repo
+  image: alpine/git
+  commands:
+    - git fetch --all
+  when:
+    event:
+      - tag
