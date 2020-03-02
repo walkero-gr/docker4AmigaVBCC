@@ -7,6 +7,10 @@ steps:
   image: alpine/git
   commands:
     - git fetch --all
+  when:
+    event:
+      exclude:
+        - tag
 - name: build-ppc-image-latest
   image: plugins/docker
   settings:
