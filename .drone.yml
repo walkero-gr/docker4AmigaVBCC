@@ -3,6 +3,10 @@ kind: pipeline
 name: build-images
 
 steps:
+- name: Fetch full git repo
+  image: docker:git
+  commands:
+    - git fetch --all
 - name: build-ppc-image-latest
   image: plugins/docker
   settings:
@@ -37,24 +41,19 @@ steps:
     event:
       exclude:
         - tag
----
-kind: pipeline
-name: build-image-tags
-
-steps:
-- name: build-${DRONE_TAG:4:4}-image-tag
-  image: plugins/docker
-  settings:
-    repo: walkero/docker4amigavbcc
-    tags:
-      - ${DRONE_TAG/\//-}
-    cache_from:
-      - ${DRONE_REPO,,}:master-${DRONE_COMMIT_SHA:0:8}
-    dockerfile: ${DRONE_TAG:4:4}/Dockerfile
-    username:
-      from_secret: DOCKERHUB_USERNAME
-    password:
-      from_secret: DOCKERHUB_PASSWORD
-  when:
-    event:
-      - tag
+# - name: build-${DRONE_TAG:4:4}-image-tag
+#   image: plugins/docker
+#   settings:
+#     repo: walkero/docker4amigavbcc
+#     tags:
+#       - ${DRONE_TAG/\//-}
+#     cache_from:
+#       - ${DRONE_REPO,,}:master-${DRONE_COMMIT_SHA:0:8}
+#     dockerfile: ${DRONE_TAG:4:4}/Dockerfile
+#     username:
+#       from_secret: DOCKERHUB_USERNAME
+#     password:
+#       from_secret: DOCKERHUB_PASSWORD
+#   when:
+#     event:
+#       - tag
