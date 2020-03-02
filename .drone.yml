@@ -44,13 +44,15 @@ steps:
   when:
     event:
       - tag
-- name: build-${DRONE_TAG:4:4}-from-tag
+- name: build-image-from-tag
   image: plugins/docker
   settings:
     repo: walkero/docker4amigavbcc
     tags:
-      - ppctest
-    dockerfile: ppc/Dockerfile
+      - ${DRONE_TAG/\//-}
+    cache_from:
+      - ${DRONE_REPO,,}:master-${DRONE_COMMIT_SHA:0:8}
+    dockerfile: ${DRONE_TAG:4:4}/Dockerfile
     username:
       from_secret: DOCKERHUB_USERNAME
     password:
