@@ -9,10 +9,10 @@ steps:
     repo: walkero/docker4amigavbcc # ${DRONE_REPO,,}
     tags:
       - ${DRONE_TAG/\//-}
-      - latest-${DRONE_TAG:3:4}
+      - latest-${DRONE_TAG:4:4}
     cache_from:
       - ${DRONE_REPO,,}:${DRONE_SOURCE_BRANCH/\//-}
-    dockerfile: ${DRONE_TAG:3:4}/Dockerfile
+    dockerfile: ${DRONE_TAG:4:4}/Dockerfile
     username:
       from_secret: DOCKERHUB_USERNAME
     password:
