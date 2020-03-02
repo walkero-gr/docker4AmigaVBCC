@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## docker4amigavbcc v1.3 - 2020-03-02
+### Changed
+- Fixed on PPC image the MUI version. It included OS3 version files
+- Added on PPC & m68k images lhasa quite argument, to minimize the output text
+- Version now covers both images. Only ppc-latest and m68k-latest tags will be updated for now
+
 ## docker4amigavbcc:1.2-m68k - 2020-03-02
 ### Added
 - AmiSSL 4.4 SDK
