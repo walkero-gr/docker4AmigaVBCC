@@ -44,7 +44,7 @@ steps:
   when:
     event:
       - tag
-- name: build-ppc-from-tag
+- name: build-${DRONE_TAG:4:4}-from-tag
   image: plugins/docker
   settings:
     repo: walkero/docker4amigavbcc
