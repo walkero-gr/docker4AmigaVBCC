@@ -50,7 +50,7 @@ steps:
       tags:
         - ${DRONE_TAG/\//-}
       cache_from:
-        - "walkero/docker4amigavbcc:latest-${DRONE_TAG:4:4}"
+        - "walkero/docker4amigavbcc:latest-ppc"
       dockerfile: ppc/Dockerfile
       username:
         from_secret: DOCKERHUB_USERNAME
