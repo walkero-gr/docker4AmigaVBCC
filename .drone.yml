@@ -46,26 +46,29 @@ trigger:
     include:
     - push
 
-# - name: Fetch full git repo
-#   image: alpine/git
-#   commands:
-#     - git fetch --all
-#   when:
-#     event:
-#       - tag
-# - name: build-image-from-tag
-#   image: plugins/docker
-#   settings:
-#     repo: walkero/docker4amigavbcc
-#     tags:
-#       - testtag
-#     cache_from:
-#       - "walkero/docker4amigavbcc:latest-ppc"
-#     dockerfile: ppc/Dockerfile
-#     username:
-#       from_secret: DOCKERHUB_USERNAME
-#     password:
-#       from_secret: DOCKERHUB_PASSWORD
-#   when:
-#     event:
-#       - tag
+---
+kind: pipeline
+name: build-images-from-tag
+
+steps:
+  - name: build-image-from-tag
+    image: plugins/docker
+    settings:
+      repo: walkero/docker4amigavbcc
+      tags:
+        - ${DRONE_TAG/\//-}
+      cache_from:
+        - "walkero/docker4amigavbcc:latest-ppc"
+      dockerfile: ppc/Dockerfile
+      username:
+        from_secret: DOCKERHUB_USERNAME
+      password:
+        from_secret: DOCKERHUB_PASSWORD
+
+trigger:
+  branch:
+    include:
+    - master
+  event:
+    include:
+    - tag
