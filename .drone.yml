@@ -43,7 +43,7 @@ kind: pipeline
 name: build-images-from-tag
 
 steps:
-  - name: build-${DRONE_TAG:4:4}-image-from-tag
+  - name: build-image-from-tag
     image: plugins/docker
     settings:
       repo: walkero/docker4amigavbcc
