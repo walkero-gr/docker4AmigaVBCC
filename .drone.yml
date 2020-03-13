@@ -16,10 +16,10 @@ steps:
       from_secret: DOCKERHUB_USERNAME
     password:
       from_secret: DOCKERHUB_PASSWORD
-  when:
-    event:
-      exclude:
-        - tag
+  # when:
+  #   event:
+  #     exclude:
+  #       - tag
 - name: build-m68k-image-latest
   image: plugins/docker
   settings:
@@ -33,10 +33,19 @@ steps:
       from_secret: DOCKERHUB_USERNAME
     password:
       from_secret: DOCKERHUB_PASSWORD
-  when:
-    event:
-      exclude:
-        - tag
+  # when:
+  #   event:
+  #     exclude:
+  #       - tag
+
+trigger:
+  branch:
+    include:
+    - master
+  event:
+    include:
+    - push
+
 # - name: Fetch full git repo
 #   image: alpine/git
 #   commands:
