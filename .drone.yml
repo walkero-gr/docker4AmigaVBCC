@@ -48,7 +48,7 @@ steps:
     settings:
       repo: walkero/docker4amigavbcc
       tags:
-        - "${DRONE_TAG/\//-}-ppc"
+        - ${DRONE_TAG/\//-}-ppc
       cache_from:
         - "walkero/docker4amigavbcc:latest-ppc"
       dockerfile: ppc/Dockerfile
@@ -61,7 +61,7 @@ steps:
     settings:
       repo: walkero/docker4amigavbcc
       tags:
-        - "${DRONE_TAG/\//-}-m68k"
+        - ${DRONE_TAG/\//-}-m68k
       cache_from:
         - "walkero/docker4amigavbcc:latest-m68k"
       dockerfile: m68k/Dockerfile
