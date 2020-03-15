@@ -89,7 +89,7 @@ RUN curl -fSL "http://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha;
     cd /tmp; \
     lhasa -xfq2 MCC_Guigfx.lha; \
     cp MCC_Guigfx/Developer/C/Include/MUI /opt/sdk/MUI_3.8/C/Include/mui -R; \
-    cp MCC_Guigfx/Developer/C/Include/MUI/Guigfx_mcc.h /opt/sdk/MUI_5.0/C/include/mui/;
+    cp MCC_Guigfx/Developer/C/Include/MUI /opt/sdk/MUI_5.0/C/include/mui -R;
 
 # Install MCC_TextEditor
 RUN curl -fSL "http://aminet.net/dev/mui/MCC_TextEditor-15.53.lha" -o /tmp/MCC_TextEditor.lha; \
