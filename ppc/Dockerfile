@@ -59,20 +59,23 @@ RUN curl -fSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_ppc-amig
 ENV PATH="$VBCC/bin:$PATH"
 
 # Install AmigaOS 4 SDK
-RUN curl -fkSL "http://www.hyperion-entertainment.biz/index.php?option=com_registration&amp;view=download&amp;format=raw&amp;file=82&amp;Itemid=82" -o /tmp/AmigaOS4-SDK.lha; \
+RUN curl -fkSL "https://www.hyperion-entertainment.biz/index.php?option=com_registration&amp;view=download&amp;format=raw&amp;file=82&amp;Itemid=82" -o /tmp/AmigaOS4-SDK.lha; \
     cd /tmp; \
     lhasa -xfq2 AmigaOS4-SDK.lha; \
     cd SDK_Install; \
+    lhasa -xfq2 clib2*.lha; \
     lhasa -xfq2 newlib*.lha; \
     lhasa -xfq2 base.lha; \
     mv Documentation /opt/sdk/ppc-amigaos; \
     mv Examples /opt/sdk/ppc-amigaos; \
     mv Include /opt/sdk/ppc-amigaos; \
-    mv newlib /opt/sdk/ppc-amigaos;
+    mv newlib /opt/sdk/ppc-amigaos; \
+    mv clib2 /opt/sdk/ppc-amigaos;
 
 ENV AOS4_SDK_INC="/opt/sdk/ppc-amigaos/Include/include_h"
 ENV AOS4_NET_INC="/opt/sdk/ppc-amigaos/Include/netinclude"
 ENV AOS4_NLIB_INC="/opt/sdk/ppc-amigaos/newlib/include"
+ENV AOS4_CLIB_INC="/opt/sdk/ppc-amigaos/clib2/include"
 
 # Install MUI 5.0 dev
 RUN curl -fSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os4.lha" -o /tmp/MUI-5.0.lha; \
@@ -83,6 +86,12 @@ RUN curl -fSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-
     mv SDK/MUI /opt/sdk/MUI_5.0;
 
 ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
+
+# Install MCC_GuiGfx
+RUN curl -fSL "http://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha; \
+    cd /tmp; \
+    lhasa -xfq2 MCC_Guigfx.lha; \
+    cp MCC_Guigfx/Developer/C/Include/MUI /opt/sdk/MUI_5.0/C/include/mui -R;
 
 # Install AMISSL SDK
 RUN curl -fSL "https://github.com/jens-maus/amissl/releases/download/4.4/AmiSSL-4.4.lha" -o /tmp/AmiSSL.lha; \

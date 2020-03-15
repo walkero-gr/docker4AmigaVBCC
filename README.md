@@ -89,6 +89,7 @@ The **docker4amigavbcc:latest-ppc** image has the following ENV variables set:
 * **AOS4_SDK_INC**: /opt/sdk/ppc-amigaos/Include/include_h
 * **AOS4_NET_INC**: /opt/sdk/ppc-amigaos/Include/netinclude
 * **AOS4_NLIB_INC**: /opt/sdk/ppc-amigaos/newlib/include
+* **AOS4_CLIB_INC**: /opt/sdk/ppc-amigaos/clib2/include
 * **MUI50_INC**: /opt/sdk/MUI_5.0/C/include
 * **AMISSL_INC**: /opt/sdk/AmiSSL/include
 

@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## docker4amigavbcc [future]
+### Added
+- Added on PPC image the clib2 includes
+- Added MCC_GuiGfx installation at the PPC image
+
+### Changed
+- Fixes on m68k image on MCC_GuiGfx copy
+
 ## docker4amigavbcc v1.3 - 2020-03-02
 ### Changed
 - Fixed on PPC image the MUI version. It included OS3 version files
