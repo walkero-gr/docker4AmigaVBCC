@@ -70,7 +70,8 @@ ENV NDK_LIB="/opt/sdk/NDK_3.9/Include/linker_libs"
 RUN curl -fSL "http://muidev.de/download/MUI%203.8%20-%20AmigaOS3-m68k/mui38dev.lha" -o /tmp/mui38dev.lha; \
     cd /tmp; \
     lhasa -xfq2 mui38dev.lha; \
-    mv MUI/Developer /opt/sdk/MUI_3.8;
+    mv MUI/Developer /opt/sdk/MUI_3.8; \
+    mkdir -p /opt/sdk/MUI_3.8/C/Include/mui;
 
 ENV MUI38_INC="/opt/sdk/MUI_3.8/C/Include"
 
