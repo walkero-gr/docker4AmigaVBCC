@@ -43,7 +43,8 @@ RUN curl -fSL "http://www.ibaug.de/vbcc/vbcc.tar.gz" -o /tmp/vbcc.tar.gz; \
     mkdir bin; \
     yes '\
 ' | make TARGET=ppc; \
-    cp bin/vbcc* bin/vc bin/vprof /opt/vbcc/bin;
+    make TARGET=ppc bin/vscppc; \
+    cp bin/vbcc* bin/vscppc bin/vc bin/vprof /opt/vbcc/bin;
 
 RUN curl -fSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_ppc-amigaos.lha" -o /tmp/vbcc_target_ppc-amigaos.lha; \
     # curl -fSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_ppc-morphos.lha" -o /tmp/vbcc_target_ppc-morphos.lha; \
@@ -112,4 +113,4 @@ ENV AMISSL_INC="/opt/sdk/AmiSSL/include"
 WORKDIR /opt/code
 
 # Clean up APT when done.
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
