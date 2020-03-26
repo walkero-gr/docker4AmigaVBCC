@@ -19,6 +19,7 @@ The **docker4amigavbcc:latest-m68k** image contains the following:
 | Roadshow SDK      | 1.4 (15.3.2019)       | https://www.amigafuture.de/app.php/dlext/?view=detail&df_id=3658
 | AmiSSL SDK        | 4.4                   | https://github.com/jens-maus/amissl/releases/tag/4.4
 | Posix Lib         | 2.6                   | http://aminet.net/package/dev/c/vbcc_PosixLib
+| FlexCat           | 2.18                  | https://github.com/adtools/flexcat/releases/tag/2.18
 
 ## PPC development image
 The **docker4amigavbcc:latest-ppc** image contains the following:
@@ -31,6 +32,7 @@ The **docker4amigavbcc:latest-ppc** image contains the following:
 | AmigaOS 4 SDK     | 53.30                 | http://www.hyperion-entertainment.com/
 | MUI 5.x dev       | 5.0-2019R4            | http://muidev.de/downloads
 | AmiSSL SDK        | 4.4                   | https://github.com/jens-maus/amissl/releases/tag/4.4
+| FlexCat           | 2.18                  | https://github.com/adtools/flexcat/releases/tag/2.18
 
 ## How to create a docker container
 

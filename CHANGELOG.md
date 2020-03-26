@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Added on PPC image the clib2 includes
 - Added MCC_GuiGfx installation at the PPC image
+- Added FlexCat 2.18 on both images, m68k and ppc
 
 ### Changed
 - Fixes on m68k image on MCC_GuiGfx copy
