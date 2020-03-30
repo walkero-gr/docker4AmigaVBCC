@@ -108,7 +108,7 @@ ENV TCP_INC="/opt/sdk/Roadshow-SDK/include"
 ENV NET_INC="/opt/sdk/Roadshow-SDK/netinclude"
 
 # Install AMISSL SDK
-RUN curl -fSL "https://github.com/jens-maus/amissl/releases/download/4.4/AmiSSL-4.4.lha" -o /tmp/AmiSSL.lha; \
+RUN curl -fSL "https://github.com/jens-maus/amissl/releases/download/4.5/AmiSSL-4.5.lha" -o /tmp/AmiSSL.lha; \
     cd /tmp; \
     lhasa -xfq2 AmiSSL.lha; \
     mv ./AmiSSL/Developer /opt/sdk/AmiSSL;

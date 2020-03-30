@@ -95,7 +95,7 @@ RUN curl -fSL "http://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha;
     cp ./MCC_Guigfx/Developer/C/Include/MUI/* /opt/sdk/MUI_5.0/C/include/mui;
 
 # Install AMISSL SDK
-RUN curl -fSL "https://github.com/jens-maus/amissl/releases/download/4.4/AmiSSL-4.4.lha" -o /tmp/AmiSSL.lha; \
+RUN curl -fSL "https://github.com/jens-maus/amissl/releases/download/4.5/AmiSSL-4.5.lha" -o /tmp/AmiSSL.lha; \
     cd /tmp; \
     lhasa -xfq2 AmiSSL.lha; \
     mv ./AmiSSL/Developer /opt/sdk/AmiSSL;

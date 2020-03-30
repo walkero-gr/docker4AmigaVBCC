@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## docker4amigavbcc [future]
+## docker4amigavbcc v1.4 - 2020-03-30
 ### Added
 - Added on PPC image the clib2 includes
 - Added MCC_GuiGfx installation at the PPC image
@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Fixes on m68k image on MCC_GuiGfx copy
+- Updated AmiSSL version to 4.5 on both images, m68k and ppc
 
 ## docker4amigavbcc v1.3 - 2020-03-02
 ### Changed
