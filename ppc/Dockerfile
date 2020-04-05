@@ -128,8 +128,6 @@ RUN curl -fSL "https://github.com/adtools/flexcat/releases/download/2.18/FlexCat
     lhasa -xfq2 FlexCat.lha; \
     cp ./FlexCat/Linux-i386/flexcat /usr/bin/;
 
-WORKDIR /opt/code
-
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
