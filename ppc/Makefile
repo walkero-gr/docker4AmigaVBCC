@@ -1,7 +1,7 @@
 -include env_make
 
 REPO ?= walkero/docker4amigavbcc
-TAG ?= 1.4-ppc
+TAG ?= latest-ppc
 VOLUMES ?= -v "${PWD}/../code":/opt/code
 WORKSPACE ?= -w /opt/code
 NAME ?= amigavbcc-ppc
