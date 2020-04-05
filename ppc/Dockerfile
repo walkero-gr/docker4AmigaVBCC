@@ -35,7 +35,7 @@ RUN curl -fSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm.
     tar xvfz vasm.tar.gz; \
     cd /tmp/vasm; \
     make CPU=ppc SYNTAX=std; \
-    cp vasmppc_std vobjdump /opt/vbcc/bin; 
+    cp ./vasmppc_std ./vobjdump /opt/vbcc/bin; 
 
 ENV VBCC="/opt/vbcc"
 
@@ -45,7 +45,7 @@ RUN curl -fSL "http://sun.hasenbraten.de/vlink/release/vlink.tar.gz" -o /tmp/vli
     tar xvfz vlink.tar.gz; \
     cd /tmp/vlink; \
     make; \
-    cp vlink /opt/vbcc/bin;
+    cp ./vlink /opt/vbcc/bin;
 
 # Install vbcc
 RUN curl -fSL "http://www.ibaug.de/vbcc/vbcc.tar.gz" -o /tmp/vbcc.tar.gz; \
@@ -56,7 +56,7 @@ RUN curl -fSL "http://www.ibaug.de/vbcc/vbcc.tar.gz" -o /tmp/vbcc.tar.gz; \
     yes '\
 ' | make TARGET=ppc; \
     make TARGET=ppc bin/vscppc; \
-    cp bin/vbcc* bin/vscppc bin/vc bin/vprof /opt/vbcc/bin;
+    cp ./bin/vbcc* ./bin/vscppc ./bin/vc ./bin/vprof /opt/vbcc/bin;
 
 RUN curl -fSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_ppc-amigaos.lha" -o /tmp/vbcc_target_ppc-amigaos.lha; \
     # curl -fSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_ppc-morphos.lha" -o /tmp/vbcc_target_ppc-morphos.lha; \
@@ -65,8 +65,8 @@ RUN curl -fSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_ppc-amig
     lhasa -xfq2 vbcc_target_ppc-amigaos.lha; \
     # lhasa x vbcc_target_ppc-morphos.lha; \
     tar xvfz vbcc_unix_config.tar.gz; \
-    mv config $VBCC/; \
-    mv vbcc_target_ppc-amigaos/targets $VBCC/; 
+    mv ./config $VBCC/; \
+    mv ./vbcc_target_ppc-amigaos/targets $VBCC/; 
     # cp vbcc_target_ppc-morphos/targets/* $VBCC/targets/ -r;
 
 ENV PATH="$VBCC/bin:$PATH"
@@ -79,11 +79,11 @@ RUN curl -fkSL "https://www.hyperion-entertainment.biz/index.php?option=com_regi
     lhasa -xfq2 clib2*.lha; \
     lhasa -xfq2 newlib*.lha; \
     lhasa -xfq2 base.lha; \
-    mv Documentation /opt/sdk/ppc-amigaos; \
-    mv Examples /opt/sdk/ppc-amigaos; \
-    mv Include /opt/sdk/ppc-amigaos; \
-    mv newlib /opt/sdk/ppc-amigaos; \
-    mv clib2 /opt/sdk/ppc-amigaos;
+    mv ./Documentation /opt/sdk/ppc-amigaos; \
+    mv ./Examples /opt/sdk/ppc-amigaos; \
+    mv ./Include /opt/sdk/ppc-amigaos; \
+    mv ./newlib /opt/sdk/ppc-amigaos; \
+    mv ./clib2 /opt/sdk/ppc-amigaos;
 
 ENV AOS4_SDK_INC="/opt/sdk/ppc-amigaos/Include/include_h"
 ENV AOS4_NET_INC="/opt/sdk/ppc-amigaos/Include/netinclude"
@@ -96,7 +96,7 @@ RUN curl -fSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-
     cd /tmp; \
     lhasa -xfq2 MUI-5.0.lha; \
     lhasa -xfq2 MUI-5.0-contrib.lha; \
-    mv SDK/MUI /opt/sdk/MUI_5.0;
+    mv ./SDK/MUI /opt/sdk/MUI_5.0;
 
 ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
 
@@ -104,13 +104,13 @@ ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
 RUN curl -fSL "http://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha; \
     cd /tmp; \
     lhasa -xfq2 MCC_Guigfx.lha; \
-    cp MCC_Guigfx/Developer/C/Include/MUI/* /opt/sdk/MUI_5.0/C/include/mui;
+    cp ./MCC_Guigfx/Developer/C/Include/MUI/* /opt/sdk/MUI_5.0/C/include/mui;
 
 # Install AMISSL SDK
-RUN curl -fSL "https://github.com/jens-maus/amissl/releases/download/4.4/AmiSSL-4.4.lha" -o /tmp/AmiSSL.lha; \
+RUN curl -fSL "https://github.com/jens-maus/amissl/releases/download/4.5/AmiSSL-4.5.lha" -o /tmp/AmiSSL.lha; \
     cd /tmp; \
     lhasa -xfq2 AmiSSL.lha; \
-    mv AmiSSL/Developer /opt/sdk/AmiSSL;
+    mv ./AmiSSL/Developer /opt/sdk/AmiSSL;
 
 ENV AMISSL_INC="/opt/sdk/AmiSSL/include"
 
@@ -122,6 +122,13 @@ ENV AMISSL_INC="/opt/sdk/AmiSSL/include"
 
 # ENV GL4ES_INC="/opt/sdk/GL4ES/include"
 
+# Install FlexCat
+RUN curl -fSL "https://github.com/adtools/flexcat/releases/download/2.18/FlexCat-2.18.lha" -o /tmp/FlexCat.lha; \
+    cd /tmp; \
+    lhasa -xfq2 FlexCat.lha; \
+    cp ./FlexCat/Linux-i386/flexcat /usr/bin/;
+
+WORKDIR /opt/code
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
