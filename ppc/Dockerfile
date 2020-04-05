@@ -131,5 +131,5 @@ RUN curl -fSL "https://github.com/adtools/flexcat/releases/download/2.18/FlexCat
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-USER vbcc
+# USER vbcc
 WORKDIR /opt/code
