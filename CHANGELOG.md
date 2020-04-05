@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Added on PPC image the clib2 includes
 - Added MCC_GuiGfx installation at the PPC image
+- Added vscppc at the PPC image
+- Added vbcc user and group, with ids 1000 so that the changed files have the same permissions from the host machine as well
 
 ### Changed
 - Fixes on m68k image on MCC_GuiGfx copy

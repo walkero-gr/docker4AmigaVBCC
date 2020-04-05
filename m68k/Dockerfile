@@ -5,6 +5,9 @@ LABEL maintainer="Georgios Sokianos <walkero@gmail.com>"
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
 
+ARG VBCC_USER_ID=1000
+ARG VBCC_GROUP_ID=1000
+
 RUN apt-get update && apt-get -y install gcc \
     wget \
     curl \
@@ -16,6 +19,15 @@ RUN apt-get update && apt-get -y install gcc \
 RUN mkdir -p /opt/vbcc/bin; \
     mkdir -p /opt/code; \
     mkdir -p /opt/sdk;
+
+# Add vbcc user and group
+RUN existing_group=$(getent group "${VBCC_GROUP_ID}" | cut -d: -f1); \
+    if [[ -n "${existing_group}" ]]; then delgroup "${existing_group}"; fi; \
+    existing_user=$(getent passwd "${VBCC_USER_ID}" | cut -d: -f1); \
+    if [[ -n "${existing_user}" ]]; then deluser "${existing_user}"; fi; \
+    addgroup --gid ${VBCC_GROUP_ID} vbcc; \
+    adduser --system --uid ${VBCC_USER_ID} --disabled-password --shell /bin/bash --gid ${VBCC_GROUP_ID} vbcc; \
+    sed -i '/^vbcc/s/!/*/' /etc/shadow;
 
 # Install vasm
 RUN curl -fSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm.tar.gz; \
@@ -124,7 +136,8 @@ RUN curl -fSL "http://aminet.net/dev/c/vbcc_PosixLib.lha" -o /tmp/vbcc_PosixLib.
 
 ENV POSIXLIB_INC="/opt/sdk/PosixLib/include"
 
-WORKDIR /opt/code
-
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+USER vbcc
+WORKDIR /opt/code
