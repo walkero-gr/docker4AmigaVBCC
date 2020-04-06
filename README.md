@@ -1,4 +1,5 @@
 [![Build Status](https://drone-gh.intercube.gr/api/badges/walkero-gr/docker4AmigaVBCC/status.svg)](https://drone-gh.intercube.gr/walkero-gr/docker4AmigaVBCC)
+![Docker Pulls](https://img.shields.io/docker/pulls/walkero/docker4amigavbcc?color=green)
 
 # docker4AmigaVBCC
 Two docker images with VBCC compiler for cross compiling software for AmigaOS 3 and 4. It is based on Ubuntu and has everything needed (vbcc compiler, SDKs, libraries) for compiling your applications.
