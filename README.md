@@ -10,8 +10,8 @@ The **docker4amigavbcc:latest-m68k** image contains the following:
 | app               | version               | source
 |-------------------|-----------------------|-----------------------------------|
 | vbcc              | 0.9g (04-Oct-2019)    | http://sun.hasenbraten.de/vbcc/
-| vlink             | 0.16c (10-Jun-2019)   | http://sun.hasenbraten.de/vlink/
-| vasm              | 1.8g (04-Oct-2019)    | http://sun.hasenbraten.de/vasm/
+| vlink             | 0.16d (18-Apr-2020)   | http://sun.hasenbraten.de/vlink/
+| vasm              | 1.8h (18-Apr-2020)    | http://sun.hasenbraten.de/vasm/
 | NDK               | 3.9                   | http://www.haage-partner.de/download/AmigaOS/
 | MUI 3.x dev       | 3.8                   | http://muidev.de/downloads
 | MUI 5.x dev       | 5.0-2019R4            | http://muidev.de/downloads
@@ -28,8 +28,8 @@ The **docker4amigavbcc:latest-ppc** image contains the following:
 | app               | version               | source
 |-------------------|-----------------------|-----------------------------------|
 | vbcc              | 0.9g (04-Oct-2019)    | http://sun.hasenbraten.de/vbcc/
-| vlink             | 0.16c (10-Jun-2019)   | http://sun.hasenbraten.de/vlink/
-| vasm              | 1.8g (04-Oct-2019)    | http://sun.hasenbraten.de/vasm/
+| vlink             | 0.16d (18-Apr-2020)   | http://sun.hasenbraten.de/vlink/
+| vasm              | 1.8h (18-Apr-2020)    | http://sun.hasenbraten.de/vasm/
 | AmigaOS 4 SDK     | 53.30                 | http://www.hyperion-entertainment.com/
 | MUI 5.x dev       | 5.0-2019R4            | http://muidev.de/downloads
 | AmiSSL SDK        | 4.5                   | https://github.com/jens-maus/amissl/releases/tag/4.5
