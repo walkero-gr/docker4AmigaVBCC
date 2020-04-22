@@ -13,8 +13,7 @@ RUN apt-get update && apt-get -y install gcc \
     curl \
     make \
     mc \
-    git \
-    lhasa;
+    git;
 
 RUN mkdir -p /opt/vbcc/bin; \
     mkdir -p /opt/code; \
@@ -28,6 +27,11 @@ RUN existing_group=$(getent group "${VBCC_GROUP_ID}" | cut -d: -f1); \
     addgroup --gid ${VBCC_GROUP_ID} vbcc; \
     adduser --system --uid ${VBCC_USER_ID} --disabled-password --shell /bin/bash --gid ${VBCC_GROUP_ID} vbcc; \
     sed -i '/^vbcc/s/!/*/' /etc/shadow;
+
+# Install lha 1.14i
+RUN curl -fSL "https://launchpad.net/ubuntu/+archive/primary/+files/lha_1.14i-10.3_amd64.deb" -o /tmp/lha.deb; \
+    cd /tmp; \
+    dpkg -i lha.deb;
 
 # Install vasm
 RUN curl -fSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm.tar.gz; \
@@ -62,7 +66,7 @@ RUN curl -fSL "http://www.ibaug.de/vbcc/vbcc.tar.gz" -o /tmp/vbcc.tar.gz; \
 RUN curl -fSL "http://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_m68k-amigaos.lha" -o /tmp/vbcc_target_m68k-amigaos.lha; \
     curl -fSL "http://server.owl.de/~frank/vbcc/2019-10-04/vbcc_unix_config.tar.gz" -o /tmp/vbcc_unix_config.tar.gz; \
     cd /tmp; \
-    lhasa -xfq2 vbcc_target_m68k-amigaos.lha; \
+    lha -xfq2 vbcc_target_m68k-amigaos.lha; \
     tar xvfz vbcc_unix_config.tar.gz; \
     mv ./config $VBCC/; \
     mv ./vbcc_target_m68k-amigaos/targets $VBCC/;
@@ -72,7 +76,7 @@ ENV PATH="$VBCC/bin:$PATH"
 # Install NDK39
 RUN curl -fSL "http://www.haage-partner.de/download/AmigaOS/NDK39.lha" -o /tmp/NDK39.lha; \
     cd /tmp; \
-    lhasa -xfq2 NDK39.lha; \
+    lha -xfq2 NDK39.lha; \
     mv ./NDK_3.9 /opt/sdk/;
 
 ENV NDK_INC="/opt/sdk/NDK_3.9/Include/include_h"
@@ -81,7 +85,7 @@ ENV NDK_LIB="/opt/sdk/NDK_3.9/Include/linker_libs"
 # Install MUI 3.8 dev
 RUN curl -fSL "http://muidev.de/download/MUI%203.8%20-%20AmigaOS3-m68k/mui38dev.lha" -o /tmp/mui38dev.lha; \
     cd /tmp; \
-    lhasa -xfq2 mui38dev.lha; \
+    lha -xfq2 mui38dev.lha; \
     mv ./MUI/Developer /opt/sdk/MUI_3.8; \
     mkdir -p /opt/sdk/MUI_3.8/C/Include/mui;
 
@@ -91,8 +95,8 @@ ENV MUI38_INC="/opt/sdk/MUI_3.8/C/Include"
 RUN curl -fSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os3.lha" -o /tmp/MUI-5.0-os3.lha; \
     curl -fSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os3-contrib.lha" -o /tmp/MUI-5.0-os3-contrib.lha; \
     cd /tmp; \
-    lhasa -xfq2 MUI-5.0-os3.lha; \
-    lhasa -xfq2 MUI-5.0-os3-contrib.lha; \
+    lha -xfq2 MUI-5.0-os3.lha; \
+    lha -xfq2 MUI-5.0-os3-contrib.lha; \
     mv ./SDK/MUI /opt/sdk/MUI_5.0;
 
 ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
@@ -100,20 +104,20 @@ ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
 # Install MCC_GuiGfx
 RUN curl -fSL "http://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha; \
     cd /tmp; \
-    lhasa -xfq2 MCC_Guigfx.lha; \
+    lha -xfq2 MCC_Guigfx.lha; \
     cp ./MCC_Guigfx/Developer/C/Include/MUI/* /opt/sdk/MUI_3.8/C/Include/mui; \
     cp ./MCC_Guigfx/Developer/C/Include/MUI/* /opt/sdk/MUI_5.0/C/include/mui;
 
 # Install MCC_TextEditor
 RUN curl -fSL "http://aminet.net/dev/mui/MCC_TextEditor-15.53.lha" -o /tmp/MCC_TextEditor.lha; \
     cd /tmp; \
-    lhasa -xfq2 MCC_TextEditor.lha; \
+    lha -xfq2 MCC_TextEditor.lha; \
     cp ./MCC_TextEditor/Developer/C/include/mui/* /opt/sdk/MUI_3.8/C/Include/mui;
 
 # Install Roadshow SDK
 RUN curl -fSL "http://amiga-projects.net/Roadshow-SDK.lha" -o /tmp/Roadshow-SDK.lha; \
     cd /tmp; \
-    lhasa -xfq2w=Roadshow-SDK Roadshow-SDK.lha; \
+    lha -xfq2w=Roadshow-SDK Roadshow-SDK.lha; \
     mv ./Roadshow-SDK /opt/sdk/Roadshow-SDK;
 
 ENV TCP_INC="/opt/sdk/Roadshow-SDK/include"
@@ -122,7 +126,7 @@ ENV NET_INC="/opt/sdk/Roadshow-SDK/netinclude"
 # Install AMISSL SDK
 RUN curl -fSL "https://github.com/jens-maus/amissl/releases/download/4.5/AmiSSL-4.5.lha" -o /tmp/AmiSSL.lha; \
     cd /tmp; \
-    lhasa -xfq2 AmiSSL.lha; \
+    lha -xfq2 AmiSSL.lha; \
     mv ./AmiSSL/Developer /opt/sdk/AmiSSL;
 
 ENV AMISSL_INC="/opt/sdk/AmiSSL/include"
@@ -130,7 +134,7 @@ ENV AMISSL_INC="/opt/sdk/AmiSSL/include"
 # Install Posix Lib
 RUN curl -fSL "http://aminet.net/dev/c/vbcc_PosixLib.lha" -o /tmp/vbcc_PosixLib.lha; \
     cd /tmp; \
-    lhasa -xfq2 vbcc_PosixLib.lha; \
+    lha -xfq2 vbcc_PosixLib.lha; \
     mkdir -p /opt/sdk/PosixLib/; \
     mv ./PosixLib/include/ /opt/sdk/PosixLib/;
 
@@ -139,7 +143,7 @@ ENV POSIXLIB_INC="/opt/sdk/PosixLib/include"
 # Install FlexCat
 RUN curl -fSL "https://github.com/adtools/flexcat/releases/download/2.18/FlexCat-2.18.lha" -o /tmp/FlexCat.lha; \
     cd /tmp; \
-    lhasa -xfq2 FlexCat.lha; \
+    lha -xfq2 FlexCat.lha; \
     cp ./FlexCat/Linux-i386/flexcat /usr/bin/;
 
 # Clean up APT when done.

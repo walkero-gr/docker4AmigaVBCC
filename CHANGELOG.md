@@ -2,9 +2,15 @@
 All notable changes to this project will be documented in this file.
 
 ## docker4amigavbcc [future]
+### Added
+- Added lha v1.14i because it is able to compress files in lha format, and will be useful for packaging
+
 ### Changed
 - Updated vasm to v1.8h (18-Apr-2020) on all images
 - Updated vlink to v0.16d (18-Apr-2020) on all images
+
+### Removed
+- lhasa because it can only extract lha files
 
 ## docker4amigavbcc v1.4 - 2020-03-30
 ### Added

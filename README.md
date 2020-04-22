@@ -21,6 +21,7 @@ The **docker4amigavbcc:latest-m68k** image contains the following:
 | AmiSSL SDK        | 4.5                   | https://github.com/jens-maus/amissl/releases/tag/4.5
 | Posix Lib         | 2.6                   | http://aminet.net/package/dev/c/vbcc_PosixLib
 | FlexCat           | 2.18                  | https://github.com/adtools/flexcat/releases/tag/2.18
+| lha               | 1.14i                 | https://launchpad.net/ubuntu/+source/lha
 
 ## PPC development image
 The **docker4amigavbcc:latest-ppc** image contains the following:
@@ -34,6 +35,7 @@ The **docker4amigavbcc:latest-ppc** image contains the following:
 | MUI 5.x dev       | 5.0-2019R4            | http://muidev.de/downloads
 | AmiSSL SDK        | 4.5                   | https://github.com/jens-maus/amissl/releases/tag/4.5
 | FlexCat           | 2.18                  | https://github.com/adtools/flexcat/releases/tag/2.18
+| lha               | 1.14i                 | https://launchpad.net/ubuntu/+source/lha
 
 ## How to create a docker container
 
