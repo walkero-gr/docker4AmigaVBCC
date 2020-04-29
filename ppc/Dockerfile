@@ -63,15 +63,12 @@ RUN curl -fSL "http://www.ibaug.de/vbcc/vbcc.tar.gz" -o /tmp/vbcc.tar.gz; \
     cp ./bin/vbcc* ./bin/vscppc ./bin/vc ./bin/vprof /opt/vbcc/bin;
 
 RUN curl -fSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_ppc-amigaos.lha" -o /tmp/vbcc_target_ppc-amigaos.lha; \
-    # curl -fSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_ppc-morphos.lha" -o /tmp/vbcc_target_ppc-morphos.lha; \
     curl -fSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_unix_config.tar.gz" -o /tmp/vbcc_unix_config.tar.gz; \
     cd /tmp; \
     lha -xfq2 vbcc_target_ppc-amigaos.lha; \
-    # lha x vbcc_target_ppc-morphos.lha; \
     tar xvfz vbcc_unix_config.tar.gz; \
     mv ./config $VBCC/; \
     mv ./vbcc_target_ppc-amigaos/targets $VBCC/; 
-    # cp vbcc_target_ppc-morphos/targets/* $VBCC/targets/ -r;
 
 ENV PATH="$VBCC/bin:$PATH"
 
