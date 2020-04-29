@@ -1,9 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## docker4amigavbcc [future]
+## docker4amigavbcc v1.5 - 2020-04-29
 ### Added
 - Added lha v1.14i because it is able to compress files in lha format, and will be useful for packaging
+- Added MorphOS image with the MorphOS 3.14 SDK - April 2020
 
 ### Changed
 - Updated vasm to v1.8h (18-Apr-2020) on all images
