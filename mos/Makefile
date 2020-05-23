@@ -6,7 +6,7 @@ VOLUMES ?= -v "${PWD}/../code":/opt/code
 WORKSPACE ?= -w /opt/code
 NAME ?= amigavbcc-mos
 
-.PHONY: build buildnc buildlatest shell push pushlatest logs clean release
+.PHONY: build buildnc shell push logs clean release
 
 default: build
 
@@ -16,17 +16,11 @@ build:
 buildnc:
 	docker build --no-cache -t $(REPO):$(TAG) .
 
-buildlatest:
-	docker build --no-cache -t $(REPO):latest-mos .
-
 shell:
 	docker run -it --rm --name $(NAME) $(VOLUMES) $(WORKSPACE) $(REPO):$(TAG) /bin/bash
 
 push:
 	docker push $(REPO):$(TAG)
-
-pushlatest:
-	docker push $(REPO):latest-mos
 
 logs:
 	docker logs $(NAME)
@@ -34,4 +28,4 @@ logs:
 clean:
 	-docker rm -f $(NAME)
 
-release: buildnc push buildlatest pushlatest
+release: buildnc push
