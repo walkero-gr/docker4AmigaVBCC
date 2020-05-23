@@ -123,6 +123,15 @@ ENV AMISSL_INC="/opt/sdk/AmiSSL/include"
 
 # ENV GL4ES_INC="/opt/sdk/GL4ES/include"
 
+# Install SQLite
+RUN curl -fSL "http://aminet.net/biz/dbase/sqlite-3.6.1-amiga.lha" -o /tmp/sqlite.lha; \
+    cd /tmp; \
+    lha -xfq2 sqlite.lha; \
+    mkdir -p /opt/sdk/sqlite/; \
+    mv ./sqlite-3.6.1-amiga/build-ppc-amigaos/include/ /opt/sdk/sqlite/;
+
+ENV SQLITE_INC="/opt/sdk/sqlite/include"
+
 # Install FlexCat
 RUN curl -fSL "https://github.com/adtools/flexcat/releases/download/2.18/FlexCat-2.18.lha" -o /tmp/FlexCat.lha; \
     cd /tmp; \

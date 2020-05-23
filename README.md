@@ -24,6 +24,7 @@ The **docker4amigavbcc:latest-m68k** image contains the following:
 | Posix Lib         | 2.6                   | http://aminet.net/package/dev/c/vbcc_PosixLib
 | FlexCat           | 2.18                  | https://github.com/adtools/flexcat/releases/tag/2.18
 | lha               | 1.14i                 | https://launchpad.net/ubuntu/+source/lha
+| sqlite            | 3.6.1                 | http://aminet.net/package/biz/dbase/sqlite-3.6.1-amiga
 
 ## AmigaOS 4 PPC development image
 The **docker4amigavbcc:latest-ppc** image contains the following:
@@ -38,6 +39,7 @@ The **docker4amigavbcc:latest-ppc** image contains the following:
 | AmiSSL SDK        | 4.5                   | https://github.com/jens-maus/amissl/releases/tag/4.5
 | FlexCat           | 2.18                  | https://github.com/adtools/flexcat/releases/tag/2.18
 | lha               | 1.14i                 | https://launchpad.net/ubuntu/+source/lha
+| sqlite            | 3.6.1                 | http://aminet.net/package/biz/dbase/sqlite-3.6.1-amiga
 
 ## MorphOS PPC development image
 The **docker4amigavbcc:latest-mos** image contains the following:
@@ -48,10 +50,11 @@ The **docker4amigavbcc:latest-mos** image contains the following:
 | vlink             | 0.16d (18-Apr-2020)   | http://sun.hasenbraten.de/vlink/
 | vasm              | 1.8h (18-Apr-2020)    | http://sun.hasenbraten.de/vasm/
 | MorphOS SDK       | 3.14 Apr 2020         | https://www.morphos-team.net/downloads
-| MUI 5.x dev       | 5.0-2019R4            | http://muidev.de/downloads
+| MUI 3.x dev       | 3.8                   | http://muidev.de/downloads
 | AmiSSL SDK        | 4.5                   | https://github.com/jens-maus/amissl/releases/tag/4.5
 | FlexCat           | 2.18                  | https://github.com/adtools/flexcat/releases/tag/2.18
 | lha               | 1.14i                 | https://launchpad.net/ubuntu/+source/lha
+| sqlite            | 3.6.1                 | http://aminet.net/package/biz/dbase/sqlite-3.6.1-amiga
 
 ## How to create a docker container
 
@@ -109,6 +112,7 @@ The **docker4amigavbcc:latest-m68k** image has the following ENV variables set:
 * **NET_INC**: /opt/sdk/Roadshow-SDK/netinclude
 * **AMISSL_INC**: /opt/sdk/AmiSSL/include
 * **POSIXLIB_INC**: /opt/sdk/PosixLib/include
+* **SQLITE_INC**: /opt/sdk/sqlite/include
 
 The **docker4amigavbcc:latest-ppc** image has the following ENV variables set:
 
@@ -120,6 +124,7 @@ The **docker4amigavbcc:latest-ppc** image has the following ENV variables set:
 * **AOS4_CLIB_INC**: /opt/sdk/ppc-amigaos/clib2/include
 * **MUI50_INC**: /opt/sdk/MUI_5.0/C/include
 * **AMISSL_INC**: /opt/sdk/AmiSSL/include
+* **SQLITE_INC**: /opt/sdk/sqlite/include
 
 The **docker4amigavbcc:latest-mos** image has the following ENV variables set:
 
@@ -128,8 +133,9 @@ The **docker4amigavbcc:latest-mos** image has the following ENV variables set:
 * **MOS_SDK_INC**: /opt/sdk/morphos/include
 * **MOS_SDK_STD**: /opt/sdk/morphos/includestd
 * **MOS_OS_INC**: /opt/sdk/morphos/os-include
-* **MUI50_INC**: /opt/sdk/MUI_5.0/C/include
+* **MUI38_INC**: /opt/sdk/MUI_5.0/C/include
 * **AMISSL_INC**: /opt/sdk/AmiSSL/include
+* **SQLITE_INC**: /opt/sdk/sqlite/include
 
 You can set your own paths, if you want, by using environment variables on docker execution or inside the docker-compose.yml file, like:
 ```bash

@@ -140,6 +140,15 @@ RUN curl -fSL "http://aminet.net/dev/c/vbcc_PosixLib.lha" -o /tmp/vbcc_PosixLib.
 
 ENV POSIXLIB_INC="/opt/sdk/PosixLib/include"
 
+# Install SQLite
+RUN curl -fSL "http://aminet.net/biz/dbase/sqlite-3.6.1-amiga.lha" -o /tmp/sqlite.lha; \
+    cd /tmp; \
+    lha -xfq2 sqlite.lha; \
+    mkdir -p /opt/sdk/sqlite/; \
+    mv ./sqlite-3.6.1-amiga/build-m68k-amigaos/include/ /opt/sdk/sqlite/;
+
+ENV SQLITE_INC="/opt/sdk/sqlite/include"
+
 # Install FlexCat
 RUN curl -fSL "https://github.com/adtools/flexcat/releases/download/2.18/FlexCat-2.18.lha" -o /tmp/FlexCat.lha; \
     cd /tmp; \

@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## docker4amigavbcc [future & latest]
+### Added
+- Added sqlite 3.6.1 on all images
+- Added MUI 3.8 SDK
+- Added NDK 3.9
+
+### Removed
+- Removed the MUI 5.0 SDK
+- Removed MorphOS SDK since it doesn't work with VBCC
+
 ## docker4amigavbcc v1.5 - 2020-04-29
 ### Added
 - Added lha v1.14i because it is able to compress files in lha format, and will be useful for packaging
