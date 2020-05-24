@@ -7,6 +7,9 @@ All notable changes to this project will be documented in this file.
 - Added MUI 3.8 SDK
 - Added NDK 3.9
 
+### Changed
+- Optimized the images and made them 21% to 40% smaller
+
 ### Removed
 - Removed the MUI 5.0 SDK
 - Removed MorphOS SDK since it doesn't work with VBCC

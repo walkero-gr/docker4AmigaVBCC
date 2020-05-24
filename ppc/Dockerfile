@@ -13,7 +13,8 @@ RUN apt-get update && apt-get -y install gcc \
     curl \
     make \
     mc \
-    git;
+    git; \
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*;
 
 RUN mkdir -p /opt/vbcc/bin; \
     mkdir -p /opt/code; \
@@ -31,7 +32,8 @@ RUN existing_group=$(getent group "${VBCC_GROUP_ID}" | cut -d: -f1); \
 # Install lha 1.14i
 RUN curl -fSL "https://launchpad.net/ubuntu/+archive/primary/+files/lha_1.14i-10.3_amd64.deb" -o /tmp/lha.deb; \
     cd /tmp; \
-    dpkg -i lha.deb;
+    dpkg -i lha.deb; \
+    rm -rf /tmp/*;
 
 # Install vasm
 RUN curl -fSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm.tar.gz; \
@@ -39,7 +41,8 @@ RUN curl -fSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm.
     tar xvfz vasm.tar.gz; \
     cd /tmp/vasm; \
     make CPU=ppc SYNTAX=std; \
-    cp ./vasmppc_std ./vobjdump /opt/vbcc/bin; 
+    cp ./vasmppc_std ./vobjdump /opt/vbcc/bin; \
+    rm -rf /tmp/*;
 
 ENV VBCC="/opt/vbcc"
 
@@ -49,7 +52,8 @@ RUN curl -fSL "http://sun.hasenbraten.de/vlink/release/vlink.tar.gz" -o /tmp/vli
     tar xvfz vlink.tar.gz; \
     cd /tmp/vlink; \
     make; \
-    cp ./vlink /opt/vbcc/bin;
+    cp ./vlink /opt/vbcc/bin; \
+    rm -rf /tmp/*;
 
 # Install vbcc
 RUN curl -fSL "http://www.ibaug.de/vbcc/vbcc.tar.gz" -o /tmp/vbcc.tar.gz; \
@@ -60,7 +64,8 @@ RUN curl -fSL "http://www.ibaug.de/vbcc/vbcc.tar.gz" -o /tmp/vbcc.tar.gz; \
     yes '\
 ' | make TARGET=ppc; \
     make TARGET=ppc bin/vscppc; \
-    cp ./bin/vbcc* ./bin/vscppc ./bin/vc ./bin/vprof /opt/vbcc/bin;
+    cp ./bin/vbcc* ./bin/vscppc ./bin/vc ./bin/vprof /opt/vbcc/bin; \
+    rm -rf /tmp/*;
 
 RUN curl -fSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_ppc-amigaos.lha" -o /tmp/vbcc_target_ppc-amigaos.lha; \
     curl -fSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_unix_config.tar.gz" -o /tmp/vbcc_unix_config.tar.gz; \
@@ -68,7 +73,8 @@ RUN curl -fSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_ppc-amig
     lha -xfq2 vbcc_target_ppc-amigaos.lha; \
     tar xvfz vbcc_unix_config.tar.gz; \
     mv ./config $VBCC/; \
-    mv ./vbcc_target_ppc-amigaos/targets $VBCC/; 
+    mv ./vbcc_target_ppc-amigaos/targets $VBCC/; \
+    rm -rf /tmp/*;
 
 ENV PATH="$VBCC/bin:$PATH"
 
@@ -84,7 +90,8 @@ RUN curl -fkSL "https://www.hyperion-entertainment.biz/index.php?option=com_regi
     mv ./Examples /opt/sdk/ppc-amigaos; \
     mv ./Include /opt/sdk/ppc-amigaos; \
     mv ./newlib /opt/sdk/ppc-amigaos; \
-    mv ./clib2 /opt/sdk/ppc-amigaos;
+    mv ./clib2 /opt/sdk/ppc-amigaos; \
+    rm -rf /tmp/*;
 
 ENV AOS4_SDK_INC="/opt/sdk/ppc-amigaos/Include/include_h"
 ENV AOS4_NET_INC="/opt/sdk/ppc-amigaos/Include/netinclude"
@@ -97,7 +104,8 @@ RUN curl -fSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-
     cd /tmp; \
     lha -xfq2 MUI-5.0.lha; \
     lha -xfq2 MUI-5.0-contrib.lha; \
-    mv ./SDK/MUI /opt/sdk/MUI_5.0;
+    mv ./SDK/MUI /opt/sdk/MUI_5.0; \
+    rm -rf /tmp/*;
 
 ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
 
@@ -105,13 +113,15 @@ ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
 RUN curl -fSL "http://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha; \
     cd /tmp; \
     lha -xfq2 MCC_Guigfx.lha; \
-    cp ./MCC_Guigfx/Developer/C/Include/MUI/* /opt/sdk/MUI_5.0/C/include/mui;
+    cp ./MCC_Guigfx/Developer/C/Include/MUI/* /opt/sdk/MUI_5.0/C/include/mui; \
+    rm -rf /tmp/*;
 
 # Install AMISSL SDK
 RUN curl -fSL "https://github.com/jens-maus/amissl/releases/download/4.5/AmiSSL-4.5.lha" -o /tmp/AmiSSL.lha; \
     cd /tmp; \
     lha -xfq2 AmiSSL.lha; \
-    mv ./AmiSSL/Developer /opt/sdk/AmiSSL;
+    mv ./AmiSSL/Developer /opt/sdk/AmiSSL; \
+    rm -rf /tmp/*;
 
 ENV AMISSL_INC="/opt/sdk/AmiSSL/include"
 
@@ -128,7 +138,8 @@ RUN curl -fSL "http://aminet.net/biz/dbase/sqlite-3.6.1-amiga.lha" -o /tmp/sqlit
     cd /tmp; \
     lha -xfq2 sqlite.lha; \
     mkdir -p /opt/sdk/sqlite/; \
-    mv ./sqlite-3.6.1-amiga/build-ppc-amigaos/include/ /opt/sdk/sqlite/;
+    mv ./sqlite-3.6.1-amiga/build-ppc-amigaos/include/ /opt/sdk/sqlite/; \
+    rm -rf /tmp/*;
 
 ENV SQLITE_INC="/opt/sdk/sqlite/include"
 
@@ -136,7 +147,8 @@ ENV SQLITE_INC="/opt/sdk/sqlite/include"
 RUN curl -fSL "https://github.com/adtools/flexcat/releases/download/2.18/FlexCat-2.18.lha" -o /tmp/FlexCat.lha; \
     cd /tmp; \
     lha -xfq2 FlexCat.lha; \
-    cp ./FlexCat/Linux-i386/flexcat /usr/bin/;
+    cp ./FlexCat/Linux-i386/flexcat /usr/bin/; \
+    rm -rf /tmp/*;
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
