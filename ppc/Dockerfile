@@ -150,6 +150,14 @@ RUN curl -fSL "https://github.com/adtools/flexcat/releases/download/2.18/FlexCat
     cp ./FlexCat/Linux-i386/flexcat /usr/bin/; \
     rm -rf /tmp/*;
 
+# Add git branch name to bash prompt
+RUN sed -i '4c\'"\nparse_git_branch() {\n\
+  git branch 2> /dev/null | sed -e \'/^[^*]/d\' -e \'s/* \\\(.*\\\)/ (\\\1)/\'\n\
+}\n" ~/.bashrc; \
+    sed -i '43c\'"force_color_prompt=yes" ~/.bashrc; \
+    sed -i '57c\'"    PS1=\'\${debian_chroot:+(\$debian_chroot)}\\\[\\\033[01;32m\\\]\\\u@\\\h\\\[\\\033[00m\\\]:\\\[\\\033[01;34m\\\]\\\w\\\[\\\033[01;31m\\\]\$(parse_git_branch)\\\[\\\033[00m\\\]\\\$ '" ~/.bashrc; \
+    sed -i '59c\'"    PS1=\'\${debian_chroot:+(\$debian_chroot)}\\\u@\\\h:\\\w \$(parse_git_branch)\$ \'" ~/.bashrc;
+
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

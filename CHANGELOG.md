@@ -4,8 +4,9 @@ All notable changes to this project will be documented in this file.
 ## docker4amigavbcc [future & latest]
 ### Added
 - Added sqlite 3.6.1 on all images
-- Added MUI 3.8 SDK
-- Added NDK 3.9
+- Added MUI 3.8 SDK at the MorphOS image
+- Added NDK 3.9 at the MorphOS image
+- Added git branch name to bash prompt
 
 ### Changed
 - Optimized the images and made them 21% to 40% smaller
