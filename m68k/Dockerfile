@@ -29,11 +29,19 @@ RUN existing_group=$(getent group "${VBCC_GROUP_ID}" | cut -d: -f1); \
     adduser --system --uid ${VBCC_USER_ID} --disabled-password --shell /bin/bash --gid ${VBCC_GROUP_ID} vbcc; \
     sed -i '/^vbcc/s/!/*/' /etc/shadow;
 
-# Install lha 1.14i
-RUN curl -fSL "https://launchpad.net/ubuntu/+archive/primary/+files/lha_1.14i-10.3_amd64.deb" -o /tmp/lha.deb; \
+# Install latest lha from git repo
+RUN apt-get update && apt-get -y install dh-autoreconf; \
     cd /tmp; \
-    dpkg -i lha.deb; \
-    rm -rf /tmp/*;
+    git clone https://github.com/jca02266/lha.git; \
+    mkdir build; \
+    cd lha; \
+    autoreconf -vfi; \
+    cd ../build; \
+    ../lha/configure --prefix=/usr; \
+    make; \
+    make install; \
+    apt-get -y purge dh-autoreconf && apt-get -y autoremove; \
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*;
 
 # Install vasm
 RUN curl -fSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm.tar.gz; \

@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Optimized the images and made them 21% to 40% smaller
+- Compiled lha from the latest available version at https://github.com/jca02266/lha.git
 
 ### Removed
 - Removed the MUI 5.0 SDK
