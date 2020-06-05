@@ -1,12 +1,10 @@
--include env_make
-
 REPO ?= walkero/docker4amigavbcc
 TAG ?= latest-mos
 VOLUMES ?= -v "${PWD}/../code":/opt/code
 WORKSPACE ?= -w /opt/code
 NAME ?= amigavbcc-mos
 
-.PHONY: build buildnc shell push logs clean release
+.PHONY: build buildnc shell push logs clean test release
 
 default: build
 
@@ -27,5 +25,8 @@ logs:
 
 clean:
 	-docker rm -f $(NAME)
+
+test:
+	snyk test --docker $(REPO):$(TAG) --file=Dockerfile
 
 release: buildnc push

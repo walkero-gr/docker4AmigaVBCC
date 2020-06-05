@@ -1,4 +1,4 @@
-FROM phusion/baseimage:master
+FROM phusion/baseimage:focal-1.0.0-alpha1-amd64
 
 LABEL maintainer="Georgios Sokianos <walkero@gmail.com>"
 
@@ -44,7 +44,7 @@ RUN apt-get update && apt-get -y install dh-autoreconf; \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*;
 
 # Install vasm
-RUN curl -fSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm.tar.gz; \
+RUN curl -fsSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm.tar.gz; \
     cd /tmp; \
     tar xvfz vasm.tar.gz; \
     cd /tmp/vasm; \
@@ -55,7 +55,7 @@ RUN curl -fSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm.
 ENV VBCC="/opt/vbcc"
 
 # Install vlink
-RUN curl -fSL "http://sun.hasenbraten.de/vlink/release/vlink.tar.gz" -o /tmp/vlink.tar.gz; \
+RUN curl -fsSL "http://sun.hasenbraten.de/vlink/release/vlink.tar.gz" -o /tmp/vlink.tar.gz; \
     cd /tmp; \
     tar xvfz vlink.tar.gz; \
     cd /tmp/vlink; \
@@ -64,7 +64,7 @@ RUN curl -fSL "http://sun.hasenbraten.de/vlink/release/vlink.tar.gz" -o /tmp/vli
     rm -rf /tmp/*;
 
 # Install vbcc
-RUN curl -fSL "http://www.ibaug.de/vbcc/vbcc.tar.gz" -o /tmp/vbcc.tar.gz; \
+RUN curl -fsSL "http://www.ibaug.de/vbcc/vbcc.tar.gz" -o /tmp/vbcc.tar.gz; \
     cd /tmp; \
     tar xvfz vbcc.tar.gz; \
     cd /tmp/vbcc; \
@@ -75,8 +75,8 @@ RUN curl -fSL "http://www.ibaug.de/vbcc/vbcc.tar.gz" -o /tmp/vbcc.tar.gz; \
     cp ./bin/vbcc* ./bin/vscppc ./bin/vc ./bin/vprof /opt/vbcc/bin; \
     rm -rf /tmp/*;
 
-RUN curl -fSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_ppc-amigaos.lha" -o /tmp/vbcc_target_ppc-amigaos.lha; \
-    curl -fSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_unix_config.tar.gz" -o /tmp/vbcc_unix_config.tar.gz; \
+RUN curl -fsSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_ppc-amigaos.lha" -o /tmp/vbcc_target_ppc-amigaos.lha; \
+    curl -fsSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_unix_config.tar.gz" -o /tmp/vbcc_unix_config.tar.gz; \
     cd /tmp; \
     lha -xfq2 vbcc_target_ppc-amigaos.lha; \
     tar xvfz vbcc_unix_config.tar.gz; \
@@ -87,7 +87,7 @@ RUN curl -fSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_ppc-amig
 ENV PATH="$VBCC/bin:$PATH"
 
 # Install AmigaOS 4 SDK
-RUN curl -fkSL "https://www.hyperion-entertainment.biz/index.php?option=com_registration&amp;view=download&amp;format=raw&amp;file=82&amp;Itemid=82" -o /tmp/AmigaOS4-SDK.lha; \
+RUN curl -fksSL "https://www.hyperion-entertainment.biz/index.php?option=com_registration&amp;view=download&amp;format=raw&amp;file=82&amp;Itemid=82" -o /tmp/AmigaOS4-SDK.lha; \
     cd /tmp; \
     lha -xfq2 AmigaOS4-SDK.lha; \
     cd SDK_Install; \
@@ -107,8 +107,8 @@ ENV AOS4_NLIB_INC="/opt/sdk/ppc-amigaos/newlib/include"
 ENV AOS4_CLIB_INC="/opt/sdk/ppc-amigaos/clib2/include"
 
 # Install MUI 5.0 dev
-RUN curl -fSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os4.lha" -o /tmp/MUI-5.0.lha; \
-    curl -fSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os4-contrib.lha" -o /tmp/MUI-5.0-contrib.lha; \
+RUN curl -fsSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os4.lha" -o /tmp/MUI-5.0.lha; \
+    curl -fsSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os4-contrib.lha" -o /tmp/MUI-5.0-contrib.lha; \
     cd /tmp; \
     lha -xfq2 MUI-5.0.lha; \
     lha -xfq2 MUI-5.0-contrib.lha; \
@@ -118,14 +118,14 @@ RUN curl -fSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-
 ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
 
 # Install MCC_GuiGfx
-RUN curl -fSL "http://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha; \
+RUN curl -fsSL "http://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha; \
     cd /tmp; \
     lha -xfq2 MCC_Guigfx.lha; \
     cp ./MCC_Guigfx/Developer/C/Include/MUI/* /opt/sdk/MUI_5.0/C/include/mui; \
     rm -rf /tmp/*;
 
 # Install AMISSL SDK
-RUN curl -fSL "https://github.com/jens-maus/amissl/releases/download/4.5/AmiSSL-4.5.lha" -o /tmp/AmiSSL.lha; \
+RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/4.5/AmiSSL-4.5.lha" -o /tmp/AmiSSL.lha; \
     cd /tmp; \
     lha -xfq2 AmiSSL.lha; \
     mv ./AmiSSL/Developer /opt/sdk/AmiSSL; \
@@ -134,7 +134,7 @@ RUN curl -fSL "https://github.com/jens-maus/amissl/releases/download/4.5/AmiSSL-
 ENV AMISSL_INC="/opt/sdk/AmiSSL/include"
 
 # Install GL4ES SDK
-# RUN curl -fSL "https://github.com/kas1e/GL4ES-SDK/releases/download/1.1/gl4es_sdk-1.1.lha" -o /tmp/gl4es_sdk-1.1.lha; \
+# RUN curl -fsSL "https://github.com/kas1e/GL4ES-SDK/releases/download/1.1/gl4es_sdk-1.1.lha" -o /tmp/gl4es_sdk-1.1.lha; \
 #     cd /tmp; \
 #     lha -xfq2 gl4es_sdk-1.1.lha; \
 #     mv SDK/local/common /opt/sdk/GL4ES;
@@ -142,7 +142,7 @@ ENV AMISSL_INC="/opt/sdk/AmiSSL/include"
 # ENV GL4ES_INC="/opt/sdk/GL4ES/include"
 
 # Install SQLite
-RUN curl -fSL "http://aminet.net/biz/dbase/sqlite-3.6.1-amiga.lha" -o /tmp/sqlite.lha; \
+RUN curl -fsSL "http://aminet.net/biz/dbase/sqlite-3.6.1-amiga.lha" -o /tmp/sqlite.lha; \
     cd /tmp; \
     lha -xfq2 sqlite.lha; \
     mkdir -p /opt/sdk/sqlite/; \
@@ -152,7 +152,7 @@ RUN curl -fSL "http://aminet.net/biz/dbase/sqlite-3.6.1-amiga.lha" -o /tmp/sqlit
 ENV SQLITE_INC="/opt/sdk/sqlite/include"
 
 # Install FlexCat
-RUN curl -fSL "https://github.com/adtools/flexcat/releases/download/2.18/FlexCat-2.18.lha" -o /tmp/FlexCat.lha; \
+RUN curl -fsSL "https://github.com/adtools/flexcat/releases/download/2.18/FlexCat-2.18.lha" -o /tmp/FlexCat.lha; \
     cd /tmp; \
     lha -xfq2 FlexCat.lha; \
     cp ./FlexCat/Linux-i386/flexcat /usr/bin/; \

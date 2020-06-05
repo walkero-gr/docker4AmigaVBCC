@@ -1,4 +1,4 @@
-FROM phusion/baseimage:master
+FROM phusion/baseimage:focal-1.0.0-alpha1-amd64
 
 LABEL maintainer="Georgios Sokianos <walkero@gmail.com>"
 
@@ -44,7 +44,7 @@ RUN apt-get update && apt-get -y install dh-autoreconf; \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*;
 
 # Install vasm
-RUN curl -fSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm.tar.gz; \
+RUN curl -fsSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm.tar.gz; \
     cd /tmp; \
     tar xvfz vasm.tar.gz; \
     cd /tmp/vasm; \
@@ -55,7 +55,7 @@ RUN curl -fSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm.
 ENV VBCC="/opt/vbcc"
 
 # Install vlink
-RUN curl -fSL "http://sun.hasenbraten.de/vlink/release/vlink.tar.gz" -o /tmp/vlink.tar.gz; \
+RUN curl -fsSL "http://sun.hasenbraten.de/vlink/release/vlink.tar.gz" -o /tmp/vlink.tar.gz; \
     cd /tmp; \
     tar xvfz vlink.tar.gz; \
     cd /tmp/vlink; \
@@ -64,7 +64,7 @@ RUN curl -fSL "http://sun.hasenbraten.de/vlink/release/vlink.tar.gz" -o /tmp/vli
     rm -rf /tmp/*;
 
 # Install vbcc
-RUN curl -fSL "http://www.ibaug.de/vbcc/vbcc.tar.gz" -o /tmp/vbcc.tar.gz; \
+RUN curl -fsSL "http://www.ibaug.de/vbcc/vbcc.tar.gz" -o /tmp/vbcc.tar.gz; \
     cd /tmp; \
     tar xvfz vbcc.tar.gz; \
     cd /tmp/vbcc; \
@@ -76,8 +76,8 @@ RUN curl -fSL "http://www.ibaug.de/vbcc/vbcc.tar.gz" -o /tmp/vbcc.tar.gz; \
     cp ./bin/vbcc* ./bin/vc ./bin/vprof /opt/vbcc/bin; \
     rm -rf /tmp/*;
 
-RUN curl -fSL "http://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_m68k-amigaos.lha" -o /tmp/vbcc_target_m68k-amigaos.lha; \
-    curl -fSL "http://server.owl.de/~frank/vbcc/2019-10-04/vbcc_unix_config.tar.gz" -o /tmp/vbcc_unix_config.tar.gz; \
+RUN curl -fsSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_m68k-amigaos.lha" -o /tmp/vbcc_target_m68k-amigaos.lha; \
+    curl -fsSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_unix_config.tar.gz" -o /tmp/vbcc_unix_config.tar.gz; \
     cd /tmp; \
     lha -xfq2 vbcc_target_m68k-amigaos.lha; \
     tar xvfz vbcc_unix_config.tar.gz; \
@@ -88,7 +88,7 @@ RUN curl -fSL "http://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_m68k-amig
 ENV PATH="$VBCC/bin:$PATH"
 
 # Install NDK39
-RUN curl -fSL "http://www.haage-partner.de/download/AmigaOS/NDK39.lha" -o /tmp/NDK39.lha; \
+RUN curl -fsSL "http://www.haage-partner.de/download/AmigaOS/NDK39.lha" -o /tmp/NDK39.lha; \
     cd /tmp; \
     lha -xfq2 NDK39.lha; \
     mv ./NDK_3.9 /opt/sdk/; \
@@ -98,7 +98,7 @@ ENV NDK_INC="/opt/sdk/NDK_3.9/Include/include_h"
 ENV NDK_LIB="/opt/sdk/NDK_3.9/Include/linker_libs"
 
 # Install MUI 3.8 dev
-RUN curl -fSL "http://muidev.de/download/MUI%203.8%20-%20AmigaOS3-m68k/mui38dev.lha" -o /tmp/mui38dev.lha; \
+RUN curl -fsSL "http://muidev.de/download/MUI%203.8%20-%20AmigaOS3-m68k/mui38dev.lha" -o /tmp/mui38dev.lha; \
     cd /tmp; \
     lha -xfq2 mui38dev.lha; \
     mv ./MUI/Developer /opt/sdk/MUI_3.8; \
@@ -108,8 +108,8 @@ RUN curl -fSL "http://muidev.de/download/MUI%203.8%20-%20AmigaOS3-m68k/mui38dev.
 ENV MUI38_INC="/opt/sdk/MUI_3.8/C/Include"
 
 # Install MUI 5.0 dev
-RUN curl -fSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os3.lha" -o /tmp/MUI-5.0-os3.lha; \
-    curl -fSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os3-contrib.lha" -o /tmp/MUI-5.0-os3-contrib.lha; \
+RUN curl -fsSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os3.lha" -o /tmp/MUI-5.0-os3.lha; \
+    curl -fsSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os3-contrib.lha" -o /tmp/MUI-5.0-os3-contrib.lha; \
     cd /tmp; \
     lha -xfq2 MUI-5.0-os3.lha; \
     lha -xfq2 MUI-5.0-os3-contrib.lha; \
@@ -119,7 +119,7 @@ RUN curl -fSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-
 ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
 
 # Install MCC_GuiGfx
-RUN curl -fSL "http://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha; \
+RUN curl -fsSL "http://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha; \
     cd /tmp; \
     lha -xfq2 MCC_Guigfx.lha; \
     cp ./MCC_Guigfx/Developer/C/Include/MUI/* /opt/sdk/MUI_3.8/C/Include/mui; \
@@ -127,14 +127,14 @@ RUN curl -fSL "http://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha;
     rm -rf /tmp/*;
 
 # Install MCC_TextEditor
-RUN curl -fSL "http://aminet.net/dev/mui/MCC_TextEditor-15.53.lha" -o /tmp/MCC_TextEditor.lha; \
+RUN curl -fsSL "http://aminet.net/dev/mui/MCC_TextEditor-15.53.lha" -o /tmp/MCC_TextEditor.lha; \
     cd /tmp; \
     lha -xfq2 MCC_TextEditor.lha; \
     cp ./MCC_TextEditor/Developer/C/include/mui/* /opt/sdk/MUI_3.8/C/Include/mui; \
     rm -rf /tmp/*;
 
 # Install Roadshow SDK
-RUN curl -fSL "http://amiga-projects.net/Roadshow-SDK.lha" -o /tmp/Roadshow-SDK.lha; \
+RUN curl -fsSL "http://amiga-projects.net/Roadshow-SDK.lha" -o /tmp/Roadshow-SDK.lha; \
     cd /tmp; \
     lha -xfq2w=Roadshow-SDK Roadshow-SDK.lha; \
     mv ./Roadshow-SDK /opt/sdk/Roadshow-SDK; \
@@ -144,7 +144,7 @@ ENV TCP_INC="/opt/sdk/Roadshow-SDK/include"
 ENV NET_INC="/opt/sdk/Roadshow-SDK/netinclude"
 
 # Install AMISSL SDK
-RUN curl -fSL "https://github.com/jens-maus/amissl/releases/download/4.5/AmiSSL-4.5.lha" -o /tmp/AmiSSL.lha; \
+RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/4.5/AmiSSL-4.5.lha" -o /tmp/AmiSSL.lha; \
     cd /tmp; \
     lha -xfq2 AmiSSL.lha; \
     mv ./AmiSSL/Developer /opt/sdk/AmiSSL; \
@@ -153,7 +153,7 @@ RUN curl -fSL "https://github.com/jens-maus/amissl/releases/download/4.5/AmiSSL-
 ENV AMISSL_INC="/opt/sdk/AmiSSL/include"
 
 # Install Posix Lib
-RUN curl -fSL "http://aminet.net/dev/c/vbcc_PosixLib.lha" -o /tmp/vbcc_PosixLib.lha; \
+RUN curl -fsSL "http://aminet.net/dev/c/vbcc_PosixLib.lha" -o /tmp/vbcc_PosixLib.lha; \
     cd /tmp; \
     lha -xfq2 vbcc_PosixLib.lha; \
     mkdir -p /opt/sdk/PosixLib/; \
@@ -163,7 +163,7 @@ RUN curl -fSL "http://aminet.net/dev/c/vbcc_PosixLib.lha" -o /tmp/vbcc_PosixLib.
 ENV POSIXLIB_INC="/opt/sdk/PosixLib/include"
 
 # Install SQLite
-RUN curl -fSL "http://aminet.net/biz/dbase/sqlite-3.6.1-amiga.lha" -o /tmp/sqlite.lha; \
+RUN curl -fsSL "http://aminet.net/biz/dbase/sqlite-3.6.1-amiga.lha" -o /tmp/sqlite.lha; \
     cd /tmp; \
     lha -xfq2 sqlite.lha; \
     mkdir -p /opt/sdk/sqlite/; \
@@ -173,7 +173,7 @@ RUN curl -fSL "http://aminet.net/biz/dbase/sqlite-3.6.1-amiga.lha" -o /tmp/sqlit
 ENV SQLITE_INC="/opt/sdk/sqlite/include"
 
 # Install FlexCat
-RUN curl -fSL "https://github.com/adtools/flexcat/releases/download/2.18/FlexCat-2.18.lha" -o /tmp/FlexCat.lha; \
+RUN curl -fsSL "https://github.com/adtools/flexcat/releases/download/2.18/FlexCat-2.18.lha" -o /tmp/FlexCat.lha; \
     cd /tmp; \
     lha -xfq2 FlexCat.lha; \
     cp ./FlexCat/Linux-i386/flexcat /usr/bin/; \
