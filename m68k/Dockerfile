@@ -108,11 +108,11 @@ RUN curl -fsSL "http://muidev.de/download/MUI%203.8%20-%20AmigaOS3-m68k/mui38dev
 ENV MUI38_INC="/opt/sdk/MUI_3.8/C/Include"
 
 # Install MUI 5.0 dev
-RUN curl -fsSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os3.lha" -o /tmp/MUI-5.0-os3.lha; \
-    curl -fsSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os3-contrib.lha" -o /tmp/MUI-5.0-os3-contrib.lha; \
+RUN curl -fsSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os3.lha" -o /tmp/MUI-5.0.lha; \
+    curl -fsSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os3-contrib.lha" -o /tmp/MUI-5.0-contrib.lha; \
     cd /tmp; \
-    lha -xfq2 MUI-5.0-os3.lha; \
-    lha -xfq2 MUI-5.0-os3-contrib.lha; \
+    lha -xfq2 MUI-5.0.lha; \
+    lha -xfq2 MUI-5.0-contrib.lha; \
     mv ./SDK/MUI /opt/sdk/MUI_5.0; \
     rm -rf /tmp/*;
 
