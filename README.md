@@ -23,7 +23,7 @@ The **docker4amigavbcc:latest-m68k** image contains the following:
 | AmiSSL SDK        | 4.5                   | https://github.com/jens-maus/amissl/releases/tag/4.5
 | Posix Lib         | 2.6                   | http://aminet.net/package/dev/c/vbcc_PosixLib
 | FlexCat           | 2.18                  | https://github.com/adtools/flexcat/releases/tag/2.18
-| lha               | 1.14i                 | https://launchpad.net/ubuntu/+source/lha
+| lha               | v2 PMA                | https://github.com/jca02266/lha.git
 | sqlite            | 3.6.1                 | http://aminet.net/package/biz/dbase/sqlite-3.6.1-amiga
 
 ## AmigaOS 4 PPC development image
@@ -36,9 +36,10 @@ The **docker4amigavbcc:latest-ppc** image contains the following:
 | vasm              | 1.8h (18-Apr-2020)    | http://sun.hasenbraten.de/vasm/
 | AmigaOS 4 SDK     | 53.30                 | http://www.hyperion-entertainment.com/
 | MUI 5.x dev       | 5.0-2019R4            | http://muidev.de/downloads
+| MCC_GuiGfx        | 19.2                  | http://aminet.net/package/dev/mui/MCC_Guigfx
 | AmiSSL SDK        | 4.5                   | https://github.com/jens-maus/amissl/releases/tag/4.5
 | FlexCat           | 2.18                  | https://github.com/adtools/flexcat/releases/tag/2.18
-| lha               | 1.14i                 | https://launchpad.net/ubuntu/+source/lha
+| lha               | v2 PMA                | https://github.com/jca02266/lha.git
 | sqlite            | 3.6.1                 | http://aminet.net/package/biz/dbase/sqlite-3.6.1-amiga
 
 ## MorphOS PPC development image
@@ -49,11 +50,13 @@ The **docker4amigavbcc:latest-mos** image contains the following:
 | vbcc              | 0.9g (04-Oct-2019)    | http://sun.hasenbraten.de/vbcc/
 | vlink             | 0.16d (18-Apr-2020)   | http://sun.hasenbraten.de/vlink/
 | vasm              | 1.8h (18-Apr-2020)    | http://sun.hasenbraten.de/vasm/
-| MorphOS SDK       | 3.14 Apr 2020         | https://www.morphos-team.net/downloads
 | MUI 3.x dev       | 3.8                   | http://muidev.de/downloads
+| MUI 5.x dev       | 5.0-2019R4            | http://muidev.de/downloads
+| MCC_GuiGfx        | 19.2                  | http://aminet.net/package/dev/mui/MCC_Guigfx
+| MCC_TextEditor    | 15.53                 | http://aminet.net/package/dev/mui/MCC_TextEditor-15.53
 | AmiSSL SDK        | 4.5                   | https://github.com/jens-maus/amissl/releases/tag/4.5
 | FlexCat           | 2.18                  | https://github.com/adtools/flexcat/releases/tag/2.18
-| lha               | 1.14i                 | https://launchpad.net/ubuntu/+source/lha
+| lha               | v2 PMA                | https://github.com/jca02266/lha.git
 | sqlite            | 3.6.1                 | http://aminet.net/package/biz/dbase/sqlite-3.6.1-amiga
 
 ## How to create a docker container
@@ -130,10 +133,10 @@ The **docker4amigavbcc:latest-mos** image has the following ENV variables set:
 
 * **VBCC**: /opt/vbcc
 * **PATH**: /opt/vbcc/bin
-* **MOS_SDK_INC**: /opt/sdk/morphos/include
-* **MOS_SDK_STD**: /opt/sdk/morphos/includestd
-* **MOS_OS_INC**: /opt/sdk/morphos/os-include
+* **NDK_INC**: /opt/sdk/NDK_3.9/Include/include_h
+* **NDK_LIB**: /opt/sdk/NDK_3.9/Include/linker_libs
 * **MUI38_INC**: /opt/sdk/MUI_5.0/C/include
+* **MUI50_INC**: /opt/sdk/MUI_5.0/C/include
 * **AMISSL_INC**: /opt/sdk/AmiSSL/include
 * **SQLITE_INC**: /opt/sdk/sqlite/include
 
