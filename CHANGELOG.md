@@ -1,22 +1,21 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## docker4amigavbcc [future & latest]
+## docker4amigavbcc v1.6 - 2020-06-07
 ### Added
 - Added sqlite 3.6.1 on all images
-- Added MUI 3.8 SDK at the MorphOS image
+- Added MUI 3.8 and MUI 5.0-2019R4 OS4 SDKs at the MorphOS image
 - Added NDK 3.9 at the MorphOS image
 - Added git branch name to bash prompt
 
 ### Changed
-- Optimized the images and made them 21% to 40% smaller
-- Compiled lha from the latest available version at https://github.com/jca02266/lha.git
+- Optimized the images and made them 21%-40% smaller
+- Compiled lha from the latest available version at https://github.com/jca02266/lha.git to v2 PMA
 - Experimental: Changed to Ubuntu in image to 20.04
 - Set silent argument to curls
 - Reverted vbcc for PPC and MOS images to v0.9f, because of the error "Segmentation fault (core dump)" that I get when compiling iGame for AmigaOS 4 and MorphOS. With this version this error doesn't occur.
 
 ### Removed
-- Removed the MUI 5.0 SDK
 - Removed MorphOS SDK since it doesn't work with VBCC
 
 ## docker4amigavbcc v1.5 - 2020-04-29
