@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - Compiled lha from the latest available version at https://github.com/jca02266/lha.git
 - Experimental: Changed to Ubuntu in image to 20.04
 - Set silent argument to curls
+- Reverted vbcc for PPC and MOS images to v0.9f, because of the error "Segmentation fault (core dump)" that I get when compiling iGame for AmigaOS 4 and MorphOS. With this version this error doesn't occur.
 
 ### Removed
 - Removed the MUI 5.0 SDK
@@ -28,7 +29,7 @@ All notable changes to this project will be documented in this file.
 - Updated vlink to v0.16d (18-Apr-2020) on all images
 
 ### Removed
-- lhasa because it can only extract lha files
+- Removed lhasa because it can only extract lha files
 
 ## docker4amigavbcc v1.4 - 2020-03-30
 ### Added

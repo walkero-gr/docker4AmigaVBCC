@@ -64,7 +64,7 @@ RUN curl -fsSL "http://sun.hasenbraten.de/vlink/release/vlink.tar.gz" -o /tmp/vl
     rm -rf /tmp/*;
 
 # Install vbcc
-RUN curl -fsSL "http://www.ibaug.de/vbcc/vbcc.tar.gz" -o /tmp/vbcc.tar.gz; \
+RUN curl -fsSL "http://phoenix.owl.de/tags/vbcc0_9f.tar.gz" -o /tmp/vbcc.tar.gz; \
     cd /tmp; \
     tar xvfz vbcc.tar.gz; \
     cd /tmp/vbcc; \
@@ -75,8 +75,8 @@ RUN curl -fsSL "http://www.ibaug.de/vbcc/vbcc.tar.gz" -o /tmp/vbcc.tar.gz; \
     cp ./bin/vbcc* ./bin/vscppc ./bin/vc ./bin/vprof /opt/vbcc/bin; \
     rm -rf /tmp/*;
 
-RUN curl -fsSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_ppc-amigaos.lha" -o /tmp/vbcc_target_ppc-amigaos.lha; \
-    curl -fsSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_unix_config.tar.gz" -o /tmp/vbcc_unix_config.tar.gz; \
+RUN curl -fsSL "https://server.owl.de/~frank/vbcc/2017-08-14/vbcc_target_ppc-amigaos.lha" -o /tmp/vbcc_target_ppc-amigaos.lha; \
+    curl -fsSL "https://server.owl.de/~frank/vbcc/2017-08-14/vbcc_unix_config.tar.gz" -o /tmp/vbcc_unix_config.tar.gz; \
     cd /tmp; \
     lha -xfq2 vbcc_target_ppc-amigaos.lha; \
     tar xvfz vbcc_unix_config.tar.gz; \
