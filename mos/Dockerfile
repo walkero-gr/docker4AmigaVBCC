@@ -124,11 +124,23 @@ RUN curl -fsSL "http://muidev.de/download/MUI%203.8%20-%20AmigaOS3-m68k/mui38dev
 
 ENV MUI38_INC="/opt/sdk/MUI_3.8/C/Include"
 
+# Install MUI 5.0 dev
+RUN curl -fsSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os4.lha" -o /tmp/MUI-5.0.lha; \
+    curl -fsSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os4-contrib.lha" -o /tmp/MUI-5.0-contrib.lha; \
+    cd /tmp; \
+    lha -xfq2 MUI-5.0.lha; \
+    lha -xfq2 MUI-5.0-contrib.lha; \
+    mv ./SDK/MUI /opt/sdk/MUI_5.0; \
+    rm -rf /tmp/*;
+
+ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
+
 # Install MCC_GuiGfx
 RUN curl -fsSL "http://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha; \
     cd /tmp; \
     lha -xfq2 MCC_Guigfx.lha; \
     cp ./MCC_Guigfx/Developer/C/Include/MUI/* /opt/sdk/MUI_3.8/C/Include/mui; \
+    cp ./MCC_Guigfx/Developer/C/Include/MUI/* /opt/sdk/MUI_5.0/C/include/mui; \
     rm -rf /tmp/*;
 
 # Install MCC_TextEditor
