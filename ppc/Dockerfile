@@ -125,7 +125,7 @@ RUN curl -fsSL "http://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha
     rm -rf /tmp/*;
 
 # Install AMISSL SDK
-RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/4.5/AmiSSL-4.5.lha" -o /tmp/AmiSSL.lha; \
+RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/4.6/AmiSSL-4.6.lha" -o /tmp/AmiSSL.lha; \
     cd /tmp; \
     lha -xfq2 AmiSSL.lha; \
     mv ./AmiSSL/Developer /opt/sdk/AmiSSL; \

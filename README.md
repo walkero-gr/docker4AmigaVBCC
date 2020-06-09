@@ -20,7 +20,7 @@ The **docker4amigavbcc:latest-m68k** image contains the following:
 | MCC_GuiGfx        | 19.2                  | http://aminet.net/package/dev/mui/MCC_Guigfx
 | MCC_TextEditor    | 15.53                 | http://aminet.net/package/dev/mui/MCC_TextEditor-15.53
 | Roadshow SDK      | 1.4 (15.3.2019)       | https://www.amigafuture.de/app.php/dlext/?view=detail&df_id=3658
-| AmiSSL SDK        | 4.5                   | https://github.com/jens-maus/amissl/releases/tag/4.5
+| AmiSSL SDK        | 4.6                   | https://github.com/jens-maus/amissl/releases/tag/4.6
 | Posix Lib         | 2.6                   | http://aminet.net/package/dev/c/vbcc_PosixLib
 | FlexCat           | 2.18                  | https://github.com/adtools/flexcat/releases/tag/2.18
 | lha               | v2 PMA                | https://github.com/jca02266/lha.git
@@ -37,7 +37,7 @@ The **docker4amigavbcc:latest-ppc** image contains the following:
 | AmigaOS 4 SDK     | 53.30                 | http://www.hyperion-entertainment.com/
 | MUI 5.x dev       | 5.0-2019R4            | http://muidev.de/downloads
 | MCC_GuiGfx        | 19.2                  | http://aminet.net/package/dev/mui/MCC_Guigfx
-| AmiSSL SDK        | 4.5                   | https://github.com/jens-maus/amissl/releases/tag/4.5
+| AmiSSL SDK        | 4.6                   | https://github.com/jens-maus/amissl/releases/tag/4.6
 | FlexCat           | 2.18                  | https://github.com/adtools/flexcat/releases/tag/2.18
 | lha               | v2 PMA                | https://github.com/jca02266/lha.git
 | sqlite            | 3.6.1                 | http://aminet.net/package/biz/dbase/sqlite-3.6.1-amiga
@@ -54,7 +54,7 @@ The **docker4amigavbcc:latest-mos** image contains the following:
 | MUI 5.x dev       | 5.0-2019R4            | http://muidev.de/downloads
 | MCC_GuiGfx        | 19.2                  | http://aminet.net/package/dev/mui/MCC_Guigfx
 | MCC_TextEditor    | 15.53                 | http://aminet.net/package/dev/mui/MCC_TextEditor-15.53
-| AmiSSL SDK        | 4.5                   | https://github.com/jens-maus/amissl/releases/tag/4.5
+| AmiSSL SDK        | 4.6                   | https://github.com/jens-maus/amissl/releases/tag/4.6
 | FlexCat           | 2.18                  | https://github.com/adtools/flexcat/releases/tag/2.18
 | lha               | v2 PMA                | https://github.com/jca02266/lha.git
 | sqlite            | 3.6.1                 | http://aminet.net/package/biz/dbase/sqlite-3.6.1-amiga

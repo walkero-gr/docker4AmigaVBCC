@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 ## docker4amigavbcc v1.6 - 2020-06-07
+### Changed
+- Updated AmiSSL SDK to latest released version 4.6
+
+## docker4amigavbcc v1.6 - 2020-06-07
 ### Added
 - Added sqlite 3.6.1 on all images
 - Added MUI 3.8 and MUI 5.0-2019R4 OS4 SDKs at the MorphOS image
