@@ -2,17 +2,16 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/walkero/docker4amigavbcc?color=brightgreen)](https://hub.docker.com/r/walkero/docker4amigavbcc)
 
 # docker4AmigaVBCC
-docker4AmigaVBCC is a project that containes a few docker images with VBCC compiler for cross compiling software for AmigaOS 3, AmigaOS 4 and MorphOS. It is based on Ubuntu and has everything needed (vbcc compiler, SDKs, libraries) for compiling your applications. 
+docker4AmigaVBCC is a project that contains a few docker images with VBCC compiler, for cross compiling software for AmigaOS 3, AmigaOS 4 and MorphOS. It is based on Ubuntu OS and has everything needed (vbcc compiler, SDKs, libraries) for compiling your applications. 
 
-Project's purpose is to be an up to date, flexible and out of the box solution for cross compiling applications for Amiga environments, using the VBCC C/C++ compiler. Those images can be used on CI/CD solution for automatic testing, compiling, packaging and deployment.
+The purpose of the project is to be an up to date, flexible and out of the box solution for cross compiling applications for Amiga environments, using the VBCC C/C++ compiler. Those images can be used on CI/CD solution for automatic testing, compiling, packaging and deployment.
 
 ## AmigaOS 68k development image
-The **docker4amigavbcc:latest-m68k** image contains the following:
+The **docker4amigavbcc:latest-m68k** image contains the following software, including the [Base image software](#base-image):
 
 | app               | version               | source
 |-------------------|-----------------------|-----------------------------------|
 | vbcc              | 0.9g (04-Oct-2019)    | http://sun.hasenbraten.de/vbcc/
-| vlink             | 0.16d (18-Apr-2020)   | http://sun.hasenbraten.de/vlink/
 | vasm              | 1.8h (18-Apr-2020)    | http://sun.hasenbraten.de/vasm/
 | NDK               | 3.9                   | http://www.haage-partner.de/download/AmigaOS/
 | MUI 3.x dev       | 3.8                   | http://muidev.de/downloads
@@ -20,44 +19,44 @@ The **docker4amigavbcc:latest-m68k** image contains the following:
 | MCC_GuiGfx        | 19.2                  | http://aminet.net/package/dev/mui/MCC_Guigfx
 | MCC_TextEditor    | 15.53                 | http://aminet.net/package/dev/mui/MCC_TextEditor-15.53
 | Roadshow SDK      | 1.4 (15.3.2019)       | https://www.amigafuture.de/app.php/dlext/?view=detail&df_id=3658
-| AmiSSL SDK        | 4.6                   | https://github.com/jens-maus/amissl/releases/tag/4.6
 | Posix Lib         | 2.6                   | http://aminet.net/package/dev/c/vbcc_PosixLib
-| FlexCat           | 2.18                  | https://github.com/adtools/flexcat/releases/tag/2.18
-| lha               | v2 PMA                | https://github.com/jca02266/lha.git
 | sqlite            | 3.6.1                 | http://aminet.net/package/biz/dbase/sqlite-3.6.1-amiga
 
 ## AmigaOS 4 PPC development image
-The **docker4amigavbcc:latest-ppc** image contains the following:
+The **docker4amigavbcc:latest-ppc** image contains the following software, including the [Base image software](#base-image):
 
 | app               | version               | source
 |-------------------|-----------------------|-----------------------------------|
 | vbcc              | 0.9g (04-Oct-2019)    | http://sun.hasenbraten.de/vbcc/
-| vlink             | 0.16d (18-Apr-2020)   | http://sun.hasenbraten.de/vlink/
 | vasm              | 1.8h (18-Apr-2020)    | http://sun.hasenbraten.de/vasm/
 | AmigaOS 4 SDK     | 53.30                 | http://www.hyperion-entertainment.com/
 | MUI 5.x dev       | 5.0-2019R4            | http://muidev.de/downloads
 | MCC_GuiGfx        | 19.2                  | http://aminet.net/package/dev/mui/MCC_Guigfx
-| AmiSSL SDK        | 4.6                   | https://github.com/jens-maus/amissl/releases/tag/4.6
-| FlexCat           | 2.18                  | https://github.com/adtools/flexcat/releases/tag/2.18
-| lha               | v2 PMA                | https://github.com/jca02266/lha.git
 | sqlite            | 3.6.1                 | http://aminet.net/package/biz/dbase/sqlite-3.6.1-amiga
 
 ## MorphOS PPC development image
-The **docker4amigavbcc:latest-mos** image contains the following:
+The **docker4amigavbcc:latest-mos** image contains the following software, including the [Base image software](#base-image):
 
 | app               | version               | source
 |-------------------|-----------------------|-----------------------------------|
 | vbcc              | 0.9g (04-Oct-2019)    | http://sun.hasenbraten.de/vbcc/
-| vlink             | 0.16d (18-Apr-2020)   | http://sun.hasenbraten.de/vlink/
 | vasm              | 1.8h (18-Apr-2020)    | http://sun.hasenbraten.de/vasm/
 | MUI 3.x dev       | 3.8                   | http://muidev.de/downloads
 | MUI 5.x dev       | 5.0-2019R4            | http://muidev.de/downloads
 | MCC_GuiGfx        | 19.2                  | http://aminet.net/package/dev/mui/MCC_Guigfx
 | MCC_TextEditor    | 15.53                 | http://aminet.net/package/dev/mui/MCC_TextEditor-15.53
+| sqlite            | 3.6.1                 | http://aminet.net/package/biz/dbase/sqlite-3.6.1-amiga
+
+## Base image
+The **docker4amigavbcc:latest-base** image contains software that is common on all images, as listed bellow:
+
+| app               | version               | source
+|-------------------|-----------------------|-----------------------------------|
+| vlink             | 0.16d (18-Apr-2020)   | http://sun.hasenbraten.de/vlink/
 | AmiSSL SDK        | 4.6                   | https://github.com/jens-maus/amissl/releases/tag/4.6
 | FlexCat           | 2.18                  | https://github.com/adtools/flexcat/releases/tag/2.18
 | lha               | v2 PMA                | https://github.com/jca02266/lha.git
-| sqlite            | 3.6.1                 | http://aminet.net/package/biz/dbase/sqlite-3.6.1-amiga
+
 
 ## How to create a docker container
 
@@ -185,9 +184,10 @@ Roadshow SDK is included in **docker4amigavbcc:latest-m68k** image since version
 Under the folder `code` you will find some demo scripts that can be compiled with this vbcc docker installation
 
 * m68k/hello.c - Just a simple Hello World script
-* m68k/openwin.c - This is a simple code that opens a window on Workbench, as found at https://github.com/Ozzyboshi/DockerAmigaVbcc
-* m68k/Amiga_C_MUI_Examples - A couple of MUI examples as found at http://aminet.net/package/dev/mui/Amiga_C_MUI_Examples with update Makefiles to use VBCC
+* m68k/openwin.c - This is a simple code that opens a window on Workbench, as found at [Ozzyboshi DockerAmigaVbcc repo](https://github.com/Ozzyboshi/DockerAmigaVbcc)
+* m68k/Amiga_C_MUI_Examples - A couple of MUI examples as found at [Amiga C MUI Examples](http://aminet.net/package/dev/mui/Amiga_C_MUI_Examples) with update Makefiles to use VBCC
 * aosppc/Window - A few example codes from AmigaOS 4 SDK
+* aosppc/https.c - An amissl example file as found at [AmiSSL SDK](https://github.com/jens-maus/amissl)
 
 ## Bug reports or feature request
 If you have any issues with the images or you need help on using them or you would like to request any new feature, please contact me by opening an issue at https://github.com/walkero-gr/docker4AmigaVBCC/issues

@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## docker4amigavbcc [future]
+### Added
+- Added a new base image which is used for common installations of all images
+
 ### Changed
 - Updated AmiSSL SDK to latest released version 4.6
 - Brought back vbcc v0.9g on both PPC and MOS images, by using the archive from phoenix.owl.de
