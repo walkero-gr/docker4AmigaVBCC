@@ -17,7 +17,7 @@ The **docker4amigavbcc:latest-m68k** image contains the following software, incl
 | MUI 3.x dev       | 3.8                   | http://muidev.de/downloads
 | MUI 5.x dev       | 5.0-2020R1            | http://muidev.de/downloads
 | MCC_GuiGfx        | 19.2                  | http://aminet.net/package/dev/mui/MCC_Guigfx
-| MCC_TextEditor    | 15.53                 | http://aminet.net/package/dev/mui/MCC_TextEditor-15.53
+| MCC_TextEditor    | 15.54                 | http://aminet.net/package/dev/mui/MCC_TextEditor-15.54
 | Roadshow SDK      | 1.4 (15.3.2019)       | https://www.amigafuture.de/app.php/dlext/?view=detail&df_id=3658
 | Posix Lib         | 2.6                   | http://aminet.net/package/dev/c/vbcc_PosixLib
 | sqlite            | 3.6.1                 | http://aminet.net/package/biz/dbase/sqlite-3.6.1-amiga
@@ -44,7 +44,7 @@ The **docker4amigavbcc:latest-mos** image contains the following software, inclu
 | MUI 3.x dev       | 3.8                   | http://muidev.de/downloads
 | MUI 5.x dev       | 5.0-2020R1            | http://muidev.de/downloads
 | MCC_GuiGfx        | 19.2                  | http://aminet.net/package/dev/mui/MCC_Guigfx
-| MCC_TextEditor    | 15.53                 | http://aminet.net/package/dev/mui/MCC_TextEditor-15.53
+| MCC_TextEditor    | 15.54                 | http://aminet.net/package/dev/mui/MCC_TextEditor-15.54
 | sqlite            | 3.6.1                 | http://aminet.net/package/biz/dbase/sqlite-3.6.1-amiga
 
 ## Base image

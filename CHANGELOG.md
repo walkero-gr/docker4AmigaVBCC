@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 - Brought back vbcc v0.9g on both PPC and MOS images, by using the archive from phoenix.owl.de
 - Updated vlink to v0.16e (07-Jul-2020)
 - Updated MUI SDK to latest v5.0-2020R1
+- Updated MUI MCC_TextEditor to v15.54
 
 ## docker4amigavbcc v1.6 - 2020-06-07
 ### Added

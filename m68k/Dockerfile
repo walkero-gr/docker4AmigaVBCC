@@ -77,7 +77,7 @@ RUN curl -fsSL "http://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha
     rm -rf /tmp/*;
 
 # Install MCC_TextEditor
-RUN curl -fsSL "http://aminet.net/dev/mui/MCC_TextEditor-15.53.lha" -o /tmp/MCC_TextEditor.lha; \
+RUN curl -fsSL "http://aminet.net/dev/mui/MCC_TextEditor-15.54.lha" -o /tmp/MCC_TextEditor.lha; \
     cd /tmp; \
     lha -xfq2 MCC_TextEditor.lha; \
     cp ./MCC_TextEditor/Developer/C/include/mui/* /opt/sdk/MUI_3.8/C/Include/mui; \
