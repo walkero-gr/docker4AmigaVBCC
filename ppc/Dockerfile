@@ -91,3 +91,5 @@ RUN curl -fsSL "http://aminet.net/biz/dbase/sqlite-3.6.1-amiga.lha" -o /tmp/sqli
     rm -rf /tmp/*;
 
 ENV SQLITE_INC="/opt/sdk/sqlite/include"
+
+RUN chown vbcc:vbcc /opt -R

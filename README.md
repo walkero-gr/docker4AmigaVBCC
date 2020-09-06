@@ -189,6 +189,35 @@ Under the folder `code` you will find some demo scripts that can be compiled wit
 * aosppc/Window - A few example codes from AmigaOS 4 SDK
 * aosppc/https.c - An amissl example file as found at [AmiSSL SDK](https://github.com/jens-maus/amissl)
 
+## VBCC user
+The images have a user named vbcc, and a group with the same name. The user and group ID is 1000, which match with host's machine user IDs. This way both users, from the host and from the container, should have the same permissions on the files created.
+
+If you need to change the IDs with your own, set the following ENV variables when you start the docker containers
+
+```
+VBCC_USER_ID
+VBCC_GROUP_ID
+```
+
+## VSCode setup
+I recommend to use VSCode with [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension installed. You can use that extension to connect on the running VBCC container. If you want automatically to set the extensions, set the user and other configuration for each container, after you attach to it select from action menu (F1) the "Remote-Containers: Open Container Configuration FIle" and add the configuration based on your preference. Below is my own example:
+```json
+{
+	"extensions": [
+		"donjayamanne.githistory",
+		"eamodio.gitlens",
+		"EditorConfig.EditorConfig",
+		"Gruntfuggly.todo-tree",
+		"ms-vscode.cpptools",
+		"patricklee.vsnotes",
+		"prb28.amiga-assembly",
+		"SanaAjani.taskrunnercode"
+	],
+	"workspaceFolder": "/opt/code",
+	"remoteUser": "vbcc"
+}
+```
+
 ## Bug reports or feature request
 If you have any issues with the images or you need help on using them or you would like to request any new feature, please contact me by opening an issue at https://github.com/walkero-gr/docker4AmigaVBCC/issues
 
