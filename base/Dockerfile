@@ -49,7 +49,7 @@ RUN curl -fsSL "http://sun.hasenbraten.de/vlink/release/vlink.tar.gz" -o /tmp/vl
     tar xvfz vlink.tar.gz; \
     cd /tmp/vlink; \
     make; \
-    cp ./vlink /opt/amidev/bin; \
+    cp ./vlink /opt/vbcc/bin; \
     rm -rf /tmp/*;
 
 # Install AMISSL SDK
@@ -74,7 +74,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # Add git branch name to bash prompt
 ARG BASHFILE=/home/amidev/.bashrc
 RUN cp ~/.bashrc /home/amidev/; \
-    chown amidev:amidev /home/amidev/.bashrc; \
+    chown amidev:amidev ${BASHFILE}; \
     sed -i '4c\'"\nparse_git_branch() {\n\
   git branch 2> /dev/null | sed -e \'/^[^*]/d\' -e \'s/* \\\(.*\\\)/ (\\\1)/\'\n\
 }\n" ${BASHFILE}; \

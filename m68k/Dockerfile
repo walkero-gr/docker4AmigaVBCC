@@ -12,6 +12,7 @@ RUN curl -fsSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm
     rm -rf /tmp/*;
 
 ENV VBCC="/opt/vbcc"
+ENV PATH="${VBCC}/bin:$PATH"
 
 # Install vbcc
 RUN curl -fsSL "http://www.ibaug.de/vbcc/vbcc.tar.gz" -o /tmp/vbcc.tar.gz; \
@@ -34,8 +35,6 @@ RUN curl -fsSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_m68k-am
     mv ./config $VBCC/; \
     mv ./vbcc_target_m68k-amigaos/targets $VBCC/; \
     rm -rf /tmp/*;
-
-ENV PATH="$VBCC/bin:$PATH"
 
 # Install NDK39
 RUN curl -fsSL "http://www.haage-partner.de/download/AmigaOS/NDK39.lha" -o /tmp/NDK39.lha; \
@@ -113,4 +112,9 @@ RUN curl -fsSL "http://aminet.net/biz/dbase/sqlite-3.6.1-amiga.lha" -o /tmp/sqli
 
 ENV SQLITE_INC="/opt/sdk/sqlite/include"
 
+USER amidev
+ARG BASHFILE=/home/amidev/.bashrc
+RUN sed -i '4c\'"\nexport PATH=${PATH}\n" ${BASHFILE};
+
+USER root
 RUN chown amidev:amidev /opt -R

@@ -12,6 +12,7 @@ RUN curl -fsSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm
     rm -rf /tmp/*;
 
 ENV VBCC="/opt/vbcc"
+ENV PATH="${VBCC}/bin:$PATH"
 
 # Install vbcc
 RUN curl -fsSL "http://phoenix.owl.de/tags/vbcc0_9g.tar.gz" -o /tmp/vbcc.tar.gz; \
@@ -33,8 +34,6 @@ RUN curl -fsSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_ppc-ami
     mv ./config $VBCC/; \
     mv ./vbcc_target_ppc-amigaos/targets $VBCC/; \
     rm -rf /tmp/*;
-
-ENV PATH="$VBCC/bin:$PATH"
 
 # Install AmigaOS 4 SDK
 RUN curl -fksSL "https://www.hyperion-entertainment.biz/index.php?option=com_registration&amp;view=download&amp;format=raw&amp;file=82&amp;Itemid=82" -o /tmp/AmigaOS4-SDK.lha; \
@@ -92,4 +91,9 @@ RUN curl -fsSL "http://aminet.net/biz/dbase/sqlite-3.6.1-amiga.lha" -o /tmp/sqli
 
 ENV SQLITE_INC="/opt/sdk/sqlite/include"
 
+USER amidev
+ARG BASHFILE=/home/amidev/.bashrc
+RUN sed -i '4c\'"\nexport PATH=${PATH}\n" ${BASHFILE};
+
+USER root
 RUN chown amidev:amidev /opt -R
