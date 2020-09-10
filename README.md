@@ -214,7 +214,7 @@ I recommend to use VSCode with [Remote - Containers](https://marketplace.visuals
 		"SanaAjani.taskrunnercode"
 	],
 	"workspaceFolder": "/opt/code",
-	"remoteUser": "vbcc"
+	"remoteUser": "amidev"
 }
 ```
 

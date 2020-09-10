@@ -11,7 +11,8 @@ All notable changes to this project will be documented in this file.
 - Updated vlink to v0.16e (07-Jul-2020)
 - Updated MUI SDK to latest v5.0-2020R1
 - Updated MUI MCC_TextEditor to v15.54
-- Changes on vbcc user permissions. Now vbcc is owner of /opt folder 
+- Created amidev main user
+- Changes on amidev user permissions. Now amidev is owner of /opt folder
 
 ## docker4amigavbcc v1.6 - 2020-06-07
 ### Added

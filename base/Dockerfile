@@ -5,8 +5,8 @@ LABEL maintainer="Georgios Sokianos <walkero@gmail.com>"
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
 
-ENV VBCC_USER_ID=1000
-ENV VBCC_GROUP_ID=1000
+ENV AMIDEV_USER_ID=1000
+ENV AMIDEV_GROUP_ID=1000
 
 RUN apt-get update && apt-get -y install gcc \
     wget \
@@ -20,14 +20,14 @@ RUN mkdir -p /opt/vbcc/bin; \
     mkdir -p /opt/code; \
     mkdir -p /opt/sdk;
 
-# Add vbcc user and group
-RUN existing_group=$(getent group "${VBCC_GROUP_ID}" | cut -d: -f1); \
+# Add amidev user and group
+RUN existing_group=$(getent group "${AMIDEV_GROUP_ID}" | cut -d: -f1); \
     if [[ -n "${existing_group}" ]]; then delgroup "${existing_group}"; fi; \
-    existing_user=$(getent passwd "${VBCC_USER_ID}" | cut -d: -f1); \
+    existing_user=$(getent passwd "${AMIDEV_USER_ID}" | cut -d: -f1); \
     if [[ -n "${existing_user}" ]]; then deluser "${existing_user}"; fi; \
-    addgroup --gid ${VBCC_GROUP_ID} vbcc; \
-    adduser --system --uid ${VBCC_USER_ID} --disabled-password --shell /bin/bash --gid ${VBCC_GROUP_ID} vbcc; \
-    sed -i '/^vbcc/s/!/*/' /etc/shadow; 
+    addgroup --gid ${AMIDEV_GROUP_ID} amidev; \
+    adduser --system --uid ${AMIDEV_USER_ID} --disabled-password --shell /bin/bash --gid ${AMIDEV_GROUP_ID} amidev; \
+    sed -i '/^amidev/s/!/*/' /etc/shadow; 
 
 # Install latest lha from git repo
 RUN apt-get update && apt-get -y install dh-autoreconf; \
@@ -49,7 +49,7 @@ RUN curl -fsSL "http://sun.hasenbraten.de/vlink/release/vlink.tar.gz" -o /tmp/vl
     tar xvfz vlink.tar.gz; \
     cd /tmp/vlink; \
     make; \
-    cp ./vlink /opt/vbcc/bin; \
+    cp ./vlink /opt/amidev/bin; \
     rm -rf /tmp/*;
 
 # Install AMISSL SDK
@@ -72,9 +72,9 @@ RUN curl -fsSL "https://github.com/adtools/flexcat/releases/download/2.18/FlexCa
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Add git branch name to bash prompt
-ARG BASHFILE=/home/vbcc/.bashrc
-RUN cp ~/.bashrc /home/vbcc/; \
-    chown vbcc:vbcc /home/vbcc/.bashrc; \
+ARG BASHFILE=/home/amidev/.bashrc
+RUN cp ~/.bashrc /home/amidev/; \
+    chown amidev:amidev /home/amidev/.bashrc; \
     sed -i '4c\'"\nparse_git_branch() {\n\
   git branch 2> /dev/null | sed -e \'/^[^*]/d\' -e \'s/* \\\(.*\\\)/ (\\\1)/\'\n\
 }\n" ${BASHFILE}; \
