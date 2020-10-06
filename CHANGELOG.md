@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## docker4amigavbcc [future]
+### Changed
+- Updated vlink 0.16f and vasm 1.8i
+
 ## docker4amigavbcc v1.7 - 2020-10-06
 ### Added
 - Added a new base image which is used for common installations of all images

@@ -44,9 +44,9 @@ RUN apt-get update && apt-get -y install dh-autoreconf; \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*;
 
 # Install vlink
-RUN curl -fsSL "http://sun.hasenbraten.de/vlink/release/vlink.tar.gz" -o /tmp/vlink.tar.gz; \
+RUN curl -fsSL "http://sun.hasenbraten.de/vlink/release/vlink.tar.gz" -o /tmp/vlink_0.16f.tar.gz; \
     cd /tmp; \
-    tar xvfz vlink.tar.gz; \
+    tar xvfz vlink_0.16f.tar.gz; \
     cd /tmp/vlink; \
     make; \
     cp ./vlink /opt/vbcc/bin; \
