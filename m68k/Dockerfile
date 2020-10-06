@@ -27,8 +27,8 @@ RUN curl -fsSL "http://www.ibaug.de/vbcc/vbcc.tar.gz" -o /tmp/vbcc.tar.gz; \
     cp ./bin/vbcc* ./bin/vc ./bin/vprof /opt/vbcc/bin; \
     rm -rf /tmp/*;
 
-RUN curl -fsSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_m68k-amigaos.lha" -o /tmp/vbcc_target_m68k-amigaos.lha; \
-    curl -fsSL "https://server.owl.de/~frank/vbcc/2019-10-04/vbcc_unix_config.tar.gz" -o /tmp/vbcc_unix_config.tar.gz; \
+RUN curl -fsSL "http://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_m68k-amigaos.lha" -o /tmp/vbcc_target_m68k-amigaos.lha; \
+    curl -fsSL "http://server.owl.de/~frank/vbcc/2019-10-04/vbcc_unix_config.tar.gz" -o /tmp/vbcc_unix_config.tar.gz; \
     cd /tmp; \
     lha -xfq2 vbcc_target_m68k-amigaos.lha; \
     tar xvfz vbcc_unix_config.tar.gz; \
