@@ -63,9 +63,9 @@ The **docker4amigavbcc:latest-base** image contains software that is common on a
 To create a container based on one of these images, run in the terminal:
 
 ```bash
-docker run -it --rm --name amigavbcc-m68k -v "$PWD"/code:/opt/code -w /opt/code walkero/docker4amigavbcc:latest-m68k /bin/bash
-docker run -it --rm --name amigavbcc-ppc -v "$PWD"/code:/opt/code -w /opt/code walkero/docker4amigavbcc:latest-ppc /bin/bash
-docker run -it --rm --name amigavbcc-mos -v "$PWD"/code:/opt/code -w /opt/code walkero/docker4amigavbcc:latest-mos /bin/bash
+docker run -it --rm --name amigavbcc-m68k -v ${PWD}/code:/opt/code -w /opt/code walkero/docker4amigavbcc:latest-m68k /bin/bash
+docker run -it --rm --name amigavbcc-ppc -v ${PWD}/code:/opt/code -w /opt/code walkero/docker4amigavbcc:latest-ppc /bin/bash
+docker run -it --rm --name amigavbcc-mos -v ${PWD}/code:/opt/code -w /opt/code walkero/docker4amigavbcc:latest-mos /bin/bash
 ```
 
 If you want to use it with **docker-compose**, you can create a *docker-compose.yml* file, with the following content:
@@ -141,9 +141,9 @@ The **docker4amigavbcc:latest-mos** image has the following ENV variables set:
 
 You can set your own paths, if you want, by using environment variables on docker execution or inside the docker-compose.yml file, like:
 ```bash
-docker run -it --rm --name amigavbcc-m68k -v "$PWD"/code:/opt/code -w /opt/code -e NDK_INC="/your/folder/path" walkero/docker4amigavbcc:latest-m68k /bin/bash
-docker run -it --rm --name amigavbcc-ppc -v "$PWD"/code:/opt/code -w /opt/code -e AOS4_SDK_INC="/your/folder/path" walkero/docker4amigavbcc:latest-ppc /bin/bash
-docker run -it --rm --name amigavbcc-mos -v "$PWD"/code:/opt/code -w /opt/code -e MOS_SDK_INC="/your/folder/path" walkero/docker4amigavbcc:latest-mos /bin/bash
+docker run -it --rm --name amigavbcc-m68k -v ${PWD}/code:/opt/code -w /opt/code -e NDK_INC="/your/folder/path" walkero/docker4amigavbcc:latest-m68k /bin/bash
+docker run -it --rm --name amigavbcc-ppc -v ${PWD}/code:/opt/code -w /opt/code -e AOS4_SDK_INC="/your/folder/path" walkero/docker4amigavbcc:latest-ppc /bin/bash
+docker run -it --rm --name amigavbcc-mos -v ${PWD}/code:/opt/code -w /opt/code -e MOS_SDK_INC="/your/folder/path" walkero/docker4amigavbcc:latest-mos /bin/bash
 ```
 docker-compose.yml
 ```yaml
