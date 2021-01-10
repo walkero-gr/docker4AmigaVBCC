@@ -3,7 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## docker4amigavbcc [future]
 ### Changed
-- Updated vlink 0.16f and vasm 1.8i
+- Updated vlink 0.16g and vasm 1.8j
+- Updated MUI SDK to latest v5.0-2020R3
+- Updated MUI MCC_TextEditor to v15.55
+- Updated AmiSSL SDK to latest released version 4.7
 
 ## docker4amigavbcc v1.7 - 2020-10-06
 ### Added

@@ -3,9 +3,9 @@ FROM walkero/docker4amigavbcc:latest-base
 LABEL maintainer="Georgios Sokianos <walkero@gmail.com>"
 
 # Install vasm
-RUN curl -fsSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm_1.8i.tar.gz; \
+RUN curl -fsSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm_1.8j.tar.gz; \
     cd /tmp; \
-    tar xvfz vasm_1.8i.tar.gz; \
+    tar xvfz vasm_1.8j.tar.gz; \
     cd /tmp/vasm; \
     make CPU=ppc SYNTAX=std; \
     cp ./vasmppc_std ./vobjdump /opt/vbcc/bin; \

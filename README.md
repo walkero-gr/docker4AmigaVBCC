@@ -12,12 +12,12 @@ The **docker4amigavbcc:latest-m68k** image contains the following software, incl
 | app               | version               | source
 |-------------------|-----------------------|-----------------------------------|
 | vbcc              | 0.9g (04-Oct-2019)    | http://sun.hasenbraten.de/vbcc/
-| vasm              | 1.8i (28-Sep-2020)    | http://sun.hasenbraten.de/vasm/
+| vasm              | 1.8j (31-Dec-2020)    | http://sun.hasenbraten.de/vasm/
 | NDK               | 3.9                   | http://www.haage-partner.de/download/AmigaOS/
 | MUI 3.x dev       | 3.8                   | http://muidev.de/downloads
-| MUI 5.x dev       | 5.0-2020R1            | http://muidev.de/downloads
+| MUI 5.x dev       | 5.0-2020R3            | http://muidev.de/downloads
 | MCC_GuiGfx        | 19.2                  | http://aminet.net/package/dev/mui/MCC_Guigfx
-| MCC_TextEditor    | 15.54                 | http://aminet.net/package/dev/mui/MCC_TextEditor-15.54
+| MCC_TextEditor    | 15.55                 | http://aminet.net/package/dev/mui/MCC_TextEditor-15.55
 | Roadshow SDK      | 1.4 (15.3.2019)       | https://www.amigafuture.de/app.php/dlext/?view=detail&df_id=3658
 | Posix Lib         | 2.6                   | http://aminet.net/package/dev/c/vbcc_PosixLib
 | sqlite            | 3.6.1                 | http://aminet.net/package/biz/dbase/sqlite-3.6.1-amiga
@@ -28,9 +28,9 @@ The **docker4amigavbcc:latest-ppc** image contains the following software, inclu
 | app               | version               | source
 |-------------------|-----------------------|-----------------------------------|
 | vbcc              | 0.9g (04-Oct-2019)    | http://sun.hasenbraten.de/vbcc/
-| vasm              | 1.8i (28-Sep-2020)    | http://sun.hasenbraten.de/vasm/
+| vasm              | 1.8j (31-Dec-2020)    | http://sun.hasenbraten.de/vasm/
 | AmigaOS 4 SDK     | 53.30                 | http://www.hyperion-entertainment.com/
-| MUI 5.x dev       | 5.0-2020R1            | http://muidev.de/downloads
+| MUI 5.x dev       | 5.0-2020R3            | http://muidev.de/downloads
 | MCC_GuiGfx        | 19.2                  | http://aminet.net/package/dev/mui/MCC_Guigfx
 | sqlite            | 3.6.1                 | http://aminet.net/package/biz/dbase/sqlite-3.6.1-amiga
 
@@ -40,11 +40,11 @@ The **docker4amigavbcc:latest-mos** image contains the following software, inclu
 | app               | version               | source
 |-------------------|-----------------------|-----------------------------------|
 | vbcc              | 0.9g (04-Oct-2019)    | http://sun.hasenbraten.de/vbcc/
-| vasm              | 1.8i (28-Sep-2020)    | http://sun.hasenbraten.de/vasm/
+| vasm              | 1.8j (31-Dec-2020)    | http://sun.hasenbraten.de/vasm/
 | MUI 3.x dev       | 3.8                   | http://muidev.de/downloads
-| MUI 5.x dev       | 5.0-2020R1            | http://muidev.de/downloads
+| MUI 5.x dev       | 5.0-2020R3            | http://muidev.de/downloads
 | MCC_GuiGfx        | 19.2                  | http://aminet.net/package/dev/mui/MCC_Guigfx
-| MCC_TextEditor    | 15.54                 | http://aminet.net/package/dev/mui/MCC_TextEditor-15.54
+| MCC_TextEditor    | 15.55                 | http://aminet.net/package/dev/mui/MCC_TextEditor-15.55
 | sqlite            | 3.6.1                 | http://aminet.net/package/biz/dbase/sqlite-3.6.1-amiga
 
 ## Base image
@@ -52,7 +52,7 @@ The **docker4amigavbcc:latest-base** image contains software that is common on a
 
 | app               | version               | source
 |-------------------|-----------------------|-----------------------------------|
-| vlink             | 0.16f (28-Sep-2020)   | http://sun.hasenbraten.de/vlink/
+| vlink             | 0.16g (31-Dec-2020)   | http://sun.hasenbraten.de/vlink/
 | AmiSSL SDK        | 4.6                   | https://github.com/jens-maus/amissl/releases/tag/4.6
 | FlexCat           | 2.18                  | https://github.com/adtools/flexcat/releases/tag/2.18
 | lha               | v2 PMA                | https://github.com/jca02266/lha.git
