@@ -8,12 +8,13 @@ CMD ["/sbin/my_init"]
 ENV AMIDEV_USER_ID=1000
 ENV AMIDEV_GROUP_ID=1000
 
-RUN apt-get update && apt-get -y install gcc \
-    wget \
+RUN apt-get update && apt-get -y install \
     curl \
+    gcc \
+    git \
     make \
     mc \
-    git; \
+    wget; \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*;
 
 RUN mkdir -p /opt/vbcc/bin; \
@@ -44,16 +45,16 @@ RUN apt-get update && apt-get -y install dh-autoreconf; \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*;
 
 # Install vlink
-RUN curl -fsSL "http://sun.hasenbraten.de/vlink/release/vlink.tar.gz" -o /tmp/vlink_0.16f.tar.gz; \
+RUN curl -fsSL "http://sun.hasenbraten.de/vlink/release/vlink.tar.gz" -o /tmp/vlink_0.16g.tar.gz; \
     cd /tmp; \
-    tar xvfz vlink_0.16f.tar.gz; \
+    tar xvfz vlink_0.16g.tar.gz; \
     cd /tmp/vlink; \
     make; \
     cp ./vlink /opt/vbcc/bin; \
     rm -rf /tmp/*;
 
 # Install AMISSL SDK
-RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/4.6/AmiSSL-4.6.lha" -o /tmp/AmiSSL.lha; \
+RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/4.7/AmiSSL-4.7.lha" -o /tmp/AmiSSL.lha; \
     cd /tmp; \
     lha -xfq2 AmiSSL.lha; \
     mv ./AmiSSL/Developer /opt/sdk/AmiSSL; \
