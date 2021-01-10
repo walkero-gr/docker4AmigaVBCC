@@ -2,59 +2,68 @@
 kind: pipeline
 name: build-images
 
+workspace:
+  path: /drone/src
+
 steps:
-  - name: build-base-image-latest
-    image: plugins/docker
-    settings:
-      repo: walkero/docker4amigavbcc
-      tags:
-        - "latest-base"
-      cache_from:
-        - walkero/docker4amigavbcc:latest-base
-      dockerfile: base/Dockerfile
-      username:
-        from_secret: DOCKERHUB_USERNAME
-      password:
-        from_secret: DOCKERHUB_PASSWORD
-  - name: build-ppc-image-latest
-    image: plugins/docker
-    settings:
-      repo: walkero/docker4amigavbcc
-      tags:
-        - "latest-ppc"
-      cache_from:
-        - walkero/docker4amigavbcc:latest-ppc
-      dockerfile: ppc/Dockerfile
-      username:
-        from_secret: DOCKERHUB_USERNAME
-      password:
-        from_secret: DOCKERHUB_PASSWORD
-  - name: build-mos-image-latest
-    image: plugins/docker
-    settings:
-      repo: walkero/docker4amigavbcc
-      tags:
-        - "latest-mos"
-      cache_from:
-        - walkero/docker4amigavbcc:latest-mos
-      dockerfile: mos/Dockerfile
-      username:
-        from_secret: DOCKERHUB_USERNAME
-      password:
-        from_secret: DOCKERHUB_PASSWORD
-  - name: build-m68k-image-latest
-    image: plugins/docker
-    settings:
-      repo: walkero/docker4amigavbcc
-      tags:
-        - "latest-m68k"
-      cache_from:
-        - walkero/docker4amigavbcc:latest-m68k
-      dockerfile: m68k/Dockerfile
-      username:
-        from_secret: DOCKERHUB_USERNAME
-      password:
-        from_secret: DOCKERHUB_PASSWORD
+- name: build-base-image-latest
+  image: plugins/docker
+  settings:
+    repo: walkero/docker4amigavbcc
+    tags:
+      - "latest-base"
+    cache_from:
+      - walkero/docker4amigavbcc:latest-base
+    dockerfile: base/Dockerfile
+    username:
+      from_secret: DOCKERHUB_USERNAME
+    password:
+      from_secret: DOCKERHUB_PASSWORD
+- name: build-ppc-image-latest
+  image: plugins/docker
+  settings:
+    repo: walkero/docker4amigavbcc
+    tags:
+      - "latest-ppc"
+    cache_from:
+      - walkero/docker4amigavbcc:latest-ppc
+    dockerfile: ppc/Dockerfile
+    username:
+      from_secret: DOCKERHUB_USERNAME
+    password:
+      from_secret: DOCKERHUB_PASSWORD
+  depends_on:
+    - build-base-image-latest
+- name: build-mos-image-latest
+  image: plugins/docker
+  settings:
+    repo: walkero/docker4amigavbcc
+    tags:
+      - "latest-mos"
+    cache_from:
+      - walkero/docker4amigavbcc:latest-mos
+    dockerfile: mos/Dockerfile
+    username:
+      from_secret: DOCKERHUB_USERNAME
+    password:
+      from_secret: DOCKERHUB_PASSWORD
+  depends_on:
+    - build-base-image-latest
+- name: build-m68k-image-latest
+  image: plugins/docker
+  settings:
+    repo: walkero/docker4amigavbcc
+    tags:
+      - "latest-m68k"
+    cache_from:
+      - walkero/docker4amigavbcc:latest-m68k
+    dockerfile: m68k/Dockerfile
+    username:
+      from_secret: DOCKERHUB_USERNAME
+    password:
+      from_secret: DOCKERHUB_PASSWORD
+  depends_on:
+    - build-base-image-latest
 
 trigger:
   branch:
