@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## docker4amigavbcc [future]
+## docker4amigavbcc v1.8 - 2021-01-10
 ### Changed
 - Updated vlink 0.16g and vasm 1.8j
 - Updated MUI SDK to latest v5.0-2020R3
