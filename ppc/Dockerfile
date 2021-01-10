@@ -56,8 +56,8 @@ ENV AOS4_NLIB_INC="/opt/sdk/ppc-amigaos/newlib/include"
 ENV AOS4_CLIB_INC="/opt/sdk/ppc-amigaos/clib2/include"
 
 # Install MUI 5.0 dev
-RUN curl -fsSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2020R1-os4.lha" -o /tmp/MUI-5.0.lha; \
-    curl -fsSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2020R1-os4-contrib.lha" -o /tmp/MUI-5.0-contrib.lha; \
+RUN curl -fsSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2020R3-os4.lha" -o /tmp/MUI-5.0.lha; \
+    curl -fsSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2020R3-os4-contrib.lha" -o /tmp/MUI-5.0-contrib.lha; \
     cd /tmp; \
     lha -xfq2 MUI-5.0.lha; \
     lha -xfq2 MUI-5.0-contrib.lha; \
