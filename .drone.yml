@@ -78,58 +78,64 @@ kind: pipeline
 name: build-images-from-tag
 
 steps:
-  - name: build-base-image-from-tag
-    image: plugins/docker
-    settings:
-      repo: walkero/docker4amigavbcc
-      tags:
-        - ${DRONE_TAG/\//-}-ppc
-      cache_from:
-        - walkero/docker4amigavbcc:latest-base
-      dockerfile: base/Dockerfile
-      username:
-        from_secret: DOCKERHUB_USERNAME
-      password:
-        from_secret: DOCKERHUB_PASSWORD
-  - name: build-ppc-image-from-tag
-    image: plugins/docker
-    settings:
-      repo: walkero/docker4amigavbcc
-      tags:
-        - ${DRONE_TAG/\//-}-ppc
-      cache_from:
-        - "walkero/docker4amigavbcc:latest-ppc"
-      dockerfile: ppc/Dockerfile
-      username:
-        from_secret: DOCKERHUB_USERNAME
-      password:
-        from_secret: DOCKERHUB_PASSWORD
-  - name: build-mos-image-from-tag
-    image: plugins/docker
-    settings:
-      repo: walkero/docker4amigavbcc
-      tags:
-        - ${DRONE_TAG/\//-}-mos
-      cache_from:
-        - "walkero/docker4amigavbcc:latest-mos"
-      dockerfile: mos/Dockerfile
-      username:
-        from_secret: DOCKERHUB_USERNAME
-      password:
-        from_secret: DOCKERHUB_PASSWORD
-  - name: build-m68k-image-from-tag
-    image: plugins/docker
-    settings:
-      repo: walkero/docker4amigavbcc
-      tags:
-        - ${DRONE_TAG/\//-}-m68k
-      cache_from:
-        - "walkero/docker4amigavbcc:latest-m68k"
-      dockerfile: m68k/Dockerfile
-      username:
-        from_secret: DOCKERHUB_USERNAME
-      password:
-        from_secret: DOCKERHUB_PASSWORD
+- name: build-base-image-from-tag
+  image: plugins/docker
+  settings:
+    repo: walkero/docker4amigavbcc
+    tags:
+      - ${DRONE_TAG/\//-}-ppc
+    cache_from:
+      - walkero/docker4amigavbcc:latest-base
+    dockerfile: base/Dockerfile
+    username:
+      from_secret: DOCKERHUB_USERNAME
+    password:
+      from_secret: DOCKERHUB_PASSWORD
+- name: build-ppc-image-from-tag
+  image: plugins/docker
+  settings:
+    repo: walkero/docker4amigavbcc
+    tags:
+      - ${DRONE_TAG/\//-}-ppc
+    cache_from:
+      - "walkero/docker4amigavbcc:latest-ppc"
+    dockerfile: ppc/Dockerfile
+    username:
+      from_secret: DOCKERHUB_USERNAME
+    password:
+      from_secret: DOCKERHUB_PASSWORD
+  depends_on:
+    - build-base-image-from-tag
+- name: build-mos-image-from-tag
+  image: plugins/docker
+  settings:
+    repo: walkero/docker4amigavbcc
+    tags:
+      - ${DRONE_TAG/\//-}-mos
+    cache_from:
+      - "walkero/docker4amigavbcc:latest-mos"
+    dockerfile: mos/Dockerfile
+    username:
+      from_secret: DOCKERHUB_USERNAME
+    password:
+      from_secret: DOCKERHUB_PASSWORD
+  depends_on:
+    - build-base-image-from-tag
+- name: build-m68k-image-from-tag
+  image: plugins/docker
+  settings:
+    repo: walkero/docker4amigavbcc
+    tags:
+      - ${DRONE_TAG/\//-}-m68k
+    cache_from:
+      - "walkero/docker4amigavbcc:latest-m68k"
+    dockerfile: m68k/Dockerfile
+    username:
+      from_secret: DOCKERHUB_USERNAME
+    password:
+      from_secret: DOCKERHUB_PASSWORD
+  depends_on:
+    - build-base-image-from-tag
 
 trigger:
   event:
