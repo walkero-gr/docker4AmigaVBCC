@@ -66,20 +66,12 @@ RUN curl -fsSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2020R3
 
 ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
 
-# Install MCC_GuiGfx
-RUN curl -fsSL "http://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha; \
-    cd /tmp; \
-    lha -xfq2 MCC_Guigfx.lha; \
-    cp ./MCC_Guigfx/Developer/C/Include/MUI/* /opt/sdk/MUI_5.0/C/include/mui; \
-    rm -rf /tmp/*;
-
-# Install GL4ES SDK
-# RUN curl -fsSL "https://github.com/kas1e/GL4ES-SDK/releases/download/1.1/gl4es_sdk-1.1.lha" -o /tmp/gl4es_sdk-1.1.lha; \
+# Install libCurl
+# RUN curl -fsSL "http://os4depot.net/share/development/library/misc/libcurl.lha" -o /tmp/libcurl.lha; \
 #     cd /tmp; \
-#     lha -xfq2 gl4es_sdk-1.1.lha; \
-#     mv SDK/local/common /opt/sdk/GL4ES;
-
-# ENV GL4ES_INC="/opt/sdk/GL4ES/include"
+#     lha -xfq2 libcurl.lha; \
+#     mv ./SDK/Local /opt/sdk/libcurl; \
+#     rm -rf /tmp/*;
 
 # Install SQLite
 RUN curl -fsSL "http://aminet.net/biz/dbase/sqlite-3.6.1-amiga.lha" -o /tmp/sqlite.lha; \

@@ -91,7 +91,6 @@ RUN curl -fsSL "http://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha
     cd /tmp; \
     lha -xfq2 MCC_Guigfx.lha; \
     cp ./MCC_Guigfx/Developer/C/Include/MUI/* /opt/sdk/MUI_3.8/C/Include/mui; \
-    cp ./MCC_Guigfx/Developer/C/Include/MUI/* /opt/sdk/MUI_5.0/C/include/mui; \
     rm -rf /tmp/*;
 
 # Install MCC_TextEditor

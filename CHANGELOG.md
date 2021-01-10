@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Updated MUI SDK to latest v5.0-2020R3
 - Updated MUI MCC_TextEditor to v15.55
 - Updated AmiSSL SDK to latest released version 4.7
+- Removed the MCC_GuiGfx from MUI 5.0 SDK because it is part of MUI since v5.0-2020R2
 
 ## docker4amigavbcc v1.7 - 2020-10-06
 ### Added
