@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [future] - 2021-04-22
 ### Changed
 - Updated AmiSSL SDK to latest released version 4.9
+- Updated sqlite 3.34.0 SDK on all images
 
 ## docker4amigavbcc v1.8 - 2021-01-10
 ### Changed

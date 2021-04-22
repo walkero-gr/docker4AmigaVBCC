@@ -101,11 +101,11 @@ RUN curl -fsSL "http://aminet.net/dev/mui/MCC_TextEditor-15.55.lha" -o /tmp/MCC_
     rm -rf /tmp/*;
 
 # Install SQLite
-RUN curl -fsSL "http://aminet.net/biz/dbase/sqlite-3.6.1-amiga.lha" -o /tmp/sqlite.lha; \
+RUN curl -fsSL "http://aminet.net/biz/dbase/sqlite-3.34.0-amiga.lha" -o /tmp/sqlite.lha; \
     cd /tmp; \
     lha -xfq2 sqlite.lha; \
     mkdir -p /opt/sdk/sqlite/; \
-    mv ./sqlite-3.6.1-amiga/build-ppc-morphos/include/ /opt/sdk/sqlite/; \
+    mv ./sqlite-3.34.0-amiga/build-ppc-morphos/include/ /opt/sdk/sqlite/; \
     rm -rf /tmp/*;
 
 ENV SQLITE_INC="/opt/sdk/sqlite/include"

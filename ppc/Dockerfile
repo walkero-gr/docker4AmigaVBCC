@@ -74,11 +74,11 @@ ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
 #     rm -rf /tmp/*;
 
 # Install SQLite
-RUN curl -fsSL "http://aminet.net/biz/dbase/sqlite-3.6.1-amiga.lha" -o /tmp/sqlite.lha; \
+RUN curl -fsSL "http://aminet.net/biz/dbase/sqlite-3.34.0-amiga.lha" -o /tmp/sqlite.lha; \
     cd /tmp; \
     lha -xfq2 sqlite.lha; \
     mkdir -p /opt/sdk/sqlite/; \
-    mv ./sqlite-3.6.1-amiga/build-ppc-amigaos/include/ /opt/sdk/sqlite/; \
+    mv ./sqlite-3.34.0-amiga/build-ppc-amigaos/include/ /opt/sdk/sqlite/; \
     rm -rf /tmp/*;
 
 ENV SQLITE_INC="/opt/sdk/sqlite/include"
