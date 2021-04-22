@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [future] - 2021-04-22
+### Changed
+- Updated AmiSSL SDK to latest released version 4.9
+
 ## docker4amigavbcc v1.8 - 2021-01-10
 ### Changed
 - Updated vlink 0.16g and vasm 1.8j
@@ -109,4 +113,5 @@ All notable changes to this project will be documented in this file.
 
 
 
-The format of this changelog file is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), 
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
