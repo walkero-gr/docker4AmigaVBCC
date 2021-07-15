@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [future] - 2021-04-22
+### Added
+- Added NDK 3.2R3 in the 68k image
+
 ### Changed
 - Updated AmiSSL SDK to latest released version 4.9
 - Updated sqlite 3.34.0 SDK on all images

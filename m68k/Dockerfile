@@ -46,6 +46,16 @@ RUN curl -fsSL "http://www.haage-partner.de/download/AmigaOS/NDK39.lha" -o /tmp/
 ENV NDK_INC="/opt/sdk/NDK_3.9/Include/include_h"
 ENV NDK_LIB="/opt/sdk/NDK_3.9/Include/linker_libs"
 
+# Install NDK32
+RUN curl -fsSL "https://www.hyperion-entertainment.biz/index.php?option=com_registration&amp;view=download&amp;format=raw&amp;file=123&amp;Itemid=123" -o /tmp/ndk32.lha; \
+    cd /tmp; \
+    lha -xfq2 ndk32.lha; \
+    mv ./NDK3.2 /opt/sdk/; \
+    rm -rf /tmp/*;
+
+ENV NDK32_INC="/opt/sdk/NDK3.2/Include_H"
+ENV NDK32_LIB="/opt/sdk/NDK3.2/lib"
+
 # Install MUI 3.8 dev
 RUN curl -fsSL "http://muidev.de/download/MUI%203.8%20-%20AmigaOS3-m68k/mui38dev.lha" -o /tmp/mui38dev.lha; \
     cd /tmp; \

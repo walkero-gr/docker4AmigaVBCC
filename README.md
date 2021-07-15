@@ -14,6 +14,7 @@ The **docker4amigavbcc:latest-m68k** image contains the following software, incl
 | vbcc              | 0.9g (04-Oct-2019)    | http://sun.hasenbraten.de/vbcc/
 | vasm              | 1.8j (31-Dec-2020)    | http://sun.hasenbraten.de/vasm/
 | NDK               | 3.9                   | http://www.haage-partner.de/download/AmigaOS/
+| NDK               | 3.2R3                 | https://www.hyperion-entertainment.com/index.php/downloads?view=files&parent=40
 | MUI 3.x dev       | 3.8                   | http://muidev.de/downloads
 | MUI 5.x dev       | 5.0-2020R3            | http://muidev.de/downloads
 | MCC_GuiGfx        | 19.2 (only on MUI3SDK)| http://aminet.net/package/dev/mui/MCC_Guigfx
@@ -108,6 +109,8 @@ The **docker4amigavbcc:latest-m68k** image has the following ENV variables set:
 * **PATH**: /opt/vbcc/bin
 * **NDK_INC**: /opt/sdk/NDK_3.9/Include/include_h
 * **NDK_LIB**: /opt/sdk/NDK_3.9/Include/linker_libs
+* **NDK32_INC**: /opt/sdk/NDK3.2/Include_H
+* **NDK32_LIB**: /opt/sdk/NDK3.2/lib
 * **MUI38_INC**: /opt/sdk/MUI_3.8/C/Include
 * **MUI50_INC**: /opt/sdk/MUI_5.0/C/include
 * **TCP_INC**: /opt/sdk/Roadshow-SDK/include
