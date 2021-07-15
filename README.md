@@ -12,7 +12,7 @@ The **docker4amigavbcc:latest-m68k** image contains the following software, incl
 | app               | version               | source
 |-------------------|-----------------------|-----------------------------------|
 | vbcc              | 0.9g (04-Oct-2019)    | http://sun.hasenbraten.de/vbcc/
-| vasm              | 1.8j (31-Dec-2020)    | http://sun.hasenbraten.de/vasm/
+| vasm              | 1.8k (13-May-2021)    | http://sun.hasenbraten.de/vasm/
 | NDK               | 3.9                   | http://www.haage-partner.de/download/AmigaOS/
 | NDK               | 3.2R3                 | https://www.hyperion-entertainment.com/index.php/downloads?view=files&parent=40
 | MUI 3.x dev       | 3.8                   | http://muidev.de/downloads
@@ -29,7 +29,7 @@ The **docker4amigavbcc:latest-ppc** image contains the following software, inclu
 | app               | version               | source
 |-------------------|-----------------------|-----------------------------------|
 | vbcc              | 0.9g (04-Oct-2019)    | http://sun.hasenbraten.de/vbcc/
-| vasm              | 1.8j (31-Dec-2020)    | http://sun.hasenbraten.de/vasm/
+| vasm              | 1.8k (13-May-2021)    | http://sun.hasenbraten.de/vasm/
 | AmigaOS 4 SDK     | 53.30                 | http://www.hyperion-entertainment.com/
 | MUI 5.x dev       | 5.0-2020R3            | http://muidev.de/downloads
 | MCC_GuiGfx        |                       | Since MUI 5.0-2020R2 this is included in MUI
@@ -41,7 +41,7 @@ The **docker4amigavbcc:latest-mos** image contains the following software, inclu
 | app               | version               | source
 |-------------------|-----------------------|-----------------------------------|
 | vbcc              | 0.9g (04-Oct-2019)    | http://sun.hasenbraten.de/vbcc/
-| vasm              | 1.8j (31-Dec-2020)    | http://sun.hasenbraten.de/vasm/
+| vasm              | 1.8k (13-May-2021)    | http://sun.hasenbraten.de/vasm/
 | MUI 3.x dev       | 3.8                   | http://muidev.de/downloads
 | MUI 5.x dev       | 5.0-2020R3            | http://muidev.de/downloads
 | MCC_GuiGfx        | 19.2 (only on MUI3SDK)| http://aminet.net/package/dev/mui/MCC_Guigfx
@@ -53,7 +53,7 @@ The **docker4amigavbcc:latest-base** image contains software that is common on a
 
 | app               | version               | source
 |-------------------|-----------------------|-----------------------------------|
-| vlink             | 0.16g (31-Dec-2020)   | http://sun.hasenbraten.de/vlink/
+| vlink             | 0.16h (15-Jul-2021)   | http://sun.hasenbraten.de/vlink/
 | AmiSSL SDK        | 4.9                   | https://github.com/jens-maus/amissl/releases/tag/4.9
 | FlexCat           | 2.18                  | https://github.com/adtools/flexcat/releases/tag/2.18
 | lha               | v2 PMA                | https://github.com/jca02266/lha.git

@@ -1,13 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [future] - 2021-04-22
+## v1.9 - 2021-07-15
 ### Added
 - Added NDK 3.2R3 in the 68k image
 
 ### Changed
 - Updated AmiSSL SDK to latest released version 4.9
 - Updated sqlite 3.34.0 SDK on all images
+- Updated vlink to v0.16h (15-Jul-2021)
+- Updated vasm to v1.8k (13-May-2021)
 
 ## docker4amigavbcc v1.8 - 2021-01-10
 ### Changed
