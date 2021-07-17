@@ -1,5 +1,6 @@
 [![Build Status](https://drone-gh.intercube.gr/api/badges/walkero-gr/docker4AmigaVBCC/status.svg)](https://drone-gh.intercube.gr/walkero-gr/docker4AmigaVBCC)
 [![Docker Pulls](https://img.shields.io/docker/pulls/walkero/docker4amigavbcc?color=brightgreen)](https://hub.docker.com/r/walkero/docker4amigavbcc)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/cd46d348728e42599848bc3f9f17d646)](https://www.codacy.com/gh/walkero-gr/docker4AmigaVBCC/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=walkero-gr/docker4AmigaVBCC&amp;utm_campaign=Badge_Grade)
 
 # docker4AmigaVBCC
 docker4AmigaVBCC is a project that contains a few docker images with VBCC compiler, for cross compiling software for AmigaOS 3, AmigaOS 4 and MorphOS. It is based on Ubuntu OS and has everything needed (vbcc compiler, SDKs, libraries) for compiling your applications. 
