@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## v1.10 - [future]
+## v1.10 - 2021-11-06
 ### Added
 - Added the sqlite3 lib folder that was missing from the SDK
 
