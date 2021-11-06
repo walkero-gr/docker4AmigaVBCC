@@ -57,7 +57,7 @@ The **docker4amigavbcc:latest-base** image contains software that is common on a
 | vlink             | 0.16h (15-Jul-2021)   | http://sun.hasenbraten.de/vlink/
 | AmiSSL SDK        | 4.11                  | https://github.com/jens-maus/amissl/releases/download/4.11
 | FlexCat           | 2.18                  | https://github.com/adtools/flexcat/releases/tag/2.18
-| lha               | v2 PMA                | https://github.com/jca02266/lha.git
+| lha               | 1.14i-ac20210926      | https://github.com/jca02266/lha.git
 
 
 ## How to create a docker container

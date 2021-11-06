@@ -118,6 +118,7 @@ RUN curl -fsSL --retry 5 "http://aminet.net/biz/dbase/sqlite-3.34.0-amiga.lha" -
     lha -xfq2 sqlite.lha || exit; \
     mkdir -p /opt/sdk/sqlite/; \
     mv ./sqlite-3.34.0-amiga/build-m68k-amigaos/include/ /opt/sdk/sqlite/; \
+    mv ./sqlite-3.34.0-amiga/build-m68k-amigaos/lib/ /opt/sdk/sqlite/; \
     rm -rf /tmp/*;
 
 ENV SQLITE_INC="/opt/sdk/sqlite/include"

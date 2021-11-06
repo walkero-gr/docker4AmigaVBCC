@@ -95,6 +95,7 @@ RUN curl -fsSL "http://aminet.net/biz/dbase/sqlite-3.34.0-amiga.lha" -o /tmp/sql
     lha -xfq2 sqlite.lha; \
     mkdir -p /opt/sdk/sqlite/; \
     mv ./sqlite-3.34.0-amiga/build-ppc-morphos/include/ /opt/sdk/sqlite/; \
+    mv ./sqlite-3.34.0-amiga/build-ppc-morphos/lib/ /opt/sdk/sqlite/; \
     rm -rf /tmp/*;
 
 ENV SQLITE_INC="/opt/sdk/sqlite/include"

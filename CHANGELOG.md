@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## v1.10 - [future]
+### Added
+- Added the sqlite3 lib folder that was missing from the SDK
+
 ### Changed
 - Removed MUI 5 SDK from the MorphOS image
 - Updated AmiSSL SDK to latest released version 4.11
