@@ -3,9 +3,9 @@ FROM walkero/docker4amigavbcc:latest-base
 LABEL maintainer="Georgios Sokianos <walkero@gmail.com>"
 
 # Install vasm
-RUN curl -fsSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm_1.8k.tar.gz; \
+RUN curl -fsSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm_1.8l.tar.gz; \
     cd /tmp; \
-    tar xvfz vasm_1.8k.tar.gz; \
+    tar xvfz vasm_1.8l.tar.gz; \
     cd /tmp/vasm; \
     make CPU=m68k SYNTAX=mot; \
     cp ./vasmm68k_mot ./vobjdump /opt/vbcc/bin; \
@@ -47,7 +47,7 @@ ENV NDK_INC="/opt/sdk/NDK_3.9/Include/include_h"
 ENV NDK_LIB="/opt/sdk/NDK_3.9/Include/linker_libs"
 
 # Install NDK32
-RUN curl -fsSL "https://www.hyperion-entertainment.biz/index.php?option=com_registration&amp;view=download&amp;format=raw&amp;file=123&amp;Itemid=123" -o /tmp/ndk32.lha; \
+RUN curl -fsSL "http://aminet.net/dev/misc/NDK3.2R3.lha" -o /tmp/ndk32.lha; \
     cd /tmp; \
     lha -xfq2 ndk32.lha; \
     mv ./NDK3.2 /opt/sdk/; \
@@ -57,7 +57,7 @@ ENV NDK32_INC="/opt/sdk/NDK3.2/Include_H"
 ENV NDK32_LIB="/opt/sdk/NDK3.2/lib"
 
 # Install MUI 3.8 dev
-RUN curl -fsSL "http://muidev.de/download/MUI%203.8%20-%20AmigaOS3-m68k/mui38dev.lha" -o /tmp/mui38dev.lha; \
+RUN curl -fsSL "https://github.com/amiga-mui/muidev/releases/download/3.8/mui38dev.lha" -o /tmp/mui38dev.lha; \
     cd /tmp; \
     lha -xfq2 mui38dev.lha; \
     mv ./MUI/Developer /opt/sdk/MUI_3.8; \
@@ -67,8 +67,8 @@ RUN curl -fsSL "http://muidev.de/download/MUI%203.8%20-%20AmigaOS3-m68k/mui38dev
 ENV MUI38_INC="/opt/sdk/MUI_3.8/C/Include"
 
 # Install MUI 5.0 dev
-RUN curl -fsSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2020R3-os3.lha" -o /tmp/MUI-5.0.lha; \
-    curl -fsSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2020R3-os3-contrib.lha" -o /tmp/MUI-5.0-contrib.lha; \
+RUN curl -fsSL "https://github.com/amiga-mui/muidev/releases/download/MUI-5.0-20210831/MUI-5.0-20210831-os3.lha" -o /tmp/MUI-5.0.lha; \
+    curl -fsSL "https://github.com/amiga-mui/muidev/releases/download/MUI-5.0-20210831/MUI-5.0-20210831-os3-contrib.lha" -o /tmp/MUI-5.0-contrib.lha; \
     cd /tmp; \
     lha -xfq2 MUI-5.0.lha; \
     lha -xfq2 MUI-5.0-contrib.lha; \
@@ -85,7 +85,7 @@ RUN curl -fsSL "http://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha
     rm -rf /tmp/*;
 
 # Install MCC_TextEditor
-RUN curl -fsSL "http://aminet.net/dev/mui/MCC_TextEditor-15.55.lha" -o /tmp/MCC_TextEditor.lha; \
+RUN curl -fsSL "http://aminet.net/dev/mui/MCC_TextEditor-15.56.lha" -o /tmp/MCC_TextEditor.lha; \
     cd /tmp; \
     lha -xfq2 MCC_TextEditor.lha; \
     cp ./MCC_TextEditor/Developer/C/include/mui/* /opt/sdk/MUI_3.8/C/Include/mui; \

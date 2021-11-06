@@ -3,9 +3,9 @@ FROM walkero/docker4amigavbcc:latest-base
 LABEL maintainer="Georgios Sokianos <walkero@gmail.com>"
 
 # Install vasm
-RUN curl -fsSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm_1.8j.tar.gz; \
+RUN curl -fsSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm_1.8l.tar.gz; \
     cd /tmp; \
-    tar xvfz vasm_1.8j.tar.gz; \
+    tar xvfz vasm_1.8l.tar.gz; \
     cd /tmp/vasm; \
     make CPU=ppc SYNTAX=std; \
     cp ./vasmppc_std ./vobjdump /opt/vbcc/bin; \
@@ -56,8 +56,8 @@ ENV AOS4_NLIB_INC="/opt/sdk/ppc-amigaos/newlib/include"
 ENV AOS4_CLIB_INC="/opt/sdk/ppc-amigaos/clib2/include"
 
 # Install MUI 5.0 dev
-RUN curl -fsSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2020R3-os4.lha" -o /tmp/MUI-5.0.lha; \
-    curl -fsSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2020R3-os4-contrib.lha" -o /tmp/MUI-5.0-contrib.lha; \
+RUN curl -fsSL "https://github.com/amiga-mui/muidev/releases/download/MUI-5.0-20210831/MUI-5.0-20210831-os4.lha" -o /tmp/MUI-5.0.lha; \
+    curl -fsSL "https://github.com/amiga-mui/muidev/releases/download/MUI-5.0-20210831/MUI-5.0-20210831-os4-contrib.lha" -o /tmp/MUI-5.0-contrib.lha; \
     cd /tmp; \
     lha -xfq2 MUI-5.0.lha; \
     lha -xfq2 MUI-5.0-contrib.lha; \

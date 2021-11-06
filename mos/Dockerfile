@@ -3,9 +3,9 @@ FROM walkero/docker4amigavbcc:latest-base
 LABEL maintainer="Georgios Sokianos <walkero@gmail.com>"
 
 # Install vasm
-RUN curl -fsSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm_1.8j.tar.gz; \
+RUN curl -fsSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm_1.8l.tar.gz; \
     cd /tmp; \
-    tar xvfz vasm_1.8j.tar.gz; \
+    tar xvfz vasm_1.8l.tar.gz; \
     cd /tmp/vasm; \
     make CPU=ppc SYNTAX=std; \
     cp ./vasmppc_std ./vobjdump /opt/vbcc/bin; \
@@ -75,17 +75,6 @@ RUN curl -fsSL "http://muidev.de/download/MUI%203.8%20-%20AmigaOS3-m68k/mui38dev
 
 ENV MUI38_INC="/opt/sdk/MUI_3.8/C/Include"
 
-# Install MUI 5.0 dev
-RUN curl -fsSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2020R3-os4.lha" -o /tmp/MUI-5.0.lha; \
-    curl -fsSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2020R3-os4-contrib.lha" -o /tmp/MUI-5.0-contrib.lha; \
-    cd /tmp; \
-    lha -xfq2 MUI-5.0.lha; \
-    lha -xfq2 MUI-5.0-contrib.lha; \
-    mv ./SDK/MUI /opt/sdk/MUI_5.0; \
-    rm -rf /tmp/*;
-
-ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
-
 # Install MCC_GuiGfx
 RUN curl -fsSL "http://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha; \
     cd /tmp; \
@@ -94,7 +83,7 @@ RUN curl -fsSL "http://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha
     rm -rf /tmp/*;
 
 # Install MCC_TextEditor
-RUN curl -fsSL "http://aminet.net/dev/mui/MCC_TextEditor-15.55.lha" -o /tmp/MCC_TextEditor.lha; \
+RUN curl -fsSL "http://aminet.net/dev/mui/MCC_TextEditor-15.56.lha" -o /tmp/MCC_TextEditor.lha; \
     cd /tmp; \
     lha -xfq2 MCC_TextEditor.lha; \
     cp ./MCC_TextEditor/Developer/C/include/mui/* /opt/sdk/MUI_3.8/C/Include/mui; \

@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## v1.10 - [future]
+### Changed
+- Removed MUI 5 SDK from the MorphOS image
+- Updated AmiSSL SDK to latest released version 4.11
+- Updated vasm to v1.8l (19-Jul-2021)
+- Changed the URL of NDK3.2R3 to be downloaded from Aminet
+- Changed the MUI SDKs downloads to the github ones
+- Updated MUI 5 SDK to the MUI 5.0-20210831
+- Updated MCC_TextEditor developer files to 15.56
+
 ## v1.9 - 2021-07-15
 ### Added
 - Added NDK 3.2R3 in the 68k image

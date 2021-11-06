@@ -1,4 +1,4 @@
-FROM phusion/baseimage:master-amd64
+FROM phusion/baseimage:master
 
 LABEL maintainer="Georgios Sokianos <walkero@gmail.com>"
 
@@ -55,7 +55,7 @@ RUN curl -fsSL "http://sun.hasenbraten.de/vlink/release/vlink.tar.gz" -o /tmp/vl
     rm -rf /tmp/*;
 
 # Install AMISSL SDK
-RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/4.9/AmiSSL-4.9.lha" -o /tmp/AmiSSL.lha; \
+RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/4.11/AmiSSL-4.11.lha" -o /tmp/AmiSSL.lha; \
     cd /tmp; \
     lha -xfq2 AmiSSL.lha; \
     mv ./AmiSSL/Developer /opt/sdk/AmiSSL; \
