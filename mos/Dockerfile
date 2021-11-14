@@ -48,22 +48,22 @@ ENV NDK_INC="/opt/sdk/NDK_3.9/Include/include_h"
 ENV NDK_LIB="/opt/sdk/NDK_3.9/Include/linker_libs"
 
 # Install MorphOS SDK
-RUN curl -fksSL "https://www.morphos-team.net/files/sdk-20200422.lha" -o /tmp/MorphOS-SDK.lha; \
-    cd /tmp; \
-    lha -xfq2 MorphOS-SDK.lha; \
-    cd morphossdk; \
-    tar -xJf sdk.pack; \
-    cd Development/gg; \
-    mkdir -p /opt/sdk/morphos; \
-    mv ./include /opt/sdk/morphos/include; \
-    mv ./includestd /opt/sdk/morphos/includestd; \
-    mv ./lib /opt/sdk/morphos/lib; \
-    mv ./os-include /opt/sdk/morphos/os-include; \
-    mv ./ppc-morphos /opt/sdk/morphos/ppc-morphos;
+# RUN curl -fksSL "https://www.morphos-team.net/files/sdk-20200422.lha" -o /tmp/MorphOS-SDK.lha; \
+#     cd /tmp; \
+#     lha -xfq2 MorphOS-SDK.lha; \
+#     cd morphossdk; \
+#     tar -xJf sdk.pack; \
+#     cd Development/gg; \
+#     mkdir -p /opt/sdk/morphos; \
+#     mv ./include /opt/sdk/morphos/include; \
+#     mv ./includestd /opt/sdk/morphos/includestd; \
+#     mv ./lib /opt/sdk/morphos/lib; \
+#     mv ./os-include /opt/sdk/morphos/os-include; \
+#     mv ./ppc-morphos /opt/sdk/morphos/ppc-morphos;
 
-ENV MOS_SDK_INC="/opt/sdk/morphos/include"
-ENV MOS_SDK_STD="/opt/sdk/morphos/includestd"
-ENV MOS_OS_INC="/opt/sdk/morphos/os-include"
+# ENV MOS_SDK_INC="/opt/sdk/morphos/include"
+# ENV MOS_SDK_STD="/opt/sdk/morphos/includestd"
+# ENV MOS_OS_INC="/opt/sdk/morphos/os-include"
 
 # Install MUI 3.8 dev
 RUN curl -fsSL "http://muidev.de/download/MUI%203.8%20-%20AmigaOS3-m68k/mui38dev.lha" -o /tmp/mui38dev.lha; \
