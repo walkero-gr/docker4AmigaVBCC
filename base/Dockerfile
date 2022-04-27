@@ -31,6 +31,7 @@ RUN existing_group=$(getent group "${AMIDEV_GROUP_ID}" | cut -d: -f1); \
     adduser --system --uid ${AMIDEV_USER_ID} --disabled-password --shell /bin/bash --gid ${AMIDEV_GROUP_ID} amidev; \
     sed -i '/^amidev/s/!/*/' /etc/shadow; 
 
+# TODO: Remove it and use the lha docker image
 # Install latest lha from git repo
 RUN apt-get update && apt-get -y install dh-autoreconf; \
     cd /tmp; \
@@ -46,16 +47,16 @@ RUN apt-get update && apt-get -y install dh-autoreconf; \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*;
 
 # Install vlink
-RUN curl -fsSL "http://sun.hasenbraten.de/vlink/release/vlink.tar.gz" -o /tmp/vlink_0.16g.tar.gz; \
+RUN curl -fsSL "http://sun.hasenbraten.de/vlink/release/vlink.tar.gz" -o /tmp/vlink_0.17.tar.gz; \
     cd /tmp; \
-    tar xvfz vlink_0.16g.tar.gz; \
+    tar xvfz vlink_0.17.tar.gz; \
     cd /tmp/vlink; \
     make; \
     cp ./vlink /opt/vbcc/bin; \
     rm -rf /tmp/*;
 
 # Install AMISSL SDK
-RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/4.11/AmiSSL-4.11.lha" -o /tmp/AmiSSL.lha; \
+RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/4.12/AmiSSL-4.12.lha" -o /tmp/AmiSSL.lha; \
     cd /tmp; \
     lha -xfq2 AmiSSL.lha; \
     mv ./AmiSSL/Developer /opt/sdk/AmiSSL; \

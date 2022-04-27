@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## v1.11 - 2022-04-28
+### Changed
+- Updated AmiSSL SDK to latest released version 4.12
+- Updated vbcc to 0.9h patch 2 (23-Mar-2022)
+- Updated vlink to v0.17 (26-Feb-2022)
+- Updated vasm to v1.9 (26-Feb-2022)
+- Updated NDK 3.2 to R4
+
 ## v1.10 - 2021-11-06
 ### Added
 - Added the sqlite3 lib folder that was missing from the SDK

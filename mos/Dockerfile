@@ -3,9 +3,9 @@ FROM walkero/docker4amigavbcc:latest-base
 LABEL maintainer="Georgios Sokianos <walkero@gmail.com>"
 
 # Install vasm
-RUN curl -fsSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm_1.8l.tar.gz; \
+RUN curl -fsSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm_1.9.tar.gz; \
     cd /tmp; \
-    tar xvfz vasm_1.8l.tar.gz; \
+    tar xvfz vasm_1.9.tar.gz; \
     cd /tmp/vasm; \
     make CPU=ppc SYNTAX=std; \
     cp ./vasmppc_std ./vobjdump /opt/vbcc/bin; \
@@ -15,7 +15,7 @@ ENV VBCC="/opt/vbcc"
 ENV PATH="${VBCC}/bin:$PATH"
 
 # Install vbcc
-RUN curl -fsSL "http://phoenix.owl.de/tags/vbcc0_9g.tar.gz" -o /tmp/vbcc.tar.gz; \
+RUN curl -fsSL "http://phoenix.owl.de/tags/vbcc0_9hP2.tar.gz" -o /tmp/vbcc.tar.gz; \
     cd /tmp; \
     tar xvfz vbcc.tar.gz; \
     cd /tmp/vbcc; \
@@ -26,8 +26,8 @@ RUN curl -fsSL "http://phoenix.owl.de/tags/vbcc0_9g.tar.gz" -o /tmp/vbcc.tar.gz;
     cp ./bin/vbcc* ./bin/vscppc ./bin/vc ./bin/vprof /opt/vbcc/bin; \
     rm -rf /tmp/*;
 
-RUN curl -fsSL "http://server.owl.de/~frank/vbcc/2019-10-04/vbcc_target_ppc-morphos.lha" -o /tmp/vbcc_target_ppc-morphos.lha; \
-    curl -fsSL "http://server.owl.de/~frank/vbcc/2019-10-04/vbcc_unix_config.tar.gz" -o /tmp/vbcc_unix_config.tar.gz; \
+RUN curl -fsSL "http://server.owl.de/~frank/vbcc/2022-03-23/vbcc_target_ppc-morphos.lha" -o /tmp/vbcc_target_ppc-morphos.lha; \
+    curl -fsSL "http://server.owl.de/~frank/vbcc/2022-03-23/vbcc_unix_config.tar.gz" -o /tmp/vbcc_unix_config.tar.gz; \
     cd /tmp; \
     lha -xfq2 vbcc_target_ppc-morphos.lha; \
     tar xvfz vbcc_unix_config.tar.gz; \
