@@ -17,7 +17,7 @@ steps:
     tags:
       - latest-base-amd64
     cache_from:
-      - walkero/docker4amigavbcc:latest-base
+      - walkero/docker4amigavbcc:latest-base-amd64
     dockerfile: base/Dockerfile
     username:
       from_secret: DOCKERHUB_USERNAME
@@ -30,7 +30,7 @@ steps:
     tags:
       - latest-ppc-amd64
     cache_from:
-      - walkero/docker4amigavbcc:latest-ppc
+      - walkero/docker4amigavbcc:latest-ppc-amd64
     dockerfile: ppc/Dockerfile
     username:
       from_secret: DOCKERHUB_USERNAME
@@ -45,7 +45,7 @@ steps:
     tags:
       - latest-mos-amd64
     cache_from:
-      - walkero/docker4amigavbcc:latest-mos
+      - walkero/docker4amigavbcc:latest-mos-amd64
     dockerfile: mos/Dockerfile
     username:
       from_secret: DOCKERHUB_USERNAME
@@ -60,7 +60,7 @@ steps:
     tags:
       - latest-m68k-amd64
     cache_from:
-      - walkero/docker4amigavbcc:latest-m68k
+      - walkero/docker4amigavbcc:latest-m68k-amd64
     dockerfile: m68k/Dockerfile
     username:
       from_secret: DOCKERHUB_USERNAME
@@ -96,7 +96,7 @@ steps:
     tags:
       - latest-base-arm64
     cache_from:
-      - walkero/docker4amigavbcc:latest-base
+      - walkero/docker4amigavbcc:latest-base-arm64
     dockerfile: base/Dockerfile
     username:
       from_secret: DOCKERHUB_USERNAME
@@ -109,7 +109,7 @@ steps:
     tags:
       - latest-ppc-arm64
     cache_from:
-      - walkero/docker4amigavbcc:latest-ppc
+      - walkero/docker4amigavbcc:latest-ppc-arm64
     dockerfile: ppc/Dockerfile
     username:
       from_secret: DOCKERHUB_USERNAME
@@ -124,7 +124,7 @@ steps:
     tags:
       - latest-mos-arm64
     cache_from:
-      - walkero/docker4amigavbcc:latest-mos
+      - walkero/docker4amigavbcc:latest-mos-arm64
     dockerfile: mos/Dockerfile
     username:
       from_secret: DOCKERHUB_USERNAME
@@ -139,7 +139,7 @@ steps:
     tags:
       - latest-m68k-arm64
     cache_from:
-      - walkero/docker4amigavbcc:latest-m68k
+      - walkero/docker4amigavbcc:latest-m68k-arm64
     dockerfile: m68k/Dockerfile
     username:
       from_secret: DOCKERHUB_USERNAME
