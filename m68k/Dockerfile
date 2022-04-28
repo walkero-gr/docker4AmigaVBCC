@@ -10,7 +10,6 @@ RUN curl -fsSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm
     make -C vasm CPU=m68k SYNTAX=mot; \
     cp ./vasm/vasmm68k_mot ./vasm/vobjdump /opt/vbcc/bin; \
     rm -rf /tmp/*;
-
 ENV VBCC="/opt/vbcc"
 ENV PATH="${VBCC}/bin:$PATH"
 
@@ -43,7 +42,7 @@ ENV NDK_LIB="/opt/sdk/NDK_3.9/Include/linker_libs"
 
 # Install NDK32
 RUN curl -fsSL "http://aminet.net/dev/misc/NDK3.2.lha" -o /tmp/ndk32.lha || exit $?; \
-    lha -xfq2 ndk32.lha; \
+    lha -xfq2w=NDK3.2 ndk32.lha; \
     mv ./NDK3.2 /opt/sdk/; \
     rm -rf /tmp/*;
 ENV NDK32_INC="/opt/sdk/NDK3.2/Include_H"
