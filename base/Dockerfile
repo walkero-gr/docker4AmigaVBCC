@@ -1,3 +1,5 @@
+FROM walkero/lha-on-docker as lha-image
+
 FROM phusion/baseimage:master
 
 LABEL maintainer="Georgios Sokianos <walkero@gmail.com>"
@@ -5,18 +7,10 @@ LABEL maintainer="Georgios Sokianos <walkero@gmail.com>"
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
 
+COPY --from=lha-image /usr/bin/lha /usr/bin/lha
+
 ENV AMIDEV_USER_ID=1000
 ENV AMIDEV_GROUP_ID=1000
-
-RUN apt-get update && apt-get -y install \
-    curl \
-    gcc \
-    git \
-    make \
-    mc \
-    splint \
-    wget; \
-    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*;
 
 RUN mkdir -p /opt/vbcc/bin; \
     mkdir -p /opt/code; \
@@ -31,48 +25,39 @@ RUN existing_group=$(getent group "${AMIDEV_GROUP_ID}" | cut -d: -f1); \
     adduser --system --uid ${AMIDEV_USER_ID} --disabled-password --shell /bin/bash --gid ${AMIDEV_GROUP_ID} amidev; \
     sed -i '/^amidev/s/!/*/' /etc/shadow; 
 
-# TODO: Remove it and use the lha docker image
-# Install latest lha from git repo
-RUN apt-get update && apt-get -y install dh-autoreconf; \
-    cd /tmp; \
-    git clone https://github.com/jca02266/lha.git; \
-    mkdir build; \
-    cd lha; \
-    autoreconf -vfi; \
-    cd ../build; \
-    ../lha/configure --prefix=/usr; \
-    make; \
-    make install; \
-    apt-get -y purge dh-autoreconf && apt-get -y autoremove; \
+ENV PACKAGES="\
+    curl \
+    gcc \
+    git \
+    libc-dev \
+    make \
+    mc \
+    splint \
+    wget"
+
+RUN apt-get update && apt-get -y --no-install-recommends install ${PACKAGES}; \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*;
 
-# Install vlink
-RUN curl -fsSL "http://sun.hasenbraten.de/vlink/release/vlink.tar.gz" -o /tmp/vlink_0.17.tar.gz; \
-    cd /tmp; \
+# Compile and install vlink
+WORKDIR /tmp
+RUN curl -fsSL "http://sun.hasenbraten.de/vlink/release/vlink.tar.gz" -o /tmp/vlink_0.17.tar.gz || exit $?; \
     tar xvfz vlink_0.17.tar.gz; \
-    cd /tmp/vlink; \
-    make; \
-    cp ./vlink /opt/vbcc/bin; \
+    make -C vlink || exit $?; \
+    cp /tmp/vlink/vlink /opt/vbcc/bin || exit $?; \
     rm -rf /tmp/*;
 
 # Install AMISSL SDK
-RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/4.12/AmiSSL-4.12.lha" -o /tmp/AmiSSL.lha; \
-    cd /tmp; \
+RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/4.12/AmiSSL-4.12.lha" -o /tmp/AmiSSL.lha || exit $?; \
     lha -xfq2 AmiSSL.lha; \
     mv ./AmiSSL/Developer /opt/sdk/AmiSSL; \
     rm -rf /tmp/*;
-
 ENV AMISSL_INC="/opt/sdk/AmiSSL/include"
 
 # Install FlexCat
-RUN curl -fsSL "https://github.com/adtools/flexcat/releases/download/2.18/FlexCat-2.18.lha" -o /tmp/FlexCat.lha; \
-    cd /tmp; \
+RUN curl -fsSL "https://github.com/adtools/flexcat/releases/download/2.18/FlexCat-2.18.lha" -o /tmp/FlexCat.lha || exit $?; \
     lha -xfq2 FlexCat.lha; \
     cp ./FlexCat/Linux-i386/flexcat /usr/bin/; \
     rm -rf /tmp/*;
-
-# Clean up APT when done.
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Add git branch name to bash prompt
 ARG BASHFILE=/home/amidev/.bashrc
