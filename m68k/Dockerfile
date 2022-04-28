@@ -94,8 +94,8 @@ RUN curl -fsSL "http://aminet.net/dev/c/vbcc_PosixLib.lha" -o /tmp/vbcc_PosixLib
 ENV POSIXLIB_INC="/opt/sdk/PosixLib/include"
 
 # Install SQLite
-RUN curl -fsSL --retry 5 "http://aminet.net/biz/dbase/sqlite-3.34.0-amiga.lha" -o /tmp/sqlite.lha && \
-    lha -xfq2 sqlite.lha || exit $?; \
+RUN curl -fsSL --retry 5 "http://aminet.net/biz/dbase/sqlite-3.34.0-amiga.lha" -o /tmp/sqlite.lha || exit $?; \
+    lha -xfq2 sqlite.lha; \
     mkdir -p /opt/sdk/sqlite/; \
     mv ./sqlite-3.34.0-amiga/build-m68k-amigaos/include/ /opt/sdk/sqlite/; \
     mv ./sqlite-3.34.0-amiga/build-m68k-amigaos/lib/ /opt/sdk/sqlite/; \
