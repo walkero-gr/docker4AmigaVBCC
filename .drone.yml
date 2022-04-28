@@ -111,19 +111,6 @@ workspace:
   path: /drone/src
 
 steps:
-# - name: build-base-latest
-#   image: plugins/docker
-#   settings:
-#     repo: walkero/docker4amigavbcc
-#     tags:
-#       - latest-base-amd64
-#     cache_from:
-#       - walkero/docker4amigavbcc:latest-base-amd64
-#     dockerfile: base/Dockerfile
-#     username:
-#       from_secret: DOCKERHUB_USERNAME
-#     password:
-#       from_secret: DOCKERHUB_PASSWORD
 - name: build-ppc-latest
   image: plugins/docker
   settings:
@@ -137,8 +124,6 @@ steps:
       from_secret: DOCKERHUB_USERNAME
     password:
       from_secret: DOCKERHUB_PASSWORD
-  # depends_on:
-  #   - build-base-latest
 - name: build-mos-latest
   image: plugins/docker
   settings:
@@ -152,8 +137,6 @@ steps:
       from_secret: DOCKERHUB_USERNAME
     password:
       from_secret: DOCKERHUB_PASSWORD
-  # depends_on:
-  #   - build-base-latest
 - name: build-m68k-latest
   image: plugins/docker
   settings:
@@ -167,8 +150,6 @@ steps:
       from_secret: DOCKERHUB_USERNAME
     password:
       from_secret: DOCKERHUB_PASSWORD
-  # depends_on:
-  #   - build-base-latest
 
 depends_on:
   - manifest-latest-base
@@ -193,64 +174,45 @@ workspace:
   path: /drone/src
 
 steps:
-# - name: build-base-latest
-#   image: plugins/docker
-#   settings:
-#     repo: walkero/docker4amigavbcc
-#     tags:
-#       - latest-base-arm64
-#     cache_from:
-#       - walkero/docker4amigavbcc:latest-base-arm64
-#     dockerfile: base/Dockerfile
-#     username:
-#       from_secret: DOCKERHUB_USERNAME
-#     password:
-#       from_secret: DOCKERHUB_PASSWORD
 - name: build-ppc-latest
   image: plugins/docker
   settings:
     repo: walkero/docker4amigavbcc
     tags:
       - latest-ppc-arm64
-    # cache_from:
-    #   - walkero/docker4amigavbcc:latest-ppc-arm64
+    cache_from:
+      - walkero/docker4amigavbcc:latest-ppc-arm64
     dockerfile: ppc/Dockerfile
     username:
       from_secret: DOCKERHUB_USERNAME
     password:
       from_secret: DOCKERHUB_PASSWORD
-  # depends_on:
-  #   - build-base-latest
 - name: build-mos-latest
   image: plugins/docker
   settings:
     repo: walkero/docker4amigavbcc
     tags:
       - latest-mos-arm64
-    # cache_from:
-    #   - walkero/docker4amigavbcc:latest-mos-arm64
+    cache_from:
+      - walkero/docker4amigavbcc:latest-mos-arm64
     dockerfile: mos/Dockerfile
     username:
       from_secret: DOCKERHUB_USERNAME
     password:
       from_secret: DOCKERHUB_PASSWORD
-  # depends_on:
-  #   - build-base-latest
 - name: build-m68k-latest
   image: plugins/docker
   settings:
     repo: walkero/docker4amigavbcc
     tags:
       - latest-m68k-arm64
-    # cache_from:
-    #   - walkero/docker4amigavbcc:latest-m68k-arm64
+    cache_from:
+      - walkero/docker4amigavbcc:latest-m68k-arm64
     dockerfile: m68k/Dockerfile
     username:
       from_secret: DOCKERHUB_USERNAME
     password:
       from_secret: DOCKERHUB_PASSWORD
-  # depends_on:
-  #   - build-base-latest
 
 depends_on:
   - manifest-latest-base
@@ -268,18 +230,6 @@ kind: pipeline
 name: manifest-latest
 
 steps:
-# - name: manifest-base-latest
-#   image: plugins/manifest
-#   settings:
-#     username:
-#       from_secret: DOCKERHUB_USERNAME
-#     password:
-#       from_secret: DOCKERHUB_PASSWORD
-#     target: walkero/docker4amigavbcc:latest-base
-#     template: walkero/docker4amigavbcc:latest-base-ARCH
-#     platforms:
-#       - linux/amd64
-#       - linux/arm64
 - name: manifest-ppc-latest
   image: plugins/manifest
   settings:
