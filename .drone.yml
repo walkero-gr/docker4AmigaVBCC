@@ -170,6 +170,9 @@ steps:
   # depends_on:
   #   - build-base-latest
 
+depends_on:
+  - manifest-latest-base
+
 trigger:
   branch:
     include:
@@ -248,6 +251,9 @@ steps:
       from_secret: DOCKERHUB_PASSWORD
   # depends_on:
   #   - build-base-latest
+
+depends_on:
+  - manifest-latest-base
 
 trigger:
   branch:
