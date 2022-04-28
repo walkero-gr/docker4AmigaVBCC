@@ -9,6 +9,9 @@ All notable changes to this project will be documented in this file.
 - Updated vasm to v1.9 (26-Feb-2022)
 - Updated NDK 3.2 to R4
 
+## Fixed
+- Fixes and cleanup to achieve better code quality
+
 ## v1.10 - 2021-11-06
 ### Added
 - Added the sqlite3 lib folder that was missing from the SDK

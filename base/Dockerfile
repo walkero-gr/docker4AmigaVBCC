@@ -1,4 +1,4 @@
-FROM walkero/lha-on-docker as lha-image
+FROM walkero/lha-on-docker:latest as lha-image
 
 FROM phusion/baseimage:master
 

@@ -104,7 +104,9 @@ ENV SQLITE_INC="/opt/sdk/sqlite/include"
 
 USER amidev
 ARG BASHFILE=/home/amidev/.bashrc
-RUN sed -i '4c\'"\nexport PATH=${PATH}\n" ${BASHFILE};
+RUN sed -i '4c'"export PATH=${PATH}\n" ${BASHFILE};
+
+WORKDIR /opt/code
 
 USER root
 RUN chown amidev:amidev /opt -R
