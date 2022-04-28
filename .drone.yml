@@ -10,7 +10,7 @@ workspace:
   path: /drone/src
 
 steps:
-- name: build-base-image-latest
+- name: build-base-latest
   image: plugins/docker
   settings:
     repo: walkero/docker4amigavbcc
@@ -23,7 +23,7 @@ steps:
       from_secret: DOCKERHUB_USERNAME
     password:
       from_secret: DOCKERHUB_PASSWORD
-- name: build-ppc-image-latest
+- name: build-ppc-latest
   image: plugins/docker
   settings:
     repo: walkero/docker4amigavbcc
@@ -37,8 +37,8 @@ steps:
     password:
       from_secret: DOCKERHUB_PASSWORD
   depends_on:
-    - build-base-image-latest
-- name: build-mos-image-latest
+    - build-base-latest
+- name: build-mos-latest
   image: plugins/docker
   settings:
     repo: walkero/docker4amigavbcc
@@ -52,8 +52,8 @@ steps:
     password:
       from_secret: DOCKERHUB_PASSWORD
   depends_on:
-    - build-base-image-latest
-- name: build-m68k-image-latest
+    - build-base-latest
+- name: build-m68k-latest
   image: plugins/docker
   settings:
     repo: walkero/docker4amigavbcc
@@ -67,7 +67,7 @@ steps:
     password:
       from_secret: DOCKERHUB_PASSWORD
   depends_on:
-    - build-base-image-latest
+    - build-base-latest
 
 trigger:
   branch:
@@ -89,7 +89,7 @@ workspace:
   path: /drone/src
 
 steps:
-- name: build-base-image-latest
+- name: build-base-latest
   image: plugins/docker
   settings:
     repo: walkero/docker4amigavbcc
@@ -102,7 +102,7 @@ steps:
       from_secret: DOCKERHUB_USERNAME
     password:
       from_secret: DOCKERHUB_PASSWORD
-- name: build-ppc-image-latest
+- name: build-ppc-latest
   image: plugins/docker
   settings:
     repo: walkero/docker4amigavbcc
@@ -115,9 +115,9 @@ steps:
       from_secret: DOCKERHUB_USERNAME
     password:
       from_secret: DOCKERHUB_PASSWORD
-  depends_on:
-    - build-base-image-latest
-- name: build-mos-image-latest
+  # depends_on:
+  #   - build-base-latest
+- name: build-mos-latest
   image: plugins/docker
   settings:
     repo: walkero/docker4amigavbcc
@@ -130,9 +130,9 @@ steps:
       from_secret: DOCKERHUB_USERNAME
     password:
       from_secret: DOCKERHUB_PASSWORD
-  depends_on:
-    - build-base-image-latest
-- name: build-m68k-image-latest
+  # depends_on:
+  #   - build-base-latest
+- name: build-m68k-latest
   image: plugins/docker
   settings:
     repo: walkero/docker4amigavbcc
@@ -145,8 +145,8 @@ steps:
       from_secret: DOCKERHUB_USERNAME
     password:
       from_secret: DOCKERHUB_PASSWORD
-  depends_on:
-    - build-base-image-latest
+  # depends_on:
+  #   - build-base-latest
 
 trigger:
   branch:
