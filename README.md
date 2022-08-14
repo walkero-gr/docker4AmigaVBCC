@@ -57,7 +57,7 @@ The **docker4amigavbcc:latest-base** image contains software that is common on a
 | app               | version               | source
 |-------------------|-----------------------|-----------------------------------|
 | vlink             | 0.17 (26-Feb-2022)    | http://sun.hasenbraten.de/vlink/
-| AmiSSL SDK        | 4.12                  | https://github.com/jens-maus/amissl/releases/download/4.11
+| AmiSSL SDK        | 5.3                   | https://github.com/jens-maus/amissl/releases/tag/5.3
 | FlexCat           | 2.18                  | https://github.com/adtools/flexcat/releases/tag/2.18
 | lha               | 1.14i-ac20220213      | https://github.com/jca02266/lha.git
 
