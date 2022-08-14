@@ -47,7 +47,7 @@ RUN curl -fsSL "http://sun.hasenbraten.de/vlink/release/vlink.tar.gz" -o /tmp/vl
     rm -rf /tmp/*;
 
 # Install AMISSL SDK
-RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/4.12/AmiSSL-4.12.lha" -o /tmp/AmiSSL.lha || exit $?; \
+RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/5.3/AmiSSL-5.3-SDK.lha" -o /tmp/AmiSSL.lha || exit $?; \
     lha -xfq2 AmiSSL.lha; \
     mv ./AmiSSL/Developer /opt/sdk/AmiSSL; \
     rm -rf /tmp/*;
