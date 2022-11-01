@@ -40,18 +40,11 @@ RUN apt-get update && apt-get -y --no-install-recommends install ${PACKAGES}; \
 
 # Compile and install vlink
 WORKDIR /tmp
-RUN curl -fsSL "http://sun.hasenbraten.de/vlink/release/vlink.tar.gz" -o /tmp/vlink_0.17.tar.gz || exit $?; \
-    tar xvfz vlink_0.17.tar.gz; \
+RUN curl -fsSL "http://phoenix.owl.de/tags/vlink0_17a.tar.gz" -o /tmp/vlink_0.17a.tar.gz || exit $?; \
+    tar xvfz vlink_0.17a.tar.gz; \
     make -C vlink || exit $?; \
     cp /tmp/vlink/vlink /opt/vbcc/bin || exit $?; \
     rm -rf /tmp/*;
-
-# Install AMISSL SDK
-RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/4.12/AmiSSL-4.12.lha" -o /tmp/AmiSSL.lha || exit $?; \
-    lha -xfq2 AmiSSL.lha; \
-    mv ./AmiSSL/Developer /opt/sdk/AmiSSL; \
-    rm -rf /tmp/*;
-ENV AMISSL_INC="/opt/sdk/AmiSSL/include"
 
 # Install FlexCat
 RUN curl -fsSL "https://github.com/adtools/flexcat/releases/download/2.18/FlexCat-2.18.lha" -o /tmp/FlexCat.lha || exit $?; \

@@ -5,8 +5,8 @@ LABEL maintainer="Georgios Sokianos <walkero@gmail.com>"
 WORKDIR /tmp
 
 # Install vasm
-RUN curl -fsSL "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz" -o /tmp/vasm_1.9.tar.gz || exit $?; \
-    tar xvfz vasm_1.9.tar.gz; \
+RUN curl -fsSL "http://phoenix.owl.de/tags/vasm1_9a.tar.gz" -o /tmp/vasm_1.9a.tar.gz || exit $?; \
+    tar xvfz vasm_1.9a.tar.gz; \
     make -C vasm CPU=m68k SYNTAX=mot; \
     cp ./vasm/vasmm68k_mot ./vasm/vobjdump /opt/vbcc/bin; \
     rm -rf /tmp/*;
@@ -24,8 +24,8 @@ RUN curl -fsSL "http://phoenix.owl.de/tags/vbcc0_9hP2.tar.gz" -o /tmp/vbcc.tar.g
     cp ./vbcc/bin/vbcc* ./vbcc/bin/vc ./vbcc/bin/vprof /opt/vbcc/bin; \
     rm -rf /tmp/*;
 
-RUN curl -fsSL "http://server.owl.de/~frank/vbcc/2022-03-23/vbcc_target_m68k-amigaos.lha" -o /tmp/vbcc_target_m68k-amigaos.lha || exit $?; \
-    curl -fsSL "http://server.owl.de/~frank/vbcc/2022-03-23/vbcc_unix_config.tar.gz" -o /tmp/vbcc_unix_config.tar.gz || exit $?; \
+RUN curl -fsSL "http://server.owl.de/~frank/vbcc/2022-05-22/vbcc_target_m68k-amigaos.lha" -o /tmp/vbcc_target_m68k-amigaos.lha || exit $?; \
+    curl -fsSL "http://server.owl.de/~frank/vbcc/2022-05-22/vbcc_unix_config.tar.gz" -o /tmp/vbcc_unix_config.tar.gz || exit $?; \
     lha -xfq2 vbcc_target_m68k-amigaos.lha; \
     tar xvfz vbcc_unix_config.tar.gz; \
     mv ./config $VBCC/; \
@@ -101,6 +101,23 @@ RUN curl -fsSL --retry 5 "http://aminet.net/biz/dbase/sqlite-3.34.0-amiga.lha" -
     mv ./sqlite-3.34.0-amiga/build-m68k-amigaos/lib/ /opt/sdk/sqlite/; \
     rm -rf /tmp/*;
 ENV SQLITE_INC="/opt/sdk/sqlite/include"
+
+# Install AMISSL SDK
+RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/5.5/AmiSSL-5.5-SDK.lha" -o /tmp/AmiSSL.lha && \
+    lha -xfq2 AmiSSL.lha && \
+    cp ./AmiSSL/Developer/include/* /opt/sdk/NDK3.2/Include_H/ -r && \
+    cp ./AmiSSL/Developer/Autodocs/* /opt/sdk/NDK3.2/Autodocs/ && \
+    cp ./AmiSSL/Developer/Examples/*.c /opt/sdk/NDK3.2/Examples/ && \
+    cp ./AmiSSL/Developer/fd/* /opt/sdk/NDK3.2/FD/ && \
+    cp ./AmiSSL/Developer/lib/AmigaOS3/* /opt/sdk/NDK3.2/lib/ && \
+    cp ./AmiSSL/Developer/sfd/* /opt/sdk/NDK3.2/SFD/ && \
+    cp ./AmiSSL/Developer/include/* /opt/sdk/NDK_3.9/Include/include_h/ -r && \
+    cp ./AmiSSL/Developer/Autodocs/* /opt/sdk/NDK_3.9/Documentation/Autodocs/ && \
+    cp ./AmiSSL/Developer/Examples/*.c /opt/sdk/NDK_3.9/Examples/ && \
+    cp ./AmiSSL/Developer/fd/* /opt/sdk/NDK_3.9/Include/fd/ && \
+    cp ./AmiSSL/Developer/lib/AmigaOS3/* /opt/sdk/NDK_3.9/Include/linker_libs/ && \
+    cp ./AmiSSL/Developer/sfd/* /opt/sdk/NDK_3.9/Include/sfd/ && \
+    rm -rf /tmp/*;
 
 USER amidev
 ARG BASHFILE=/home/amidev/.bashrc

@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## v1.12 - 2022-11-01
+### Changed
+- Updated vlink to v0.17a (22-Sep-2022)
+- Updated vasm to v1.9a (02-Oct-2022)
+- Updated AmiSSL SDK to latest released version 5.5
+- Updated AmigaOS 4 SDK to latest released version 54.16
+
+## Fixed
+- Code cleanup
+
 ## v1.11 - 2022-04-28
 ### Changed
 - Updated AmiSSL SDK to latest released version 4.12

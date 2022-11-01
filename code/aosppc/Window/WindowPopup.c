@@ -1,6 +1,6 @@
 /* Window Popup Example
 gcc -o WindowPopup windowpopup.c -lauto
-vc +aosppc -I$AOS4_SDK_INC -lauto windowpopup.c -o windowpopup
+vc +aosppc -I$AOS4_SDK_INC -lauto WindowPopup.c -o WindowPopup
 quit
 */
 
