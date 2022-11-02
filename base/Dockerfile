@@ -1,6 +1,6 @@
 FROM walkero/lha-on-docker:latest as lha-image
 
-FROM phusion/baseimage:master
+FROM phusion/baseimage:jammy-1.0.1
 
 LABEL maintainer="Georgios Sokianos <walkero@gmail.com>"
 
