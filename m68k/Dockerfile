@@ -33,7 +33,7 @@ RUN curl -fsSL "http://server.owl.de/~frank/vbcc/2022-05-22/vbcc_target_m68k-ami
     rm -rf /tmp/*;
 
 # Install NDK39
-RUN curl -fsSL "http://www.haage-partner.de/download/AmigaOS/NDK39.lha" -o /tmp/NDK39.lha || exit $?; \
+RUN curl -fsSL "http://hp.alinea-computer.de/AmigaOS/NDK39.lha" -o /tmp/NDK39.lha || exit $?; \
     lha -xfq2 NDK39.lha; \
     mv ./NDK_3.9 /opt/sdk/; \
     rm -rf /tmp/*;

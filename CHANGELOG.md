@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## v1.13 - 2023-04-08
+### Changed
+- Added MUI 5.0 SDK into the MOS image
+
+### Fixed
+- Fixed NDK3.9 download URL
+
 ## v1.12 - 2022-11-01
 ### Changed
 - Updated vlink to v0.17a (22-Sep-2022)

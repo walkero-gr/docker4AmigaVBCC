@@ -33,7 +33,7 @@ RUN curl -fsSL "http://server.owl.de/~frank/vbcc/2022-05-22/vbcc_target_ppc-morp
 ENV PATH="$VBCC/bin:$PATH"
 
 # Install NDK39
-RUN curl -fsSL "http://www.haage-partner.de/download/AmigaOS/NDK39.lha" -o /tmp/NDK39.lha || exit $?; \
+RUN curl -fsSL "http://hp.alinea-computer.de/AmigaOS/NDK39.lha" -o /tmp/NDK39.lha || exit $?; \
     lha -xfq2 NDK39.lha; \
     mv ./NDK_3.9 /opt/sdk/; \
     rm -rf /tmp/*;
@@ -65,6 +65,15 @@ RUN curl -fsSL "http://muidev.de/download/MUI%203.8%20-%20AmigaOS3-m68k/mui38dev
     mkdir -p /opt/sdk/MUI_3.8/C/Include/mui; \
     rm -rf /tmp/*;
 ENV MUI38_INC="/opt/sdk/MUI_3.8/C/Include"
+
+# Install MUI 5.0 dev
+RUN curl -fsSL "https://github.com/amiga-mui/muidev/releases/download/MUI-5.0-20210831/MUI-5.0-20210831-os3.lha" -o /tmp/MUI-5.0.lha || exit $?; \
+    curl -fsSL "https://github.com/amiga-mui/muidev/releases/download/MUI-5.0-20210831/MUI-5.0-20210831-os3-contrib.lha" -o /tmp/MUI-5.0-contrib.lha || exit $?; \
+    lha -xfq2 MUI-5.0.lha; \
+    lha -xfq2 MUI-5.0-contrib.lha; \
+    mv ./SDK/MUI /opt/sdk/MUI_5.0; \
+    rm -rf /tmp/*;
+ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
 
 # Install MCC_GuiGfx
 RUN curl -fsSL "http://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha || exit $?; \
