@@ -5,8 +5,8 @@ LABEL maintainer="Georgios Sokianos <walkero@gmail.com>"
 WORKDIR /tmp
 
 # Install vasm
-RUN curl -fsSL "http://phoenix.owl.de/tags/vasm1_9a.tar.gz" -o /tmp/vasm_1.9a.tar.gz || exit $?; \
-    tar xvfz vasm_1.9a.tar.gz; \
+RUN curl -fsSL "http://phoenix.owl.de/tags/vasm1_9d.tar.gz" -o /tmp/vasm_1.9d.tar.gz || exit $?; \
+    tar xvfz vasm_1.9d.tar.gz; \
     make -C vasm CPU=ppc SYNTAX=std; \
     cp ./vasm/vasmppc_std ./vasm/vobjdump /opt/vbcc/bin; \
     rm -rf /tmp/*;
@@ -37,8 +37,9 @@ RUN curl -fsSL "http://hp.alinea-computer.de/AmigaOS/NDK39.lha" -o /tmp/NDK39.lh
     lha -xfq2 NDK39.lha; \
     mv ./NDK_3.9 /opt/sdk/; \
     rm -rf /tmp/*;
-ENV NDK_INC="/opt/sdk/NDK_3.9/Include/include_h"
-ENV NDK_LIB="/opt/sdk/NDK_3.9/Include/linker_libs"
+ENV NDK39_PATH="/opt/sdk/NDK_3.9"
+ENV NDK_INC="${NDK39_PATH}/Include/include_h"
+ENV NDK_LIB="${NDK39_PATH}/Include/linker_libs"
 
 # Install MorphOS SDK
 # RUN curl -fksSL "https://www.morphos-team.net/files/sdk-20200422.lha" -o /tmp/MorphOS-SDK.lha || exit $?; \
@@ -97,14 +98,22 @@ RUN curl -fsSL "http://aminet.net/biz/dbase/sqlite-3.34.0-amiga.lha" -o /tmp/sql
 ENV SQLITE_INC="/opt/sdk/sqlite/include"
 
 # Install AMISSL SDK
-RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/5.5/AmiSSL-5.5-SDK.lha" -o /tmp/AmiSSL.lha && \
+RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/5.8/AmiSSL-5.8-SDK.lha" -o /tmp/AmiSSL.lha && \
     lha -xfq2 AmiSSL.lha && \
-    cp ./AmiSSL/Developer/include/* /opt/sdk/NDK_3.9/Include/include_h/ -r && \
-    cp ./AmiSSL/Developer/Autodocs/* /opt/sdk/NDK_3.9/Documentation/Autodocs/ && \
-    cp ./AmiSSL/Developer/Examples/*.c /opt/sdk/NDK_3.9/Examples/ && \
-    cp ./AmiSSL/Developer/fd/* /opt/sdk/NDK_3.9/Include/fd/ && \
-    cp ./AmiSSL/Developer/lib/AmigaOS3/* /opt/sdk/NDK_3.9/Include/linker_libs/ && \
-    cp ./AmiSSL/Developer/sfd/* /opt/sdk/NDK_3.9/Include/sfd/ && \
+    cp ./AmiSSL/Developer/include/* ${NDK39_PATH}/Include/include_h/ -r && \
+    cp ./AmiSSL/Developer/Autodocs/* ${NDK39_PATH}/Documentation/Autodocs/ && \
+    cp ./AmiSSL/Developer/Examples/*.c ${NDK39_PATH}/Examples/ && \
+    cp ./AmiSSL/Developer/fd/* ${NDK39_PATH}/Include/fd/ && \
+    cp ./AmiSSL/Developer/lib/AmigaOS3/* ${NDK39_PATH}/Include/linker_libs/ && \
+    cp ./AmiSSL/Developer/sfd/* ${NDK39_PATH}/Include/sfd/ && \
+    rm -rf /tmp/*;
+
+# Install SDI headers
+RUN curl -fsSL "http://aminet.net/dev/c/SDI_headers.lha" -o /tmp/SDI_headers.lha || exit $?; \
+    lha -xfq2 SDI_headers.lha && \
+    mkdir ${NDK39_PATH}/Examples/SDI && \
+    cp -r ./SDI/includes/* ${NDK39_PATH}/Include/include_h/ && \
+    cp -r ./SDI/examples/* ${NDK39_PATH}/Examples/SDI/ && \
     rm -rf /tmp/*;
 
 USER amidev

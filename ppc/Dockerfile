@@ -7,8 +7,8 @@ ENV OS4_SDK="/opt/sdk/ppc-amigaos"
 WORKDIR /tmp
 
 # Install vasm
-RUN curl -fsSL "http://phoenix.owl.de/tags/vasm1_9a.tar.gz" -o /tmp/vasm_1.9a.tar.gz || exit $?; \
-    tar xvfz vasm_1.9a.tar.gz; \
+RUN curl -fsSL "http://phoenix.owl.de/tags/vasm1_9d.tar.gz" -o /tmp/vasm_1.9d.tar.gz || exit $?; \
+    tar xvfz vasm_1.9d.tar.gz; \
     make -C vasm CPU=ppc SYNTAX=std; \
     cp ./vasm/vasmppc_std ./vasm/vobjdump /opt/vbcc/bin; \
     rm -rf /tmp/*;
@@ -40,7 +40,10 @@ RUN curl -fksSL "https://www.hyperion-entertainment.biz/index.php?option=com_reg
     lha -xfq2w=${OS4_SDK} SDK_Install/exec*.lha && \
     lha -xfq2w=${OS4_SDK} SDK_Install/newlib*.lha && \
     lha -xfq2w=${OS4_SDK} SDK_Install/base.lha && \
-    rm -rf /tmp/* ${OS4_SDK}/C ${OS4_SDK}/Data ${OS4_SDK}/S ${OS4_SDK}/Tools;
+    lha -xfq2w=${OS4_SDK} SDK_Install/SDI-*.lha && \
+    \cp -r ${OS4_SDK}/Local/* ${OS4_SDK}/local/ && \
+    rm -rf /tmp/* ${OS4_SDK}/C ${OS4_SDK}/Data ${OS4_SDK}/S \
+        ${OS4_SDK}/Tools ${OS4_SDK}/Local;
 ENV AOS4_SDK_INC="${OS4_SDK}/Include/include_h" \
     AOS4_NET_INC="${OS4_SDK}/Include/netinclude" \
     AOS4_NLIB="${OS4_SDK}/newlib" \
@@ -71,7 +74,7 @@ RUN curl -fsSL "http://aminet.net/biz/dbase/sqlite-3.34.0-amiga.lha" -o /tmp/sql
     rm -rf /tmp/*;
 
 # # Install AMISSL SDK
-RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/5.5/AmiSSL-5.5-SDK.lha" -o /tmp/AmiSSL.lha && \
+RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/5.8/AmiSSL-5.8-SDK.lha" -o /tmp/AmiSSL.lha && \
     lha -xfq2 AmiSSL.lha && \
     cp ./AmiSSL/Developer/include/* ${OS4_SDK}/Include/include_h/ -r && \
     cp ./AmiSSL/Developer/Autodocs/* ${OS4_SDK}/Documentation/AutoDocs/ && \

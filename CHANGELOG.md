@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## v1.14 - 2023-04-30
+### Added
+- Added SDI headers in both NDK 3.2 and 3.9
+
+### Changed
+- Updated vasm to v1.9d (24-Apr-2023)
+- Updated AmiSSL SDK to latest released v5.8
+
 ## v1.13 - 2023-04-08
 ### Changed
 - Added MUI 5.0 SDK into the MOS image
