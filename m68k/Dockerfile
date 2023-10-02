@@ -5,8 +5,8 @@ LABEL maintainer="Georgios Sokianos <walkero@gmail.com>"
 WORKDIR /tmp
 
 # Install vasm
-RUN curl -fsSL "http://phoenix.owl.de/tags/vasm1_9d.tar.gz" -o /tmp/vasm_1.9d.tar.gz || exit $?; \
-    tar xvfz vasm_1.9d.tar.gz; \
+RUN curl -fsSL "http://phoenix.owl.de/tags/vasm1_9e.tar.gz" -o /tmp/vasm.tar.gz || exit $?; \
+    tar xvfz vasm.tar.gz; \
     make -C vasm CPU=m68k SYNTAX=mot; \
     cp ./vasm/vasmm68k_mot ./vasm/vobjdump /opt/vbcc/bin; \
     rm -rf /tmp/*;
@@ -14,7 +14,7 @@ ENV VBCC="/opt/vbcc"
 ENV PATH="${VBCC}/bin:$PATH"
 
 # Install vbcc
-RUN curl -fsSL "http://phoenix.owl.de/tags/vbcc0_9hP2.tar.gz" -o /tmp/vbcc.tar.gz || exit $?; \
+RUN curl -fsSL "http://phoenix.owl.de/tags/vbcc0_9hP3.tar.gz" -o /tmp/vbcc.tar.gz || exit $?; \
     tar xvfz vbcc.tar.gz; \
     mkdir -p ./vbcc/bin; \
     yes '\
