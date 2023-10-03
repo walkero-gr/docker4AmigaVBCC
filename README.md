@@ -5,7 +5,7 @@
 [![ko-fi](https://img.shields.io/badge/Buy%20me%20a%20Ko--fi-F16061?style=flat&logo=ko-fi&logoColor=white)](https://ko-fi.com/walkero)
 
 # docker4AmigaVBCC
-docker4AmigaVBCC is a project that contains a few docker images with VBCC compiler, for cross compiling software for AmigaOS 3, AmigaOS 4 and MorphOS. It is based on Ubuntu OS and has everything needed (vbcc compiler, SDKs, libraries) for compiling your applications. 
+docker4AmigaVBCC is a project that contains a few docker images with VBCC compiler, for cross compiling software for AmigaOS 3, AmigaOS 4 and MorphOS. It is based on Ubuntu OS and has everything needed (vbcc compiler, SDKs, libraries) for compiling your applications.
 
 The purpose of the project is to be an up to date, flexible and out of the box solution for cross compiling applications for Amiga environments, using the VBCC C/C++ compiler. Those images can be used on CI/CD solution for automatic testing, compiling, packaging and deployment.
 
@@ -14,8 +14,8 @@ The **docker4amigavbcc:latest-m68k** image contains the following software, incl
 
 | app               | version               | source
 |-------------------|-----------------------|-----------------------------------|
-| vbcc              | 0.9h p2 (23-Mar-2022) | http://sun.hasenbraten.de/vbcc/
-| vasm              | v1.9d (24-Apr-2023)   | http://phoenix.owl.de/tags/
+| vbcc              | 0.9h p3 (29-Apr-2022) | http://sun.hasenbraten.de/vbcc/
+| vasm              | v1.9e (01-Oct-2023)   | http://phoenix.owl.de/tags/
 | NDK               | 3.9                   | http://www.haage-partner.de/download/AmigaOS/
 | NDK               | 3.2R4                 | https://aminet.net/package/dev/misc/NDK3.2R3
 | AmiSSL SDK        | 5.8                   | https://github.com/jens-maus/amissl/releases/tag/5.8
@@ -32,8 +32,8 @@ The **docker4amigavbcc:latest-ppc** image contains the following software, inclu
 
 | app               | version               | source
 |-------------------|-----------------------|-----------------------------------|
-| vbcc              | 0.9h p2 (23-Mar-2022) | http://sun.hasenbraten.de/vbcc/
-| vasm              | v1.9d (24-Apr-2023)   | http://phoenix.owl.de/tags/
+| vbcc              | 0.9h p3 (29-Apr-2022) | http://sun.hasenbraten.de/vbcc/
+| vasm              | v1.9e (01-Oct-2023)   | http://phoenix.owl.de/tags/
 | AmiSSL SDK        | 5.8                   | https://github.com/jens-maus/amissl/releases/tag/5.8
 | AmigaOS 4 SDK     | 53.30                 | http://www.hyperion-entertainment.com/
 | MUI 5.x dev       | MUI 5.0-20210831      | https://github.com/amiga-mui/muidev/releases/tag/MUI-5.0-20210831
@@ -45,8 +45,8 @@ The **docker4amigavbcc:latest-mos** image contains the following software, inclu
 
 | app               | version               | source
 |-------------------|-----------------------|-----------------------------------|
-| vbcc              | 0.9h p2 (23-Mar-2022) | http://sun.hasenbraten.de/vbcc/
-| vasm              | v1.9d (24-Apr-2023)   | http://phoenix.owl.de/tags/
+| vbcc              | 0.9h p3 (29-Apr-2022) | http://sun.hasenbraten.de/vbcc/
+| vasm              | v1.9e (01-Oct-2023)   | http://phoenix.owl.de/tags/
 | AmiSSL SDK        | 5.8                   | https://github.com/jens-maus/amissl/releases/tag/5.8
 | MUI 3.x dev       | 3.8                   | https://github.com/amiga-mui/muidev/releases/tag/3.8
 | MUI 5.x dev       | MUI 5.0-20210831      | https://github.com/amiga-mui/muidev/releases/tag/MUI-5.0-20210831
