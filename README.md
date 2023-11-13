@@ -15,10 +15,10 @@ The **docker4amigavbcc:latest-m68k** image contains the following software, incl
 | app               | version               | source
 |-------------------|-----------------------|-----------------------------------|
 | vbcc              | 0.9h p3 (29-Apr-2022) | http://sun.hasenbraten.de/vbcc/
-| vasm              | v1.9e (01-Oct-2023)   | http://phoenix.owl.de/tags/
+| vasm              | v1.9f (11-Nov-2023)   | http://phoenix.owl.de/tags/
 | NDK               | 3.9                   | http://www.haage-partner.de/download/AmigaOS/
 | NDK               | 3.2R4                 | https://aminet.net/package/dev/misc/NDK3.2R3
-| AmiSSL SDK        | 5.8                   | https://github.com/jens-maus/amissl/releases/tag/5.8
+| AmiSSL SDK        | 5.12                  | https://github.com/jens-maus/amissl/releases/tag/5.12
 | MUI 3.x dev       | 3.8                   | https://github.com/amiga-mui/muidev/releases/tag/3.8
 | MUI 5.x dev       | MUI 5.0-20210831      | https://github.com/amiga-mui/muidev/releases/tag/MUI-5.0-20210831
 | MCC_GuiGfx        | 19.2 (only on MUI3SDK)| http://aminet.net/package/dev/mui/MCC_Guigfx
@@ -33,9 +33,9 @@ The **docker4amigavbcc:latest-ppc** image contains the following software, inclu
 | app               | version               | source
 |-------------------|-----------------------|-----------------------------------|
 | vbcc              | 0.9h p3 (29-Apr-2022) | http://sun.hasenbraten.de/vbcc/
-| vasm              | v1.9e (01-Oct-2023)   | http://phoenix.owl.de/tags/
-| AmiSSL SDK        | 5.8                   | https://github.com/jens-maus/amissl/releases/tag/5.8
-| AmigaOS 4 SDK     | 53.30                 | http://www.hyperion-entertainment.com/
+| vasm              | v1.9f (11-Nov-2023)   | http://phoenix.owl.de/tags/
+| AmiSSL SDK        | 5.12                  | https://github.com/jens-maus/amissl/releases/tag/5.12
+| AmigaOS 4 SDK     | 54.16                 | http://www.hyperion-entertainment.com/
 | MUI 5.x dev       | MUI 5.0-20210831      | https://github.com/amiga-mui/muidev/releases/tag/MUI-5.0-20210831
 | MCC_GuiGfx        |                       | Since MUI 5.0-2020R2 this is included in MUI
 | sqlite            | 3.34.0                | https://aminet.net/package/biz/dbase/sqlite-3.34.0-amiga
@@ -46,8 +46,8 @@ The **docker4amigavbcc:latest-mos** image contains the following software, inclu
 | app               | version               | source
 |-------------------|-----------------------|-----------------------------------|
 | vbcc              | 0.9h p3 (29-Apr-2022) | http://sun.hasenbraten.de/vbcc/
-| vasm              | v1.9e (01-Oct-2023)   | http://phoenix.owl.de/tags/
-| AmiSSL SDK        | 5.8                   | https://github.com/jens-maus/amissl/releases/tag/5.8
+| vasm              | v1.9f (11-Nov-2023)   | http://phoenix.owl.de/tags/
+| AmiSSL SDK        | 5.12                  | https://github.com/jens-maus/amissl/releases/tag/5.12
 | MUI 3.x dev       | 3.8                   | https://github.com/amiga-mui/muidev/releases/tag/3.8
 | MUI 5.x dev       | MUI 5.0-20210831      | https://github.com/amiga-mui/muidev/releases/tag/MUI-5.0-20210831
 | MCC_GuiGfx        | 19.2 (only on MUI3SDK)| http://aminet.net/package/dev/mui/MCC_Guigfx

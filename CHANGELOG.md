@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## Future release
+- Updated vasm to v1.9f (11-Nov-2023)
+- Updated AmiSSL SDK to latest released version 5.12
+- Updated vasm to v1.9e (01-Oct-2023)
+- Updated vbcc to 0.9h p3 (29-Apr-2022)
+
 ## v1.14 - 2023-04-30
 ### Added
 - Added SDI headers in both NDK 3.2 and 3.9
