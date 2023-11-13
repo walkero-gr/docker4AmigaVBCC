@@ -5,7 +5,7 @@ LABEL maintainer="Georgios Sokianos <walkero@gmail.com>"
 WORKDIR /tmp
 
 # Install vasm
-RUN curl -fsSL "http://phoenix.owl.de/tags/vasm1_9e.tar.gz" -o /tmp/vasm.tar.gz || exit $?; \
+RUN curl -fsSL "http://phoenix.owl.de/tags/vasm1_9f.tar.gz" -o /tmp/vasm.tar.gz || exit $?; \
     tar xvfz vasm.tar.gz; \
     make -C vasm CPU=m68k SYNTAX=mot; \
     cp ./vasm/vasmm68k_mot ./vasm/vobjdump /opt/vbcc/bin; \

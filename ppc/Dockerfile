@@ -7,7 +7,7 @@ ENV OS4_SDK="/opt/sdk/ppc-amigaos"
 WORKDIR /tmp
 
 # Install vasm
-RUN curl -fsSL "http://phoenix.owl.de/tags/vasm1_9e.tar.gz" -o /tmp/vasm.tar.gz || exit $?; \
+RUN curl -fsSL "http://phoenix.owl.de/tags/vasm1_9f.tar.gz" -o /tmp/vasm.tar.gz || exit $?; \
     tar xvfz vasm.tar.gz; \
     make -C vasm CPU=ppc SYNTAX=std; \
     cp ./vasm/vasmppc_std ./vasm/vobjdump /opt/vbcc/bin; \
@@ -34,16 +34,45 @@ RUN curl -fsSL "http://server.owl.de/~frank/vbcc/2022-05-22/vbcc_target_ppc-amig
     rm -rf /tmp/*;
 
 # Install AmigaOS 4 SDK
-RUN curl -fksSL "https://www.hyperion-entertainment.biz/index.php?option=com_registration&amp;view=download&amp;format=raw&amp;file=127&amp;Itemid=127" -o /tmp/AmigaOS4-SDK.lha && \
+RUN curl -fskSL "https://www.hyperion-entertainment.com/index.php?option=com_registration&amp;view=download&amp;format=raw&amp;file=127&amp;Itemid=127" -o /tmp/AmigaOS4-SDK.lha && \
     lha -xfq2 AmigaOS4-SDK.lha && \
     lha -xfq2w=${OS4_SDK} SDK_Install/clib2*.lha && \
     lha -xfq2w=${OS4_SDK} SDK_Install/exec*.lha && \
     lha -xfq2w=${OS4_SDK} SDK_Install/newlib*.lha && \
     lha -xfq2w=${OS4_SDK} SDK_Install/base.lha && \
+    lha -xfq2w=${OS4_SDK} SDK_Install/pthreads*.lha && \
     lha -xfq2w=${OS4_SDK} SDK_Install/SDI-*.lha && \
-    \cp -r ${OS4_SDK}/Local/* ${OS4_SDK}/local/ && \
-    rm -rf /tmp/* ${OS4_SDK}/C ${OS4_SDK}/Data ${OS4_SDK}/S \
-        ${OS4_SDK}/Tools ${OS4_SDK}/Local;
+    lha -xfq2w=${OS4_SDK} SDK_Install/cairo-*.lha && \
+    lha -xfq2w=${OS4_SDK} SDK_Install/expat-*.lha && \
+    cp -r ${OS4_SDK}/Examples/Locale/include/internal/* ${OS4_SDK}/Include/include_h/ && \
+    cp -r ${OS4_SDK}/Local/* ${OS4_SDK}/local/ && \
+    rm -rf ${OS4_SDK}/Local ${OS4_SDK}/C ${OS4_SDK}/Data ${OS4_SDK}/S \
+        ${OS4_SDK}/AmigaOS\ 4.1\ SDK.pdf.info \
+        ${OS4_SDK}/Documentation.info && \
+    rm -rf /tmp/*;
+
+    # Necessary links
+RUN ln -s ${OS4_SDK}/clib2/lib/libamiga.a 	${OS4_SDK}/newlib/lib/ && \
+    ln -s ${OS4_SDK}/clib2/lib/libamiga.a 	${OS4_SDK}/newlib/lib/baserel/ && \
+    ln -s ${OS4_SDK}/clib2/lib/libamiga.a 	${OS4_SDK}/newlib/lib/small-data/ && \
+    ln -s ${OS4_SDK}/clib2/lib/libdebug.a 	${OS4_SDK}/newlib/lib/ && \
+    ln -s ${OS4_SDK}/clib2/lib/libdebug.a 	${OS4_SDK}/newlib/lib/baserel/ && \
+    ln -s ${OS4_SDK}/clib2/lib/libdebug.a 	${OS4_SDK}/newlib/lib/small-data/ && \
+    ln -s ${OS4_SDK}/newlib/lib/crtbegin.o 	${OS4_SDK}/newlib/lib/small-data/ && \
+    ln -s ${OS4_SDK}/newlib/lib/crtend.o 	${OS4_SDK}/newlib/lib/baserel/ && \
+    ln -s ${OS4_SDK}/newlib/lib/crtend.o 	${OS4_SDK}/newlib/lib/small-data/ && \
+    ln -s ${OS4_SDK}/newlib/lib/libauto.a 	${OS4_SDK}/newlib/lib/baserel/ && \
+    ln -s ${OS4_SDK}/newlib/lib/libauto.a 	${OS4_SDK}/newlib/lib/small-data/ && \
+    ln -s ${OS4_SDK}/newlib/lib/libc.a 	${OS4_SDK}/newlib/lib/baserel/ && \
+    ln -s ${OS4_SDK}/newlib/lib/libm.a 	${OS4_SDK}/newlib/lib/baserel/ && \
+    ln -s ${OS4_SDK}/newlib/lib/libm.a 	${OS4_SDK}/newlib/lib/small-data/ && \
+    ln -s ${OS4_SDK}/newlib/lib/librauto.a 	${OS4_SDK}/newlib/lib/baserel/ && \
+    ln -s ${OS4_SDK}/newlib/lib/librauto.a 	${OS4_SDK}/newlib/lib/small-data/ && \
+    ln -s ${OS4_SDK}/newlib/lib/libsocket.a 	${OS4_SDK}/newlib/lib/baserel/ && \
+    ln -s ${OS4_SDK}/newlib/lib/libsocket.a 	${OS4_SDK}/newlib/lib/small-data/ && \
+    ln -s ${OS4_SDK}/newlib/lib/libunix.a 	${OS4_SDK}/newlib/lib/baserel/ && \
+    ln -s ${OS4_SDK}/newlib/lib/libunix.a 	${OS4_SDK}/newlib/lib/small-data/;
+
 ENV AOS4_SDK_INC="${OS4_SDK}/Include/include_h" \
     AOS4_NET_INC="${OS4_SDK}/Include/netinclude" \
     AOS4_NLIB="${OS4_SDK}/newlib" \
@@ -74,7 +103,7 @@ RUN curl -fsSL "http://aminet.net/biz/dbase/sqlite-3.34.0-amiga.lha" -o /tmp/sql
     rm -rf /tmp/*;
 
 # # Install AMISSL SDK
-RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/5.8/AmiSSL-5.8-SDK.lha" -o /tmp/AmiSSL.lha && \
+RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/5.12/AmiSSL-5.12-SDK.lha" -o /tmp/AmiSSL.lha && \
     lha -xfq2 AmiSSL.lha && \
     cp ./AmiSSL/Developer/include/* ${OS4_SDK}/Include/include_h/ -r && \
     cp ./AmiSSL/Developer/Autodocs/* ${OS4_SDK}/Documentation/AutoDocs/ && \
