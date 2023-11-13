@@ -1,11 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## v1.16 - 2023-11-13
+## Future release
 - Updated vasm to v1.9f (11-Nov-2023)
 - Updated AmiSSL SDK to latest released version 5.12
-
-## 1.15 - 2023-10-02
 - Updated vasm to v1.9e (01-Oct-2023)
 - Updated vbcc to 0.9h p3 (29-Apr-2022)
 
