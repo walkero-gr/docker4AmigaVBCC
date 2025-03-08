@@ -1,6 +1,6 @@
 FROM walkero/lha-on-docker:latest as lha-image
 
-FROM phusion/baseimage:jammy-1.0.1
+FROM phusion/baseimage:jammy-1.0.4
 
 LABEL maintainer="Georgios Sokianos <walkero@gmail.com>"
 
@@ -33,15 +33,16 @@ ENV PACKAGES="\
     make \
     mc \
     splint \
-    wget"
+    wget \
+    xz-utils"
 
 RUN apt-get update && apt-get -y --no-install-recommends install ${PACKAGES}; \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*;
 
 # Compile and install vlink
 WORKDIR /tmp
-RUN curl -fsSL "http://phoenix.owl.de/tags/vlink0_17a.tar.gz" -o /tmp/vlink_0.17a.tar.gz || exit $?; \
-    tar xvfz vlink_0.17a.tar.gz; \
+RUN curl -fsSL "http://phoenix.owl.de/tags/vlink0_18.tar.gz" -o /tmp/vlink.tar.gz || exit $?; \
+    tar xvfz vlink.tar.gz; \
     make -C vlink || exit $?; \
     cp /tmp/vlink/vlink /opt/vbcc/bin || exit $?; \
     rm -rf /tmp/*;

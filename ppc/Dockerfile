@@ -7,7 +7,7 @@ ENV OS4_SDK="/opt/sdk/ppc-amigaos"
 WORKDIR /tmp
 
 # Install vasm
-RUN curl -fsSL "http://phoenix.owl.de/tags/vasm1_9f.tar.gz" -o /tmp/vasm.tar.gz || exit $?; \
+RUN curl -fsSL "http://phoenix.owl.de/tags/vasm2_0a.tar.gz" -o /tmp/vasm.tar.gz || exit $?; \
     tar xvfz vasm.tar.gz; \
     make -C vasm CPU=ppc SYNTAX=std; \
     cp ./vasm/vasmppc_std ./vasm/vobjdump /opt/vbcc/bin; \
@@ -76,8 +76,8 @@ RUN ln -s ${OS4_SDK}/clib2/lib/libamiga.a 	${OS4_SDK}/newlib/lib/ && \
 ENV AOS4_SDK_INC="${OS4_SDK}/Include/include_h" \
     AOS4_NET_INC="${OS4_SDK}/Include/netinclude" \
     AOS4_NLIB="${OS4_SDK}/newlib" \
-    AOS4_CLIB="${OS4_SDK}/clib2" \
-    AOS4_NLIB_INC="${AOS4_NLIB}/include" \
+    AOS4_CLIB="${OS4_SDK}/clib2"
+ENV AOS4_NLIB_INC="${AOS4_NLIB}/include" \
     AOS4_CLIB_INC="${AOS4_CLIB}/include"
 
 # Install MUI 5.0 dev
@@ -103,7 +103,7 @@ RUN curl -fsSL "http://aminet.net/biz/dbase/sqlite-3.34.0-amiga.lha" -o /tmp/sql
     rm -rf /tmp/*;
 
 # # Install AMISSL SDK
-RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/5.12/AmiSSL-5.12-SDK.lha" -o /tmp/AmiSSL.lha && \
+RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/5.19/AmiSSL-5.19-SDK.lha" -o /tmp/AmiSSL.lha && \
     lha -xfq2 AmiSSL.lha && \
     cp ./AmiSSL/Developer/include/* ${OS4_SDK}/Include/include_h/ -r && \
     cp ./AmiSSL/Developer/Autodocs/* ${OS4_SDK}/Documentation/AutoDocs/ && \
