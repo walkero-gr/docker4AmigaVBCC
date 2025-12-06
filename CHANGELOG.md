@@ -1,10 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## v1.16 [future]
+## v1.16 [2025-12-06]
 ### Updated
 - Updated vlink to v0.18a (08-Nov-2025)
-
+- Updated vasm to v2.0d (23-Nov-2025)
+- Updated AmiSSL SDK to latest released version 5.25
+- Updated sqlite 3.34.0a SDK on all images
 
 ## v1.15 - 2025-03-08
 ### Updated

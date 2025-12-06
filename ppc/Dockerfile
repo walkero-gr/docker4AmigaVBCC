@@ -7,7 +7,7 @@ ENV OS4_SDK="/opt/sdk/ppc-amigaos"
 WORKDIR /tmp
 
 # Install vasm
-RUN curl -fsSL "http://phoenix.owl.de/tags/vasm2_0a.tar.gz" -o /tmp/vasm.tar.gz || exit $?; \
+RUN curl -fsSL "http://phoenix.owl.de/tags/vasm2_0d.tar.gz" -o /tmp/vasm.tar.gz || exit $?; \
     tar xvfz vasm.tar.gz; \
     make -C vasm CPU=ppc SYNTAX=std; \
     cp ./vasm/vasmppc_std ./vasm/vobjdump /opt/vbcc/bin; \
@@ -51,7 +51,7 @@ RUN curl -fskSL "https://www.hyperion-entertainment.com/index.php?option=com_reg
         ${OS4_SDK}/Documentation.info && \
     rm -rf /tmp/*;
 
-    # Necessary links
+# Necessary links
 RUN ln -s ${OS4_SDK}/clib2/lib/libamiga.a 	${OS4_SDK}/newlib/lib/ && \
     ln -s ${OS4_SDK}/clib2/lib/libamiga.a 	${OS4_SDK}/newlib/lib/baserel/ && \
     ln -s ${OS4_SDK}/clib2/lib/libamiga.a 	${OS4_SDK}/newlib/lib/small-data/ && \
@@ -96,14 +96,14 @@ RUN curl -fsSL "http://os4depot.net/share/development/library/misc/libcurl.lha" 
     rm -rf /tmp/*;
 
 # Install SQLite
-RUN curl -fsSL "http://aminet.net/biz/dbase/sqlite-3.34.0-amiga.lha" -o /tmp/sqlite.lha && \
+RUN curl -fsSL "https://aminet.net/biz/dbase/sqlite-3.34.0.a-amiga.lha" -o /tmp/sqlite.lha && \
     lha -xfq2 sqlite.lha && \
-    cp ./sqlite-3.34.0-amiga/build-ppc-amigaos/include/*.h ${OS4_SDK}/local/newlib/include/ && \
-    cp ./sqlite-3.34.0-amiga/build-ppc-amigaos/lib/*.a ${OS4_SDK}/local/newlib/lib/ && \
+    cp ./sqlite-3.34.0.a-amiga/build-ppc-amigaos/include/*.h ${OS4_SDK}/local/newlib/include/ && \
+    cp ./sqlite-3.34.0.a-amiga/build-ppc-amigaos/lib/*.a ${OS4_SDK}/local/newlib/lib/ && \
     rm -rf /tmp/*;
 
 # # Install AMISSL SDK
-RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/5.19/AmiSSL-5.19-SDK.lha" -o /tmp/AmiSSL.lha && \
+RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/5.25/AmiSSL-5.25-SDK.lha" -o /tmp/AmiSSL.lha && \
     lha -xfq2 AmiSSL.lha && \
     cp ./AmiSSL/Developer/include/* ${OS4_SDK}/Include/include_h/ -r && \
     cp ./AmiSSL/Developer/Autodocs/* ${OS4_SDK}/Documentation/AutoDocs/ && \

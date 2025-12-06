@@ -5,7 +5,7 @@ LABEL maintainer="Georgios Sokianos <walkero@gmail.com>"
 WORKDIR /tmp
 
 # Install vasm
-RUN curl -fsSL "http://phoenix.owl.de/tags/vasm2_0a.tar.gz" -o /tmp/vasm.tar.gz || exit $?; \
+RUN curl -fsSL "http://phoenix.owl.de/tags/vasm2_0d.tar.gz" -o /tmp/vasm.tar.gz || exit $?; \
     tar xvfz vasm.tar.gz; \
     make -C vasm CPU=ppc SYNTAX=std; \
     cp ./vasm/vasmppc_std ./vasm/vobjdump /opt/vbcc/bin; \
@@ -77,28 +77,28 @@ RUN curl -fsSL "https://github.com/amiga-mui/muidev/releases/download/MUI-5.0-20
 ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
 
 # Install MCC_GuiGfx
-RUN curl -fsSL "http://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha || exit $?; \
+RUN curl -fsSL "https://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha || exit $?; \
     lha -xfq2 MCC_Guigfx.lha; \
     cp ./MCC_Guigfx/Developer/C/Include/MUI/* /opt/sdk/MUI_3.8/C/Include/mui; \
     rm -rf /tmp/*;
 
 # Install MCC_TextEditor
-RUN curl -fsSL "http://aminet.net/dev/mui/MCC_TextEditor-15.56.lha" -o /tmp/MCC_TextEditor.lha || exit $?; \
+RUN curl -fsSL "https://aminet.net/dev/mui/MCC_TextEditor-15.56.lha" -o /tmp/MCC_TextEditor.lha || exit $?; \
     lha -xfq2 MCC_TextEditor.lha; \
     cp ./MCC_TextEditor/Developer/C/include/mui/* /opt/sdk/MUI_3.8/C/Include/mui; \
     rm -rf /tmp/*;
 
 # Install SQLite
-RUN curl -fsSL "http://aminet.net/biz/dbase/sqlite-3.34.0-amiga.lha" -o /tmp/sqlite.lha || exit $?; \
+RUN curl -fsSL "https://aminet.net/biz/dbase/sqlite-3.34.0.a-amiga.lha" -o /tmp/sqlite.lha || exit $?; \
     lha -xfq2 sqlite.lha; \
     mkdir -p /opt/sdk/sqlite/; \
-    mv ./sqlite-3.34.0-amiga/build-ppc-morphos/include/ /opt/sdk/sqlite/; \
-    mv ./sqlite-3.34.0-amiga/build-ppc-morphos/lib/ /opt/sdk/sqlite/; \
+    mv ./sqlite-3.34.0.a-amiga/build-ppc-morphos/include/ /opt/sdk/sqlite/; \
+    mv ./sqlite-3.34.0.a-amiga/build-ppc-morphos/lib/ /opt/sdk/sqlite/; \
     rm -rf /tmp/*;
 ENV SQLITE_INC="/opt/sdk/sqlite/include"
 
 # Install AMISSL SDK
-RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/5.19/AmiSSL-5.19-SDK.lha" -o /tmp/AmiSSL.lha && \
+RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/5.25/AmiSSL-5.25-SDK.lha" -o /tmp/AmiSSL.lha && \
     lha -xfq2 AmiSSL.lha && \
     cp ./AmiSSL/Developer/include/* ${NDK39_PATH}/Include/include_h/ -r && \
     cp ./AmiSSL/Developer/Autodocs/* ${NDK39_PATH}/Documentation/Autodocs/ && \
@@ -109,7 +109,7 @@ RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/5.19/AmiSS
     rm -rf /tmp/*;
 
 # Install SDI headers
-RUN curl -fsSL "http://aminet.net/dev/c/SDI_headers.lha" -o /tmp/SDI_headers.lha || exit $?; \
+RUN curl -fsSL "https://aminet.net/dev/c/SDI_headers.lha" -o /tmp/SDI_headers.lha || exit $?; \
     lha -xfq2 SDI_headers.lha && \
     mkdir ${NDK39_PATH}/Examples/SDI && \
     cp -r ./SDI/includes/* ${NDK39_PATH}/Include/include_h/ && \
