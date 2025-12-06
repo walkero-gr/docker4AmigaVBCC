@@ -41,7 +41,7 @@ RUN apt-get update && apt-get -y --no-install-recommends install ${PACKAGES}; \
 
 # Compile and install vlink
 WORKDIR /tmp
-RUN curl -fsSL "http://phoenix.owl.de/tags/vlink0_18.tar.gz" -o /tmp/vlink.tar.gz || exit $?; \
+RUN curl -fsSL "http://phoenix.owl.de/tags/vlink0_18a.tar.gz" -o /tmp/vlink.tar.gz || exit $?; \
     tar xvfz vlink.tar.gz; \
     make -C vlink || exit $?; \
     cp /tmp/vlink/vlink /opt/vbcc/bin || exit $?; \

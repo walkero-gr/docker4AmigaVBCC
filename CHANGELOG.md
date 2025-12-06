@@ -1,7 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## v1.16 [future]
+### Updated
+- Updated vlink to v0.18a (08-Nov-2025)
+
+
 ## v1.15 - 2025-03-08
+### Updated
 - Updated vasm to v2.0a (31-Dec-2024)
 - Updated AmiSSL SDK to latest released version 5.19
 - Updated vbcc to 0.9hp3 (29-Apr-2022)
