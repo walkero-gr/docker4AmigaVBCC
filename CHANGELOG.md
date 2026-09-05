@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - Future
+
+## Updated
+
+- Updated Amissl to version 5.27
+- Updated the vasm to 2.0f (11-Jul-2026)
+- Updated AmigaOS 4 SDK to 54.25
+
 ## v1.16 [2025-12-06]
 ### Updated
 - Updated vlink to v0.18a (08-Nov-2025)

@@ -7,7 +7,7 @@ ENV OS4_SDK="/opt/sdk/ppc-amigaos"
 WORKDIR /tmp
 
 # Install vasm
-RUN curl -fsSL "http://phoenix.owl.de/tags/vasm2_0d.tar.gz" -o /tmp/vasm.tar.gz || exit $?; \
+RUN curl -fsSL "http://phoenix.owl.de/tags/vasm2_0f.tar.gz" -o /tmp/vasm.tar.gz || exit $?; \
     tar xvfz vasm.tar.gz; \
     make -C vasm CPU=ppc SYNTAX=std; \
     cp ./vasm/vasmppc_std ./vasm/vobjdump /opt/vbcc/bin; \
@@ -34,7 +34,7 @@ RUN curl -fsSL "http://server.owl.de/~frank/vbcc/2022-05-22/vbcc_target_ppc-amig
     rm -rf /tmp/*;
 
 # Install AmigaOS 4 SDK
-RUN curl -fskSL "https://www.hyperion-entertainment.com/index.php?option=com_registration&amp;view=download&amp;format=raw&amp;file=127&amp;Itemid=127" -o /tmp/AmigaOS4-SDK.lha && \
+RUN curl -fskSL "https://www.hyperion-entertainment.com/index.php?option=com_registration&amp;view=download&amp;format=raw&amp;file=137&amp;Itemid=137" -o /tmp/AmigaOS4-SDK.lha && \
     lha -xfq2 AmigaOS4-SDK.lha && \
     lha -xfq2w=${OS4_SDK} SDK_Install/clib2*.lha && \
     lha -xfq2w=${OS4_SDK} SDK_Install/exec*.lha && \
@@ -103,7 +103,7 @@ RUN curl -fsSL "https://aminet.net/biz/dbase/sqlite-3.34.0.a-amiga.lha" -o /tmp/
     rm -rf /tmp/*;
 
 # # Install AMISSL SDK
-RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/5.25/AmiSSL-5.25-SDK.lha" -o /tmp/AmiSSL.lha && \
+RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/5.27/AmiSSL-5.27-SDK.lha" -o /tmp/AmiSSL.lha && \
     lha -xfq2 AmiSSL.lha && \
     cp ./AmiSSL/Developer/include/* ${OS4_SDK}/Include/include_h/ -r && \
     cp ./AmiSSL/Developer/Autodocs/* ${OS4_SDK}/Documentation/AutoDocs/ && \
