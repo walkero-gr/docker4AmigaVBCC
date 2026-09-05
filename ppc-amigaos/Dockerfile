@@ -7,7 +7,7 @@ ENV OS4_SDK="/opt/sdk/ppc-amigaos"
 WORKDIR /tmp
 
 # Install vasm
-RUN curl -fsSL "http://phoenix.owl.de/tags/vasm2_0f.tar.gz" -o /tmp/vasm.tar.gz || exit $?; \
+RUN curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "http://phoenix.owl.de/tags/vasm2_0f.tar.gz" -o /tmp/vasm.tar.gz || exit $?; \
     tar xvfz vasm.tar.gz; \
     make -C vasm CPU=ppc SYNTAX=std; \
     cp ./vasm/vasmppc_std ./vasm/vobjdump /opt/vbcc/bin; \
@@ -16,7 +16,7 @@ ENV VBCC="/opt/vbcc"
 ENV PATH="${VBCC}/bin:$PATH"
 
 # Install vbcc
-RUN curl -fsSL "http://phoenix.owl.de/tags/vbcc0_9hP3.tar.gz" -o /tmp/vbcc.tar.gz || exit $?; \
+RUN curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "http://phoenix.owl.de/tags/vbcc0_9hP3.tar.gz" -o /tmp/vbcc.tar.gz || exit $?; \
     tar xvfz vbcc.tar.gz; \
     mkdir -p ./vbcc/bin; \
     yes '\
@@ -25,8 +25,8 @@ RUN curl -fsSL "http://phoenix.owl.de/tags/vbcc0_9hP3.tar.gz" -o /tmp/vbcc.tar.g
     cp ./vbcc/bin/vbcc* ./vbcc/bin/vscppc ./vbcc/bin/vc ./vbcc/bin/vprof /opt/vbcc/bin; \
     rm -rf /tmp/*;
 
-RUN curl -fsSL "http://server.owl.de/~frank/vbcc/2022-05-22/vbcc_target_ppc-amigaos.lha" -o /tmp/vbcc_target_ppc-amigaos.lha || exit $?; \
-    curl -fsSL "http://server.owl.de/~frank/vbcc/2022-05-22/vbcc_unix_config.tar.gz" -o /tmp/vbcc_unix_config.tar.gz || exit $?; \
+RUN curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "http://server.owl.de/~frank/vbcc/2022-05-22/vbcc_target_ppc-amigaos.lha" -o /tmp/vbcc_target_ppc-amigaos.lha || exit $?; \
+    curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "http://server.owl.de/~frank/vbcc/2022-05-22/vbcc_unix_config.tar.gz" -o /tmp/vbcc_unix_config.tar.gz || exit $?; \
     lha -xfq2 vbcc_target_ppc-amigaos.lha; \
     tar xvfz vbcc_unix_config.tar.gz; \
     mv ./config $VBCC/; \
@@ -34,7 +34,7 @@ RUN curl -fsSL "http://server.owl.de/~frank/vbcc/2022-05-22/vbcc_target_ppc-amig
     rm -rf /tmp/*;
 
 # Install AmigaOS 4 SDK
-RUN curl -fskSL "https://www.hyperion-entertainment.com/index.php?option=com_registration&amp;view=download&amp;format=raw&amp;file=137&amp;Itemid=137" -o /tmp/AmigaOS4-SDK.lha && \
+RUN curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "https://www.hyperion-entertainment.com/index.php?option=com_registration&amp;view=download&amp;format=raw&amp;file=137&amp;Itemid=137" -o /tmp/AmigaOS4-SDK.lha && \
     lha -xfq2 AmigaOS4-SDK.lha && \
     lha -xfq2w=${OS4_SDK} SDK_Install/clib2*.lha && \
     lha -xfq2w=${OS4_SDK} SDK_Install/exec*.lha && \
@@ -81,8 +81,8 @@ ENV AOS4_NLIB_INC="${AOS4_NLIB}/include" \
     AOS4_CLIB_INC="${AOS4_CLIB}/include"
 
 # Install MUI 5.0 dev
-RUN curl -fsSL "https://github.com/amiga-mui/muidev/releases/download/MUI-5.0-20210831/MUI-5.0-20210831-os4.lha" -o /tmp/MUI-5.0.lha || exit $?; \
-    curl -fsSL "https://github.com/amiga-mui/muidev/releases/download/MUI-5.0-20210831/MUI-5.0-20210831-os4-contrib.lha" -o /tmp/MUI-5.0-contrib.lha || exit $?; \
+RUN curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "https://github.com/amiga-mui/muidev/releases/download/MUI-5.0-20210831/MUI-5.0-20210831-os4.lha" -o /tmp/MUI-5.0.lha || exit $?; \
+    curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "https://github.com/amiga-mui/muidev/releases/download/MUI-5.0-20210831/MUI-5.0-20210831-os4-contrib.lha" -o /tmp/MUI-5.0-contrib.lha || exit $?; \
     lha -xfq2 MUI-5.0.lha; \
     lha -xfq2 MUI-5.0-contrib.lha; \
     mv ./SDK/MUI /opt/sdk/MUI_5.0; \
@@ -90,20 +90,20 @@ RUN curl -fsSL "https://github.com/amiga-mui/muidev/releases/download/MUI-5.0-20
 ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
 
 # Install libCurl
-RUN curl -fsSL "http://os4depot.net/share/development/library/misc/libcurl.lha" -o /tmp/libcurl.lha && \
+RUN curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "http://os4depot.net/share/development/library/misc/libcurl.lha" -o /tmp/libcurl.lha && \
     lha -xfq2 libcurl.lha && \
     cp -r ./SDK/* ${OS4_SDK}/ && \
     rm -rf /tmp/*;
 
 # Install SQLite
-RUN curl -fsSL "https://aminet.net/biz/dbase/sqlite-3.34.0.a-amiga.lha" -o /tmp/sqlite.lha && \
+RUN curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "https://aminet.net/biz/dbase/sqlite-3.34.0.a-amiga.lha" -o /tmp/sqlite.lha && \
     lha -xfq2 sqlite.lha && \
     cp ./sqlite-3.34.0.a-amiga/build-ppc-amigaos/include/*.h ${OS4_SDK}/local/newlib/include/ && \
     cp ./sqlite-3.34.0.a-amiga/build-ppc-amigaos/lib/*.a ${OS4_SDK}/local/newlib/lib/ && \
     rm -rf /tmp/*;
 
 # # Install AMISSL SDK
-RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/5.27/AmiSSL-5.27-SDK.lha" -o /tmp/AmiSSL.lha && \
+RUN curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "https://github.com/jens-maus/amissl/releases/download/5.27/AmiSSL-5.27-SDK.lha" -o /tmp/AmiSSL.lha && \
     lha -xfq2 AmiSSL.lha && \
     cp ./AmiSSL/Developer/include/* ${OS4_SDK}/Include/include_h/ -r && \
     cp ./AmiSSL/Developer/Autodocs/* ${OS4_SDK}/Documentation/AutoDocs/ && \

@@ -5,7 +5,7 @@ LABEL maintainer="Georgios Sokianos <walkero@gmail.com>"
 WORKDIR /tmp
 
 # Install vasm
-RUN curl -fsSL "http://phoenix.owl.de/tags/vasm2_0f.tar.gz" -o /tmp/vasm.tar.gz || exit $?; \
+RUN curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "http://phoenix.owl.de/tags/vasm2_0f.tar.gz" -o /tmp/vasm.tar.gz || exit $?; \
     tar xvfz vasm.tar.gz; \
     make -C vasm CPU=ppc SYNTAX=std; \
     cp ./vasm/vasmppc_std ./vasm/vobjdump /opt/vbcc/bin; \
@@ -14,7 +14,7 @@ ENV VBCC="/opt/vbcc"
 ENV PATH="${VBCC}/bin:$PATH"
 
 # Install vbcc
-RUN curl -fsSL "http://phoenix.owl.de/tags/vbcc0_9hP3.tar.gz" -o /tmp/vbcc.tar.gz || exit $?; \
+RUN curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "http://phoenix.owl.de/tags/vbcc0_9hP3.tar.gz" -o /tmp/vbcc.tar.gz || exit $?; \
     tar xvfz vbcc.tar.gz; \
     mkdir -p ./vbcc/bin; \
     yes '\
@@ -23,8 +23,8 @@ RUN curl -fsSL "http://phoenix.owl.de/tags/vbcc0_9hP3.tar.gz" -o /tmp/vbcc.tar.g
     cp ./vbcc/bin/vbcc* ./vbcc/bin/vscppc ./vbcc/bin/vc ./vbcc/bin/vprof /opt/vbcc/bin; \
     rm -rf /tmp/*;
 
-RUN curl -fsSL "http://server.owl.de/~frank/vbcc/2022-05-22/vbcc_target_ppc-morphos.lha" -o /tmp/vbcc_target_ppc-morphos.lha || exit $?; \
-    curl -fsSL "http://server.owl.de/~frank/vbcc/2022-05-22/vbcc_unix_config.tar.gz" -o /tmp/vbcc_unix_config.tar.gz || exit $?; \
+RUN curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "http://server.owl.de/~frank/vbcc/2022-05-22/vbcc_target_ppc-morphos.lha" -o /tmp/vbcc_target_ppc-morphos.lha || exit $?; \
+    curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "http://server.owl.de/~frank/vbcc/2022-05-22/vbcc_unix_config.tar.gz" -o /tmp/vbcc_unix_config.tar.gz || exit $?; \
     lha -xfq2 vbcc_target_ppc-morphos.lha; \
     tar xvfz vbcc_unix_config.tar.gz; \
     mv ./config $VBCC/; \
@@ -33,7 +33,7 @@ RUN curl -fsSL "http://server.owl.de/~frank/vbcc/2022-05-22/vbcc_target_ppc-morp
 ENV PATH="$VBCC/bin:$PATH"
 
 # Install NDK39
-RUN curl -fsSL "http://hp.alinea-computer.de/AmigaOS/NDK39.lha" -o /tmp/NDK39.lha || exit $?; \
+RUN curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "http://hp.alinea-computer.de/AmigaOS/NDK39.lha" -o /tmp/NDK39.lha || exit $?; \
     lha -xfq2 NDK39.lha; \
     mv ./NDK_3.9 /opt/sdk/; \
     rm -rf /tmp/*;
@@ -60,7 +60,7 @@ ENV NDK_LIB="${NDK39_PATH}/Include/linker_libs"
 # ENV MOS_OS_INC="/opt/sdk/morphos/os-include"
 
 # Install MUI 3.8 dev
-RUN curl -fsSL "https://github.com/amiga-mui/muidev/releases/download/3.8/mui38dev.lha" -o /tmp/mui38dev.lha || exit $?; \
+RUN curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "https://github.com/amiga-mui/muidev/releases/download/3.8/mui38dev.lha" -o /tmp/mui38dev.lha || exit $?; \
     lha -xfq2 mui38dev.lha; \
     mv ./MUI/Developer /opt/sdk/MUI_3.8; \
     mkdir -p /opt/sdk/MUI_3.8/C/Include/mui; \
@@ -68,8 +68,8 @@ RUN curl -fsSL "https://github.com/amiga-mui/muidev/releases/download/3.8/mui38d
 ENV MUI38_INC="/opt/sdk/MUI_3.8/C/Include"
 
 # Install MUI 5.0 dev
-RUN curl -fsSL "https://github.com/amiga-mui/muidev/releases/download/MUI-5.0-20210831/MUI-5.0-20210831-os3.lha" -o /tmp/MUI-5.0.lha || exit $?; \
-    curl -fsSL "https://github.com/amiga-mui/muidev/releases/download/MUI-5.0-20210831/MUI-5.0-20210831-os3-contrib.lha" -o /tmp/MUI-5.0-contrib.lha || exit $?; \
+RUN curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "https://github.com/amiga-mui/muidev/releases/download/MUI-5.0-20210831/MUI-5.0-20210831-os3.lha" -o /tmp/MUI-5.0.lha || exit $?; \
+    curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "https://github.com/amiga-mui/muidev/releases/download/MUI-5.0-20210831/MUI-5.0-20210831-os3-contrib.lha" -o /tmp/MUI-5.0-contrib.lha || exit $?; \
     lha -xfq2 MUI-5.0.lha; \
     lha -xfq2 MUI-5.0-contrib.lha; \
     mv ./SDK/MUI /opt/sdk/MUI_5.0; \
@@ -77,19 +77,19 @@ RUN curl -fsSL "https://github.com/amiga-mui/muidev/releases/download/MUI-5.0-20
 ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
 
 # Install MCC_GuiGfx
-RUN curl -fsSL "https://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha || exit $?; \
+RUN curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "https://aminet.net/dev/mui/MCC_Guigfx.lha" -o /tmp/MCC_Guigfx.lha || exit $?; \
     lha -xfq2 MCC_Guigfx.lha; \
     cp ./MCC_Guigfx/Developer/C/Include/MUI/* /opt/sdk/MUI_3.8/C/Include/mui; \
     rm -rf /tmp/*;
 
 # Install MCC_TextEditor
-RUN curl -fsSL "https://aminet.net/dev/mui/MCC_TextEditor-15.56.lha" -o /tmp/MCC_TextEditor.lha || exit $?; \
+RUN curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "https://aminet.net/dev/mui/MCC_TextEditor-15.56.lha" -o /tmp/MCC_TextEditor.lha || exit $?; \
     lha -xfq2 MCC_TextEditor.lha; \
     cp ./MCC_TextEditor/Developer/C/include/mui/* /opt/sdk/MUI_3.8/C/Include/mui; \
     rm -rf /tmp/*;
 
 # Install SQLite
-RUN curl -fsSL "https://aminet.net/biz/dbase/sqlite-3.34.0.a-amiga.lha" -o /tmp/sqlite.lha || exit $?; \
+RUN curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "https://aminet.net/biz/dbase/sqlite-3.34.0.a-amiga.lha" -o /tmp/sqlite.lha || exit $?; \
     lha -xfq2 sqlite.lha; \
     mkdir -p /opt/sdk/sqlite/; \
     mv ./sqlite-3.34.0.a-amiga/build-ppc-morphos/include/ /opt/sdk/sqlite/; \
@@ -98,7 +98,7 @@ RUN curl -fsSL "https://aminet.net/biz/dbase/sqlite-3.34.0.a-amiga.lha" -o /tmp/
 ENV SQLITE_INC="/opt/sdk/sqlite/include"
 
 # Install AMISSL SDK
-RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/5.27/AmiSSL-5.27-SDK.lha" -o /tmp/AmiSSL.lha && \
+RUN curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "https://github.com/jens-maus/amissl/releases/download/5.27/AmiSSL-5.27-SDK.lha" -o /tmp/AmiSSL.lha && \
     lha -xfq2 AmiSSL.lha && \
     cp ./AmiSSL/Developer/include/* ${NDK39_PATH}/Include/include_h/ -r && \
     cp ./AmiSSL/Developer/Autodocs/* ${NDK39_PATH}/Documentation/Autodocs/ && \
@@ -109,7 +109,7 @@ RUN curl -fsSL "https://github.com/jens-maus/amissl/releases/download/5.27/AmiSS
     rm -rf /tmp/*;
 
 # Install SDI headers
-RUN curl -fsSL "https://aminet.net/dev/c/SDI_headers.lha" -o /tmp/SDI_headers.lha || exit $?; \
+RUN curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "https://aminet.net/dev/c/SDI_headers.lha" -o /tmp/SDI_headers.lha || exit $?; \
     lha -xfq2 SDI_headers.lha && \
     mkdir ${NDK39_PATH}/Examples/SDI && \
     cp -r ./SDI/includes/* ${NDK39_PATH}/Include/include_h/ && \

@@ -23,7 +23,7 @@ RUN existing_group=$(getent group "${AMIDEV_GROUP_ID}" | cut -d: -f1); \
     if [[ -n "${existing_user}" ]]; then deluser "${existing_user}"; fi; \
     addgroup --gid ${AMIDEV_GROUP_ID} amidev; \
     adduser --system --uid ${AMIDEV_USER_ID} --disabled-password --shell /bin/bash --gid ${AMIDEV_GROUP_ID} amidev; \
-    sed -i '/^amidev/s/!/*/' /etc/shadow; 
+    sed -i '/^amidev/s/!/*/' /etc/shadow;
 
 ENV PACKAGES="\
     curl \
@@ -41,14 +41,14 @@ RUN apt-get update && apt-get -y --no-install-recommends install ${PACKAGES}; \
 
 # Compile and install vlink
 WORKDIR /tmp
-RUN curl -fsSL "http://phoenix.owl.de/tags/vlink0_18a.tar.gz" -o /tmp/vlink.tar.gz || exit $?; \
+RUN curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "http://phoenix.owl.de/tags/vlink0_18a.tar.gz" -o /tmp/vlink.tar.gz || exit $?; \
     tar xvfz vlink.tar.gz; \
     make -C vlink || exit $?; \
     cp /tmp/vlink/vlink /opt/vbcc/bin || exit $?; \
     rm -rf /tmp/*;
 
 # Install FlexCat
-RUN curl -fsSL "https://github.com/adtools/flexcat/releases/download/2.18/FlexCat-2.18.lha" -o /tmp/FlexCat.lha || exit $?; \
+RUN curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "https://github.com/adtools/flexcat/releases/download/2.18/FlexCat-2.18.lha" -o /tmp/FlexCat.lha || exit $?; \
     lha -xfq2 FlexCat.lha; \
     cp ./FlexCat/Linux-i386/flexcat /usr/bin/; \
     rm -rf /tmp/*;
