@@ -1,67 +1,29 @@
-FROM walkero/lha-on-docker:latest as lha-image
-
-FROM phusion/baseimage:jammy-1.0.4
+FROM phusion/baseimage:resolute
 
 LABEL maintainer="Georgios Sokianos <walkero@gmail.com>"
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
 
-COPY --from=lha-image /usr/bin/lha /usr/bin/lha
+ENV CCRED="\033[31m" \
+    CCGREEN="\033[32m" \
+    CCYELLOW="\033[33m" \
+    CCBLUE="\033[34m" \
+    CCPINK="\033[35m" \
+    CCLBLUE="\033[36m" \
+    CCEND="\033[0m" \
+    CCBOLD="\033[1m" \
+    CCITAL="\033[3m" \
+    CCUNDR="\033[4m"
 
-ENV AMIDEV_USER_ID=1000
-ENV AMIDEV_GROUP_ID=1000
+ENV AMIDEV_USER_ID=1000 \
+    AMIDEV_GROUP_ID=1000
 
-RUN mkdir -p /opt/vbcc/bin; \
-    mkdir -p /opt/code; \
-    mkdir -p /opt/sdk;
+COPY --from=walkero/lha-on-docker /usr/bin/lha /usr/bin/lha
+COPY scripts/setup-tools.sh /setup-tools.sh
+COPY scripts/setup-user.sh /setup-user.sh
 
-# Add amidev user and group
-RUN existing_group=$(getent group "${AMIDEV_GROUP_ID}" | cut -d: -f1); \
-    if [[ -n "${existing_group}" ]]; then delgroup "${existing_group}"; fi; \
-    existing_user=$(getent passwd "${AMIDEV_USER_ID}" | cut -d: -f1); \
-    if [[ -n "${existing_user}" ]]; then deluser "${existing_user}"; fi; \
-    addgroup --gid ${AMIDEV_GROUP_ID} amidev; \
-    adduser --system --uid ${AMIDEV_USER_ID} --disabled-password --shell /bin/bash --gid ${AMIDEV_GROUP_ID} amidev; \
-    sed -i '/^amidev/s/!/*/' /etc/shadow;
-
-ENV PACKAGES="\
-    curl \
-    gcc \
-    git \
-    libc-dev \
-    make \
-    mc \
-    splint \
-    wget \
-    xz-utils"
-
-RUN apt-get update && apt-get -y --no-install-recommends install ${PACKAGES}; \
-    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*;
-
-# Compile and install vlink
-WORKDIR /tmp
-RUN curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "http://phoenix.owl.de/tags/vlink0_18a.tar.gz" -o /tmp/vlink.tar.gz || exit $?; \
-    tar xvfz vlink.tar.gz; \
-    make -C vlink || exit $?; \
-    cp /tmp/vlink/vlink /opt/vbcc/bin || exit $?; \
-    rm -rf /tmp/*;
-
-# Install FlexCat
-RUN curl --retry 5 --retry-delay 2 --retry-connrefused -fsSL "https://github.com/adtools/flexcat/releases/download/2.18/FlexCat-2.18.lha" -o /tmp/FlexCat.lha || exit $?; \
-    lha -xfq2 FlexCat.lha; \
-    cp ./FlexCat/Linux-i386/flexcat /usr/bin/; \
-    rm -rf /tmp/*;
-
-# Add git branch name to bash prompt
-ARG BASHFILE=/home/amidev/.bashrc
-RUN cp ~/.bashrc /home/amidev/; \
-    chown amidev:amidev ${BASHFILE}; \
-    sed -i '4c\'"\nparse_git_branch() {\n\
-  git branch 2> /dev/null | sed -e \'/^[^*]/d\' -e \'s/* \\\(.*\\\)/ (\\\1)/\'\n\
-}\n" ${BASHFILE}; \
-    sed -i '43c\'"force_color_prompt=yes" ${BASHFILE}; \
-    sed -i '57c\'"    PS1=\'\${debian_chroot:+(\$debian_chroot)}\\\[\\\033[01;32m\\\]\\\u@\\\h\\\[\\\033[00m\\\]:\\\[\\\033[01;34m\\\]\\\w\\\[\\\033[01;31m\\\]\$(parse_git_branch)\\\[\\\033[00m\\\]\\\$ '" ${BASHFILE}; \
-    sed -i '59c\'"    PS1=\'\${debian_chroot:+(\$debian_chroot)}\\\u@\\\h:\\\w \$(parse_git_branch)\$ \'" ${BASHFILE};
+RUN chmod +x /setup-tools.sh && /setup-tools.sh && \
+    chmod +x /setup-user.sh && /setup-user.sh
 
 WORKDIR /opt/code
