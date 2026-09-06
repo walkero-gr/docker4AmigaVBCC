@@ -10,36 +10,38 @@ echo -e "${CCPINK}${CCBOLD}\n---> Add nodejs v24 repository ${CCEND}"
 
 echo -e "${CCPINK}${CCBOLD}\n---> Install required tools ${CCEND}"
 PACKAGES="\
-    autoconf \
-    automake \
-    build-essential \
-    ccache \
-    cppcheck \
-    curl \
-    cvs \
-    flawfinder \
-    git \
-    gperf \
-    libfl2 \
-    libgmp-dev \
-    libisl-dev \
-    libmpc3 \
-    libmpc-dev \
-    libmpfr6 \
-    libmpfr-dev \
-    libpcre2-dev \
-    libtool \
-    make \
-    nodejs \
-    pip \
-    python3 \
-    splint \
-    subversion \
-    texinfo \
-    unzip \
-    wget \
-    xz-utils \
-    zip"
+  7zip \
+  autoconf \
+  automake \
+  build-essential \
+  ccache \
+  cppcheck \
+  curl \
+  cvs \
+  flawfinder \
+  git \
+  gperf \
+  libfl2 \
+  libgmp-dev \
+  libisl-dev \
+  libmpc3 \
+  libmpc-dev \
+  libmpfr6 \
+  libmpfr-dev \
+  libpcre2-dev \
+  libtool \
+  make \
+  nano \
+  nodejs \
+  pip \
+  python3 \
+  splint \
+  subversion \
+  texinfo \
+  unzip \
+  wget \
+  xz-utils \
+  zip"
 
 apt-get update && apt-get -y dist-upgrade && \
     apt-get -y --no-install-recommends install $PACKAGES
