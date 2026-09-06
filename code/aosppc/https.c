@@ -1,9 +1,9 @@
 /*
  * This code is from AmiSSL github repo
  * https://github.com/jens-maus/amissl/blob/4.4/test/https.c
- * 
+ *
  * Compile with
- * vc +aosppc -I$AOS4_SDK_INC -I$AOS4_NET_INC -D__USE_INLINE__ -lauto https.c -o https
+ * vc +aosppc -I$SDK_PATH/Include/include_h -I$SDK_PATH/Include/netinclude -D__USE_INLINE__ -lauto https.c -o https
  */
 
 #if defined(__amigaos4__)
@@ -198,7 +198,7 @@ int main(int argc, char *argv[])
 				else
 					FPrintf(GetStdErr(), "Couldn't connect to host!\n");
 
-        
+
 			  FPrintf(GetStdErr(), "before SSL_free()\n");
 				SSL_free(ssl);
 			}

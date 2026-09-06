@@ -1,6 +1,6 @@
 /* AppWindow Example
 gcc -o AppWindow AppWindow.c -lauto
-vc +aosppc -I$AOS4_SDK_INC -lauto AppWindow.c -o AppWindow
+vc +aosppc -I$SDK_PATH/Include/include_h -lauto AppWindow.c -o AppWindow
 quit
 */
 

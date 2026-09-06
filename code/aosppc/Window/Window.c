@@ -1,6 +1,6 @@
 /* Window Example
 gcc -o Window Window.c -lauto
-vc +aosppc -I$AOS4_SDK_INC -lauto Window.c -o Window
+vc +aosppc -I$SDK_PATH/Include/include_h -lauto Window.c -o Window
 quit
 */
 

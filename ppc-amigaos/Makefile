@@ -11,7 +11,7 @@ NAME=amigavbcc-$(TAG)
 
 .PHONY: build
 build: ## Build the main dev environment image
-	docker build -t $(REPO):$(TAG) .
+	docker build --progress plain -t $(REPO):$(TAG) .
 
 .PHONY: buildnc
 buildnc: ## Build the main dev environment image with no-cache
