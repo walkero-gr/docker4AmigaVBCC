@@ -1,39 +1,44 @@
-REPO ?= walkero/docker4amigavbcc
-TAG ?= latest-m68k
-VOLUMES ?= -v "${PWD}/../code":/opt/code
-WORKSPACE ?= -w /opt/code
-NAME ?= amigavbcc-m68k
+include ../_common/help.mk
 
-.PHONY: build buildnc build-arm buildnc-arm shell push logs clean test release
+REPO=walkero/docker4amigavbcc
+TAG=latest-m68k
+VOLUMES=-v "${PWD}/../code":/opt/code
+WORKSPACE=-w /opt/code
+NAME=amigavbcc-$(TAG)
 
-default: build
+#####################################################################
+##@ Build dev environment
 
-build:
-	docker build -t $(REPO):$(TAG) .
+.PHONY: build
+build: ## Build the main dev environment image
+	docker build --progress plain -t $(REPO):$(TAG) .
 
-buildnc:
+.PHONY: buildnc
+buildnc: ## Build the main dev environment image with no-cache
 	docker build --no-cache -t $(REPO):$(TAG) .
 
-build-arm:
-	docker build --platform linux/arm64/v8 --progress plain -t $(REPO):$(TAG) .
-
-buildnc-arm:
-	docker build --no-cache --platform linux/arm64/v8 --progress plain -t $(REPO):$(TAG) .
-
-
-shell:
+.PHONY: shell
+shell: ## Create a container with the latest Docker image and use it
 	docker run -it --rm --name $(NAME) $(VOLUMES) $(WORKSPACE) $(REPO):$(TAG) /bin/bash
 
-push:
+#####################################################################
+##@ Helpers
+
+.PHONY: push
+push: ## Push the Docker image to the repository
 	docker push $(REPO):$(TAG)
 
-logs:
+.PHONY: logs
+logs: ## Show the logs of the container
 	docker logs $(NAME)
 
-clean:
+.PHONY: clean
+clean: ## Remove the container if it exists
 	-docker rm -f $(NAME)
 
-test:
+.PHONY: test
+test: ## Test the Docker image with snyk
 	snyk test --docker $(REPO):$(TAG) --file=Dockerfile
 
-release: buildnc push
+.PHONY: release
+release: buildnc push ## Build and push the Docker image
