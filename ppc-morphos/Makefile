@@ -1,7 +1,13 @@
 include ../_common/help.mk
 
+# Target architecture for the build
+ARCH=ppc-morphos
+
+# Release version
+REL?=2.0.0
+
 REPO=walkero/docker4amigavbcc
-TAG=latest-mos
+TAG=$(ARCH)-$(REL)
 VOLUMES=-v "${PWD}/../code":/opt/code
 WORKSPACE=-w /opt/code
 NAME=amigavbcc-$(TAG)

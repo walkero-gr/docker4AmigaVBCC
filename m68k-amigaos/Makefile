@@ -1,7 +1,13 @@
 include ../_common/help.mk
 
+# Target architecture for the build
+ARCH=m68k-amigaos
+
+# Release version
+REL?=2.0.0
+
 REPO=walkero/docker4amigavbcc
-TAG=latest-m68k
+TAG=$(ARCH)-$(REL)
 VOLUMES=-v "${PWD}/../code":/opt/code
 WORKSPACE=-w /opt/code
 NAME=amigavbcc-$(TAG)
@@ -15,7 +21,7 @@ build: ## Build the main dev environment image
 
 .PHONY: buildnc
 buildnc: ## Build the main dev environment image with no-cache
-	docker build --no-cache -t $(REPO):$(TAG) .
+	docker build --progress plain --no-cache -t $(REPO):$(TAG) .
 
 .PHONY: shell
 shell: ## Create a container with the latest Docker image and use it
