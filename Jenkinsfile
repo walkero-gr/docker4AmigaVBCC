@@ -25,7 +25,7 @@ pipeline {
 						}
 						agent { label "agent-${ARCH}" }
 						stages {
-							stage('build-${SYSTEM}') {
+							stage('build-image') {
 								options {
 									timeout(time: 60, unit: 'MINUTES')
 								}
@@ -58,7 +58,7 @@ pipeline {
 						}
 						agent { label "agent-amd64" }
 						stages {
-							stage('build-${SYSTEM}-manifest') {
+							stage('build-manifest') {
 								steps {
 									script {
 										createAndPushManifests(SYSTEM)
