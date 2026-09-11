@@ -1,7 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased] - Future
+## [v2.0.0] - 2026-09-11
+
+## Changed
+
+- Changed the repository file structure
 
 ## Updated
 
@@ -9,21 +13,24 @@ All notable changes to this project will be documented in this file.
 - Updated the vasm to 2.0f (11-Jul-2026)
 - Updated AmigaOS 4 SDK to 54.25
 
-## v1.16 [2025-12-06]
+## [v1.16] - 2025-12-06
+
 ### Updated
 - Updated vlink to v0.18a (08-Nov-2025)
 - Updated vasm to v2.0d (23-Nov-2025)
 - Updated AmiSSL SDK to latest released version 5.25
 - Updated sqlite 3.34.0a SDK on all images
 
-## v1.15 - 2025-03-08
+## [v1.15] - 2025-03-08
+
 ### Updated
 - Updated vasm to v2.0a (31-Dec-2024)
 - Updated AmiSSL SDK to latest released version 5.19
 - Updated vbcc to 0.9hp3 (29-Apr-2022)
 - Updated vlink to v0.18 (01-Jan-2025)
 
-## v1.14 - 2023-04-30
+## [v1.14] - 2023-04-30
+
 ### Added
 - Added SDI headers in both NDK 3.2 and 3.9
 
@@ -31,14 +38,16 @@ All notable changes to this project will be documented in this file.
 - Updated vasm to v1.9d (24-Apr-2023)
 - Updated AmiSSL SDK to latest released v5.8
 
-## v1.13 - 2023-04-08
+## [v1.13] - 2023-04-08
+
 ### Changed
 - Added MUI 5.0 SDK into the MOS image
 
 ### Fixed
 - Fixed NDK3.9 download URL
 
-## v1.12 - 2022-11-01
+## [v1.12] - 2022-11-01
+
 ### Changed
 - Updated vlink to v0.17a (22-Sep-2022)
 - Updated vasm to v1.9a (02-Oct-2022)
@@ -48,7 +57,8 @@ All notable changes to this project will be documented in this file.
 ## Fixed
 - Code cleanup
 
-## v1.11 - 2022-04-28
+## [v1.11] - 2022-04-28
+
 ### Changed
 - Updated AmiSSL SDK to latest released version 4.12
 - Updated vbcc to 0.9h patch 2 (23-Mar-2022)
@@ -59,7 +69,8 @@ All notable changes to this project will be documented in this file.
 ## Fixed
 - Fixes and cleanup to achieve better code quality
 
-## v1.10 - 2021-11-06
+## [v1.10] - 2021-11-06
+
 ### Added
 - Added the sqlite3 lib folder that was missing from the SDK
 
@@ -72,7 +83,8 @@ All notable changes to this project will be documented in this file.
 - Updated MUI 5 SDK to the MUI 5.0-20210831
 - Updated MCC_TextEditor developer files to 15.56
 
-## v1.9 - 2021-07-15
+## [v1.9] - 2021-07-15
+
 ### Added
 - Added NDK 3.2R3 in the 68k image
 
@@ -82,7 +94,8 @@ All notable changes to this project will be documented in this file.
 - Updated vlink to v0.16h (15-Jul-2021)
 - Updated vasm to v1.8k (13-May-2021)
 
-## docker4amigavbcc v1.8 - 2021-01-10
+## [v1.8] - 2021-01-10
+
 ### Changed
 - Updated vlink 0.16g and vasm 1.8j
 - Updated MUI SDK to latest v5.0-2020R3
@@ -90,7 +103,8 @@ All notable changes to this project will be documented in this file.
 - Updated AmiSSL SDK to latest released version 4.7
 - Removed the MCC_GuiGfx from MUI 5.0 SDK because it is part of MUI since v5.0-2020R2
 
-## docker4amigavbcc v1.7 - 2020-10-06
+## [v1.7] - 2020-10-06
+
 ### Added
 - Added a new base image which is used for common installations of all images
 
@@ -103,7 +117,8 @@ All notable changes to this project will be documented in this file.
 - Created amidev main user
 - Changes on amidev user permissions. Now amidev is owner of /opt folder
 
-## docker4amigavbcc v1.6 - 2020-06-07
+## [v1.6] - 2020-06-07
+
 ### Added
 - Added sqlite 3.6.1 on all images
 - Added MUI 3.8 and MUI 5.0-2019R4 OS4 SDKs at the MorphOS image
@@ -120,7 +135,8 @@ All notable changes to this project will be documented in this file.
 ### Removed
 - Removed MorphOS SDK since it doesn't work with VBCC
 
-## docker4amigavbcc v1.5 - 2020-04-29
+## [v1.5] - 2020-04-29
+
 ### Added
 - Added lha v1.14i because it is able to compress files in lha format, and will be useful for packaging
 - Added MorphOS image with the MorphOS 3.14 SDK - April 2020
@@ -132,7 +148,8 @@ All notable changes to this project will be documented in this file.
 ### Removed
 - Removed lhasa because it can only extract lha files
 
-## docker4amigavbcc v1.4 - 2020-03-30
+## [v1.4] - 2020-03-30
+
 ### Added
 - Added on PPC image the clib2 includes
 - Added MCC_GuiGfx installation at the PPC image
@@ -144,30 +161,35 @@ All notable changes to this project will be documented in this file.
 - Fixes on m68k image on MCC_GuiGfx copy
 - Updated AmiSSL version to 4.5 on both images, m68k and ppc
 
-## docker4amigavbcc v1.3 - 2020-03-02
+## [v1.3] - 2020-03-02
+
 ### Changed
 - Fixed on PPC image the MUI version. It included OS3 version files
 - Added on PPC & m68k images lhasa quite argument, to minimize the output text
 - Version now covers both images. Only ppc-latest and m68k-latest tags will be updated for now
 
-## docker4amigavbcc:1.2-m68k - 2020-03-02
+## [1.2-m68k] - 2020-03-02
+
 ### Added
 - AmiSSL 4.4 SDK
 - Posix Lib includes
 
-## docker4amigavbcc:1.1-ppc - 2020-02-28
+## [1.1-ppc] - 2020-02-28
+
 ### Added
 - AmiSSL 4.4 SDK
 - Newlib Env variable for the newlib includes
 
-## docker4amigavbcc:1.0-ppc - 2020-01-09
+## [1.0-ppc] - 2020-01-09
+
 ### Added
 - Initial ppc release
 - Latest vbcc, vlink, vasm
 - AmigaOS 4 SDK v53.30
 - MUI 5.x Dev, v5.0-2019R4
 
-## docker4amigavbcc:1.1-m68k - 2020-01-09
+## [1.1-m68k] - 2020-01-09
+
 ### Added
 - Introduced the docker4amigavbcc:latest-m68k
 - Changed the Makefile to build and push the latest-m68k tag
@@ -175,7 +197,8 @@ All notable changes to this project will be documented in this file.
 - git
 - Added shell, logs and clean to the makefile
 
-## docker4amigavbcc:1.1-m68k - 2019-12-31
+## [1.1-m68k] - 2019-12-31
+
 ### Added
 - Initial m68k release
 - Latest vbcc, vlink, vasm
@@ -187,8 +210,5 @@ All notable changes to this project will be documented in this file.
 
 
 
-
-
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), 
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
