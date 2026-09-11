@@ -5,7 +5,7 @@ pipeline {
 		DOCKERHUB_REPO="walkero/docker4amigavbcc"
 	}
 	stages {
-		stage('ppc-amigaos') {
+		stage('build') {
 			when { buildingTag() }
 			stages {
 				stage('build-images') {
@@ -61,7 +61,7 @@ pipeline {
 							stage('build-${SYSTEM}-manifest') {
 								steps {
 									script {
-										createAndPushManifests('os4')
+										createAndPushManifests(SYSTEM)
 									}
 								}
 							}
@@ -102,7 +102,7 @@ def buildAndPush(system, arch) {
 }
 
 def createAndPushManifests(system) {
-	def imageTagBase = "${env.DOCKERHUB_REPO}:${system}-gcc${gccVer}"
+	def imageTagBase = "${env.DOCKERHUB_REPO}:${system}"
 	def imageTagVersioned = "${imageTagBase}-${env.TAG_VERSION}"
 	def imageTagLatest = imageTagBase
 
@@ -124,17 +124,12 @@ def createAndPushManifests(system) {
 
 	try {
 		sh 'echo \$DOCKERHUB_CREDS_PSW | docker login -u \$DOCKERHUB_CREDS_USR --password-stdin'
-		gccVersions.each { gccVer ->
-			def imageTagBase = "${env.DOCKERHUB_REPO}:${system}-gcc${gccVer}"
-			def imageTagVersioned = "${imageTagBase}-${env.TAG_VERSION}"
-			def imageTagLatest = imageTagBase
 
-			retry(3) {
-				sh """
-					docker manifest push ${imageTagVersioned}
-					docker manifest push ${imageTagLatest}
-				"""
-			}
+		retry(3) {
+			sh """
+				docker manifest push ${imageTagVersioned}
+				docker manifest push ${imageTagLatest}
+			"""
 		}
 	} finally {
 		sh 'docker logout'
