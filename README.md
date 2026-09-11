@@ -5,12 +5,14 @@
 [![ko-fi](https://img.shields.io/badge/Buy%20me%20a%20Ko--fi-F16061?style=flat&logo=ko-fi&logoColor=white)](https://ko-fi.com/walkero)
 
 # docker4AmigaVBCC
+
 docker4AmigaVBCC is a project that contains a few docker images with VBCC compiler, for cross compiling software for AmigaOS 3, AmigaOS 4 and MorphOS. It is based on Ubuntu OS and has everything needed (vbcc compiler, SDKs, libraries) for compiling your applications.
 
 The purpose of the project is to be an up to date, flexible and out of the box solution for cross compiling applications for Amiga environments, using the VBCC C/C++ compiler. Those images can be used on CI/CD solution for automatic testing, compiling, packaging and deployment.
 
 ## AmigaOS 68k development image
-The **docker4amigavbcc:latest-m68k** image contains the following software, including the [Base image software](#base-image):
+
+The **docker4amigavbcc:m68k-amigaos** image contains the following software, including the [Base image software](#base-image):
 
 | app               | version               | source
 |-------------------|-----------------------|-----------------------------------|
@@ -28,7 +30,7 @@ The **docker4amigavbcc:latest-m68k** image contains the following software, incl
 | sqlite            | 3.34.0a               | https://aminet.net/package/biz/dbase/sqlite-3.34.0.a-amiga
 
 ## AmigaOS 4 PPC development image
-The **docker4amigavbcc:latest-ppc** image contains the following software, including the [Base image software](#base-image):
+The **docker4amigavbcc:ppc-amigaos** image contains the following software, including the [Base image software](#base-image):
 
 | app               | version               | source
 |-------------------|-----------------------|-----------------------------------|
@@ -41,7 +43,7 @@ The **docker4amigavbcc:latest-ppc** image contains the following software, inclu
 | sqlite            | 3.34.0a               | https://aminet.net/package/biz/dbase/sqlite-3.34.0.a-amiga
 
 ## MorphOS PPC development image
-The **docker4amigavbcc:latest-mos** image contains the following software, including the [Base image software](#base-image):
+The **docker4amigavbcc:ppc-morphos** image contains the following software, including the [Base image software](#base-image):
 
 | app               | version               | source
 |-------------------|-----------------------|-----------------------------------|
@@ -69,29 +71,36 @@ The **docker4amigavbcc:latest-base** image contains software that is common on a
 To create a container based on one of these images, run in the terminal:
 
 ```bash
-docker run -it --rm --name amigavbcc-m68k -v ${PWD}/code:/opt/code -w /opt/code walkero/docker4amigavbcc:latest-m68k /bin/bash
-docker run -it --rm --name amigavbcc-ppc -v ${PWD}/code:/opt/code -w /opt/code walkero/docker4amigavbcc:latest-ppc /bin/bash
-docker run -it --rm --name amigavbcc-mos -v ${PWD}/code:/opt/code -w /opt/code walkero/docker4amigavbcc:latest-mos /bin/bash
+docker run -it --rm --name amigavbcc-m68k -v ${PWD}/code:/opt/code -w /opt/code walkero/docker4amigavbcc:m68k-amigaos /bin/bash
+docker run -it --rm --name amigavbcc-ppc -v ${PWD}/code:/opt/code -w /opt/code walkero/docker4amigavbcc:ppc-amigaos /bin/bash
+docker run -it --rm --name amigavbcc-mos -v ${PWD}/code:/opt/code -w /opt/code walkero/docker4amigavbcc:ppc-morphos /bin/bash
 ```
 
 If you want to use it with **docker-compose**, you can create a *docker-compose.yml* file, with the following content:
 
 ```yaml
-version: '3'
-
 services:
   vbcc-m68k:
-    image: 'walkero/docker4amigavbcc:latest-m68k'
+    image: 'walkero/docker4amigavbcc:m68k-amigaos'
+    hostname: m68k-amigaos
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - './code:/opt/code'
 
   vbcc-ppc:
-    image: 'walkero/docker4amigavbcc:latest-ppc'
+    image: 'walkero/docker4amigavbcc:ppc-amigaos'
+    hostname: ppc-amigaos
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - './code:/opt/code'
 
   vbcc-mos:
-    image: 'walkero/docker4amigavbcc:latest-mos'
+    image: 'walkero/docker4amigavbcc:ppc-morphos'
+    hostname: ppc-morphos
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - './code:/opt/code'
 ```
@@ -108,7 +117,7 @@ To compile your project you have to get into the container, inside the */opt/cod
 
 ## How to set your own include paths
 
-The **docker4amigavbcc:latest-m68k** image has the following ENV variables set:
+The **docker4amigavbcc:m68k-amigaos** image has the following ENV variables set:
 
 * **VBCC**: /opt/vbcc
 * **PATH**: /opt/vbcc/bin
@@ -124,7 +133,7 @@ The **docker4amigavbcc:latest-m68k** image has the following ENV variables set:
 * **POSIXLIB_INC**: /opt/sdk/PosixLib/include
 * **SQLITE_INC**: /opt/sdk/sqlite/include
 
-The **docker4amigavbcc:latest-ppc** image has the following ENV variables set:
+The **docker4amigavbcc:ppc-amigaos** image has the following ENV variables set:
 
 * **VBCC**: /opt/vbcc
 * **PATH**: /opt/vbcc/bin
@@ -134,7 +143,7 @@ The **docker4amigavbcc:latest-ppc** image has the following ENV variables set:
 * **AOS4_CLIB_INC**: /opt/sdk/ppc-amigaos/clib2/include
 * **MUI50_INC**: /opt/sdk/MUI_5.0/C/include
 
-The **docker4amigavbcc:latest-mos** image has the following ENV variables set:
+The **docker4amigavbcc:ppc-morphos** image has the following ENV variables set:
 
 * **VBCC**: /opt/vbcc
 * **PATH**: /opt/vbcc/bin
@@ -146,47 +155,59 @@ The **docker4amigavbcc:latest-mos** image has the following ENV variables set:
 * **SQLITE_INC**: /opt/sdk/sqlite/include
 
 You can set your own paths, if you want, by using environment variables on docker execution or inside the docker-compose.yml file, like:
-```bash
-docker run -it --rm --name amigavbcc-m68k -v ${PWD}/code:/opt/code -w /opt/code -e NDK_INC="/your/folder/path" walkero/docker4amigavbcc:latest-m68k /bin/bash
-docker run -it --rm --name amigavbcc-ppc -v ${PWD}/code:/opt/code -w /opt/code -e AOS4_SDK_INC="/your/folder/path" walkero/docker4amigavbcc:latest-ppc /bin/bash
-docker run -it --rm --name amigavbcc-mos -v ${PWD}/code:/opt/code -w /opt/code -e MOS_SDK_INC="/your/folder/path" walkero/docker4amigavbcc:latest-mos /bin/bash
-```
-docker-compose.yml
-```yaml
-version: '3'
 
+```bash
+docker run -it --rm --name amigavbcc-m68k -v ${PWD}/code:/opt/code -w /opt/code -e NDK_INC="/your/folder/path" walkero/docker4amigavbcc:m68k-amigaos /bin/bash
+docker run -it --rm --name amigavbcc-ppc -v ${PWD}/code:/opt/code -w /opt/code -e AOS4_SDK_INC="/your/folder/path" walkero/docker4amigavbcc:ppc-amigaos /bin/bash
+docker run -it --rm --name amigavbcc-mos -v ${PWD}/code:/opt/code -w /opt/code -e MOS_SDK_INC="/your/folder/path" walkero/docker4amigavbcc:ppc-morphos /bin/bash
+```
+
+docker-compose.yml
+
+```yaml
 services:
   vbcc-m68k:
-    image: 'walkero/docker4amigavbcc:latest-m68k'
+    image: 'walkero/docker4amigavbcc:m68k-amigaos'
+    hostname: m68k-amigaos
     environment:
       NDK_INC: "/opt/ext_sdk/NDK_3.9/Include/include_h"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - './code:/opt/code'
       - './ext_sdk:/opt/ext_sdk'
 
   vbcc-ppc:
-    image: 'walkero/docker4amigavbcc:latest-ppc'
+    image: 'walkero/docker4amigavbcc:ppc-amigaos'
+    hostname: ppc-amigaos
     environment:
       AOS4_SDK_INC: "/opt/ext_sdk/SDK_install/Include/include_h"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - './code:/opt/code'
       - './ext_sdk:/opt/ext_sdk'
 
   vbcc-mos:
-    image: 'walkero/docker4amigavbcc:latest-mos'
+    image: 'walkero/docker4amigavbcc:ppc-morphos'
+    hostname: ppc-morphos
     environment:
       MOS_SDK_INC: "/opt/ext_sdk/Development/gg/include"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - './code:/opt/code'
       - './ext_sdk:/opt/ext_sdk'
 ```
 
 ## Code included notes
+
 ### Roadshow SDK
 
-Roadshow SDK is included in **docker4amigavbcc:latest-m68k** image since version tag 1.1-m68k, with the kind permission from Andreas Magerl. Thank you Andreas for your help.
+Roadshow SDK is included in **docker4amigavbcc:m68k-amigaos** image since version tag 1.1-m68k, with the kind permission from Andreas Magerl. Thank you Andreas for your help.
 
 ### Demo code
+
 Under the folder `code` you will find some demo scripts that can be compiled with this vbcc docker installation
 
 * m68k/hello.c - Just a simple Hello World script
@@ -196,6 +217,7 @@ Under the folder `code` you will find some demo scripts that can be compiled wit
 * aosppc/https.c - An amissl example file as found at [AmiSSL SDK](https://github.com/jens-maus/amissl)
 
 ## VBCC user
+
 The images have a user named vbcc, and a group with the same name. The user and group ID is 1000, which match with host's machine user IDs. This way both users, from the host and from the container, should have the same permissions on the files created.
 
 If you need to change the IDs with your own, set the following ENV variables when you start the docker containers
@@ -206,18 +228,22 @@ VBCC_GROUP_ID
 ```
 
 ## VSCode setup
-I recommend to use VSCode with [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension installed. You can use that extension to connect on the running VBCC container. If you want automatically to set the extensions, set the user and other configuration for each container, after you attach to it select from action menu (F1) the "Remote-Containers: Open Container Configuration FIle" and add the configuration based on your preference. Below is my own example:
+
+I recommend to use VSCode with [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension installed. You can use that extension to connect on the running VBCC container. If you want automatically to set the extensions, set the user and other configuration for each container, after you attach to it select from action menu (F1) the "Remote-Containers: Open Container Configuration FIle" and add the configuration based on your preference.
+
+Below is my own example:
+
 ```json
 {
 	"extensions": [
+		"batyan-soft.fast-tasks",
 		"donjayamanne.githistory",
 		"eamodio.gitlens",
 		"EditorConfig.EditorConfig",
 		"Gruntfuggly.todo-tree",
+		"jbenden.c-cpp-flylint",
 		"ms-vscode.cpptools",
-		"patricklee.vsnotes",
-		"prb28.amiga-assembly",
-		"SanaAjani.taskrunnercode"
+		"patricklee.vsnotes"
 	],
 	"workspaceFolder": "/opt/code",
 	"remoteUser": "amidev"
@@ -225,9 +251,12 @@ I recommend to use VSCode with [Remote - Containers](https://marketplace.visuals
 ```
 
 ## Bug reports or feature request
+
 If you have any issues with the images or you need help on using them or you would like to request any new feature, please contact me by opening an issue at https://github.com/walkero-gr/docker4AmigaVBCC/issues
 
 ## Credits
-The **docker4amigavbcc:latest-m68k** docker image is based on the following sources:
+
+The **docker4amigavbcc:m68k-amigaos** docker image is based on the following sources:
+
 * https://blitterstudio.com/setting-up-an-amiga-cross-compiler/
 * https://github.com/Ozzyboshi/DockerAmigaVbcc
